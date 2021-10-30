@@ -1,0 +1,32 @@
+npm i redux
+console.log(redux)
+import * as redux from "redux"
+
+const initState={
+    count:5,
+    name : "David",
+    movies : [
+        "titanic","saw","inception"
+    ]
+}
+
+const reducer = (state=initState, action) => {
+    switch(action.type){
+        case "INC" : return {...state, state.count+1}
+        default : return state;
+    }
+}  
+
+const myStore  =redux.createStore(reducer)
+
+document.getElementById('knop').onclick = () => {
+    myStore.dispatch({
+        type: "INC"
+    })
+}
+
+myStore.subscribe(render)
+
+const render = () => {
+    document.getElementById('denH1').innerText = myStore.getState().count
+}

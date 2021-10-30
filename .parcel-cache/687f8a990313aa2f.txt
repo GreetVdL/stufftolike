@@ -1,0 +1,24 @@
+23
+93/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/images/palmtrees.jpg1635596857491867000 0
+89/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/images/beach.jpg1635596922790387000 0
+79/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/images1635596951121745109 1
+104/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/sound/Black Sabbath-Changes.mp31635596707139000000 0
+101/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/sound/James Last-Biscaya.mp31635596712788000000 0
+93/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/images/santacruz.jpg1635596893699046000 0
+68/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app1635597485261761486 1
+87/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/overview_redux.txt1634978467000000000 0
+72/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src1635596725046869634 1
+75/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/js1634978420000000000 1
+81/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/package.json1635597538912574744 0
+93/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/base/_fonts.scss1635597446034627651 0
+88/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/images/lama.jpg1635596804745062000 0
+110/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/sound/Four Tet-No More Mosquitoes.mp31635596709912000000 0
+93/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/base/_reset.scss1635597282750230298 0
+86/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/package-lock.json1634973006000000000 0
+76/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css1635597225707522765 1
+81/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/base1635597263878657885 1
+113/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/sound/JE Sunde-I Don't Care To Dance.mp31635596715532000000 0
+78/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/sound1635596715527085458 1
+83/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/index.html1635597468334135432 0
+84/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/js/index.js1635597521180967223 0
+87/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/style.scss1635597457118383055 0
