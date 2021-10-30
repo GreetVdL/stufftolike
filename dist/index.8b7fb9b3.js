@@ -464,13 +464,18 @@ var _redux = require("redux");
 var _styleScss = require("../css/style.scss");
 var _newsitem = require("./components/newsitem");
 var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
+var _song = require("./components/song");
+var _songDefault = parcelHelpers.interopDefault(_song);
+// Songs
+const changesURL = "../../../sound/Black Sabbath-Changes.mp3";
 new _newsitemDefault.default("democracy");
 new _newsitemDefault.default("luchtbalonnen");
 new _newsitemDefault.default("alligator");
 new _newsitemDefault.default("klimaat");
 new _newsitemDefault.default("zeespiegel");
+new _songDefault.default(changesURL, "Changes");
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1146,6 +1151,110 @@ const newsReducer = (state = initialState, { type  })=>state
 ;
 const newsStore = _redux.createStore(newsReducer);
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dpBmu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _songScss = require("./Song.scss");
+var _song = require("./Song");
+var _songDefault = parcelHelpers.interopDefault(_song);
+exports.default = _songDefault.default;
+
+},{"./Song.scss":"639zH","./Song":"lQ6Z4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"639zH":[function() {},{}],"lQ6Z4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _redux = require("redux");
+var _musicJs = require("../../data/music.js");
+class Song {
+    #holder;
+    #song;
+    #author;
+    #title;
+    #path;
+    #photo;
+    constructor(songURL, title){
+        this.#holder = document.querySelector("#music");
+        this.#song = _musicJs.musicStore.getState().filter((song)=>song.title === title
+        );
+        this.#author = this.#song[0].author;
+        this.#title = this.#song[0].title;
+        this.#path = new URL(require("70284515d45fdb2a"));
+        this.#photo = this.#song[0].photo;
+        this.render();
+    }
+    render = ()=>{
+        this.#holder.insertAdjacentHTML("beforeend", `
+      <div class="song">
+        <h2 class="song__author">${this.#author}</h2>
+        <h3 class="song__title">${this.#title}</h3>
+        <p class="song__photo">${this.#photo}</p>
+        <audio class="song__path" controls src="${this.#path}"></audio>
+        <div class="like"></div>
+      </div>
+      `);
+    };
+}
+exports.default = Song;
+
+},{"redux":"ifMRI","../../data/music.js":"fs6CZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","70284515d45fdb2a":"8mUG8"}],"fs6CZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initialState", ()=>initialState
+);
+parcelHelpers.export(exports, "musicReducer", ()=>musicReducer
+);
+parcelHelpers.export(exports, "musicStore", ()=>musicStore
+);
+var _redux = require("redux");
+const initialState = [
+    {
+        author: "Black Sabbath",
+        title: "Changes",
+        path: "Black Sabbath-Changes.mp3",
+        photo: "blacksabbath.jpg"
+    }, 
+];
+const musicReducer = (state = initialState, { type  })=>state
+;
+const musicStore = _redux.createStore(musicReducer);
+
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
+"use strict";
+var bundleURL = {
+};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map
