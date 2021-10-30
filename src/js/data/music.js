@@ -16,8 +16,18 @@ export const initialState = [
   {
     author: "Black Sabbath",
     title: "Changes",
-    path: "Black Sabbath-Changes.mp3",
-    photo: "blacksabbath.jpg",
+  },
+  {
+    author: "Four Tet",
+    title: "No More Mosquitoes",
+  },
+  {
+    author: "James Last",
+    title: "Biscaya",
+  },
+  {
+    author: "J.E. Sunde",
+    title: "I don't care to dance",
   },
 ];
 

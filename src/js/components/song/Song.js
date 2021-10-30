@@ -8,16 +8,13 @@ class Song {
   #title;
   #path;
   #photo;
-  constructor(songURL, title) {
+  constructor(songURL, title, img) {
     this.#holder = document.querySelector("#music");
     this.#song = musicStore.getState().filter((song) => song.title === title);
     this.#author = this.#song[0].author;
     this.#title = this.#song[0].title;
-    this.#path = new URL(
-      "../../../sound/Black Sabbath-Changes.mp3",
-      import.meta.url
-    );
-    this.#photo = this.#song[0].photo;
+    this.#path = songURL;
+    this.#photo = img;
     this.render();
   }
 
@@ -28,7 +25,7 @@ class Song {
       <div class="song">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
-        <p class="song__photo">${this.#photo}</p>
+        <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">
         <audio class="song__path" controls src="${this.#path}"></audio>
         <div class="like"></div>
       </div>

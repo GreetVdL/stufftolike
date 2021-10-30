@@ -1,0 +1,30 @@
+.song {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: #c2f1e7;
+  color: #1d7e69;
+  line-height: 2rem;
+  background-color: #c5e4f0;
+  color: #20627d;
+  > * {
+    margin-bottom: 8px;
+  }
+  &__author {
+    font-size: 1.5rem;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 1.7rem;
+  }
+  &__photo {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  &__path {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}

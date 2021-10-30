@@ -467,15 +467,25 @@ var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 var _song = require("./components/song");
 var _songDefault = parcelHelpers.interopDefault(_song);
 // Songs
-const changesURL = "../../../sound/Black Sabbath-Changes.mp3";
+const changesSong = new URL(require("39ac25c4a912839"));
+const changesImg = new URL(require("d586dae687154f35"));
+const mosquitoesSong = new URL(require("6a64d3f174c7ff8b"));
+const mosquitoesImg = new URL(require("e760053865ba16a0"));
+const biscayaSong = new URL(require("a3423d5f8cb8b7c5"));
+const biscayaImg = new URL(require("e3cecc60168d7412"));
+const danceSong = new URL(require("8f0d1004bd4e1246"));
+const danceImg = new URL(require("70ca18bc38faa88e"));
 new _newsitemDefault.default("democracy");
 new _newsitemDefault.default("luchtbalonnen");
 new _newsitemDefault.default("alligator");
 new _newsitemDefault.default("klimaat");
 new _newsitemDefault.default("zeespiegel");
-new _songDefault.default(changesURL, "Changes");
+new _songDefault.default(changesSong, "Changes", changesImg);
+new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
+new _songDefault.default(biscayaSong, "Biscaya", biscayaImg);
+new _songDefault.default(danceSong, "I don't care to dance", danceImg);
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1171,14 +1181,14 @@ class Song {
     #title;
     #path;
     #photo;
-    constructor(songURL, title){
+    constructor(songURL, title, img){
         this.#holder = document.querySelector("#music");
         this.#song = _musicJs.musicStore.getState().filter((song)=>song.title === title
         );
         this.#author = this.#song[0].author;
         this.#title = this.#song[0].title;
-        this.#path = new URL(require("70284515d45fdb2a"));
-        this.#photo = this.#song[0].photo;
+        this.#path = songURL;
+        this.#photo = img;
         this.render();
     }
     render = ()=>{
@@ -1186,7 +1196,7 @@ class Song {
       <div class="song">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
-        <p class="song__photo">${this.#photo}</p>
+        <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">
         <audio class="song__path" controls src="${this.#path}"></audio>
         <div class="like"></div>
       </div>
@@ -1195,7 +1205,7 @@ class Song {
 }
 exports.default = Song;
 
-},{"redux":"ifMRI","../../data/music.js":"fs6CZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","70284515d45fdb2a":"8mUG8"}],"fs6CZ":[function(require,module,exports) {
+},{"redux":"ifMRI","../../data/music.js":"fs6CZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initialState", ()=>initialState
@@ -1208,9 +1218,19 @@ var _redux = require("redux");
 const initialState = [
     {
         author: "Black Sabbath",
-        title: "Changes",
-        path: "Black Sabbath-Changes.mp3",
-        photo: "blacksabbath.jpg"
+        title: "Changes"
+    },
+    {
+        author: "Four Tet",
+        title: "No More Mosquitoes"
+    },
+    {
+        author: "James Last",
+        title: "Biscaya"
+    },
+    {
+        author: "J.E. Sunde",
+        title: "I don't care to dance"
     }, 
 ];
 const musicReducer = (state = initialState, { type  })=>state
@@ -1255,6 +1275,27 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{}],"aYSjE":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "blacksabbath.566860f8.jpeg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"46MSr":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Four Tet-No More Mosquitoes.66f6576f.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"c3BZv":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "fourtet.28de3197.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"6Lw9F":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "James Last-Biscaya.79e28431.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"hlaSN":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jameslast.e6d5fd08.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"hY6AB":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sunde-I Don't Care To Dance.8799bf65.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map

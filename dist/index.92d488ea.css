@@ -157,6 +157,10 @@ html {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   background-color: #edfbf8;
 }
+#music {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
 .post {
   padding: 10px;
   margin: 10px;
@@ -186,9 +190,38 @@ html {
   color: #c2f1e7;
   border-radius: 7px;
   padding: 5px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.3rem;
   text-transform: uppercase;
 }
-
+.song {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: #c2f1e7;
+  color: #1d7e69;
+  line-height: 2rem;
+  background-color: #c5e4f0;
+  color: #20627d;
+}
+.song > * {
+  margin-bottom: 8px;
+}
+.song__author {
+  font-size: 1.5rem;
+}
+.song__title {
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+.song__photo {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.song__path {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 /*# sourceMappingURL=index.92d488ea.css.map */
