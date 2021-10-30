@@ -1,5 +1,6 @@
 @use "./base/reset";
 @use "./base/fonts";
+@use "../icons/style.css";
 
 // base styles
 
@@ -9,17 +10,15 @@ html {
 }
 
 #root {
-  margin: 0 auto;
-  max-width: 1300px;
+  margin: 10px auto;
+  max-width: 1400px;
   min-height: 100vh;
   display: flex;
 
   > main {
-    outline: 1px solid black;
-    width: calc(1300px - 200px);
+    width: 80%;
     #news,
     #photos {
-      outline: 1px solid black;
       min-height: 40vh;
     }
     #music {
@@ -27,18 +26,58 @@ html {
     }
   }
   > aside {
-    width: 200px;
-    outline: 1px solid black;
+    width: 20%;
+    .likes__header {
+      // font-family: "Barlow", sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      margin-top: 15px;
+    }
   }
 }
 
 #news {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  background-color: #edfbf8;
+  // background-color: #edfbf8;
 }
 
 #music {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 10px;
+  // background-color: #e3f2f8;
+}
+
+.like {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  // background-color: #cfdde3;
+  // background-color: #f9d2cb;
+  // background-color: #f7f8c3;
+  background-color: #38393f;
+  color: white;
+  font-size: 2rem;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  padding: 7px 0 0 7px;
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card {
+    transition: 200ms;
+    &:hover {
+      box-shadow: 5px 10px 22px -3px rgba(0, 0, 0, 0.27);
+      // transform: rotate(1deg);
+      transform: scale(1.01);
+    }
+  }
 }

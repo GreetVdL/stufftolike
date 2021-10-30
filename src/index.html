@@ -7,13 +7,17 @@
     <title>Redux exercise</title>
   </head>
   <body>
+    <include src="./symbol-defs.svg"></include>
     <div id="root">
       <main>
         <section id="news"></section>
         <section id="music"></section>
         <section id="photos"></section>
       </main>
-      <aside id="likes"></aside>
+      <aside class="likes">
+        <header class="likes__header">Likes</header>
+        <main class="likes__main"></main>
+      </aside>
     </div>
     <script src="js/index.js" type="module"></script>
   </body>

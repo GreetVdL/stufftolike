@@ -22,12 +22,16 @@ class Song {
     this.#holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="song">
+      <div class="card song">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
         <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">
         <audio class="song__path" controls src="${this.#path}"></audio>
-        <div class="like"></div>
+        <div class="like">
+        <svg class="icon icon-star-empty">
+          <use href="#icon-star-full"></use>
+        </svg>
+      </div>
       </div>
       `
     );

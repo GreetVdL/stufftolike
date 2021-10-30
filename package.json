@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0",
-    "parcel": "^2.0.0"
+    "parcel": "^2.0.0",
+    "posthtml-include": "^1.7.2"
   },
   "dependencies": {
     "redux": "^4.1.1"

@@ -1,10 +1,13 @@
 .post {
-  padding: 10px;
-  margin: 10px;
+  position: relative;
+  padding: 15px;
+  margin: 15px 15px 0 15px;
   border-radius: 15px;
   background-color: #c2f1e7;
   color: #1d7e69;
   line-height: 2rem;
+  display: flex;
+  flex-direction: column;
   > * {
     margin-bottom: 8px;
   }
@@ -26,8 +29,10 @@
     color: #c2f1e7;
     border-radius: 7px;
     padding: 5px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 1.3rem;
     text-transform: uppercase;
+    margin-top: auto;
+    align-self: flex-start;
   }
 }

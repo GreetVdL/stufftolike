@@ -1098,12 +1098,16 @@ class Newsitem {
     }
     render = ()=>{
         this.#holder.insertAdjacentHTML("beforeend", `
-      <div class="post">
+      <div class="card post">
         <h2 class="post__title">${this.#title}</h2>
         <p class="post__date">${this.#date}</p>
         <p class="post__intro">${this.#intro}</p>
         <a class="post__link" href="${this.#link}" target="blank">Read article</a>
-        <div class="like"></div>
+        <div class="like">
+          <svg class="icon icon-star-empty">
+            <use href="#icon-star-full"></use>
+          </svg>
+        </div>
       </div>
       `);
     };
@@ -1123,35 +1127,35 @@ var _redux = require("redux");
 const initialState = [
     {
         name: "democracy",
-        date: "2021, 8, 16",
+        date: "16 09 2021",
         title: "Poll Finds Most Americans Would Swap Democracy For $100 Best Buy Gift Card",
         intro: "According to the results of a new poll released Thursday by the Pew Research Center, the majority of Americans would swap democracy for a $100 Best Buy gift card.",
         href: "https://www.theonion.com/poll-finds-most-americans-would-swap-democracy-for-100-1847682668"
     },
     {
         name: "luchtbalonnen",
-        date: "2021, 9, 3",
+        date: "03 10 2021",
         title: "Honderden luchtballonnen stijgen op tijdens festival in VS",
         intro: "Honderden ballonnen stegen zaterdag op in Albuquerque, in alle denkbare kleuren, vormen en maten. In de Amerikaanse stad is zaterdag het internationale luchtballonfestival van start gegaan.",
         href: "https://www.standaard.be/cnt/dmf20211003_93538427"
     },
     {
         name: "alligator",
-        date: "2021, 9, 2",
+        date: "02 10 2021",
         title: "Man ziet alligator in tuin en grijpt op hoogst originele wijze in",
         intro: "Een man in Florida heeft op spectaculaire wijze een alligator kunnen vangen. Het reptiel verschool zich in de tuin van de buren, maar Abdul Gene Malik vond een oplossing om het dier te vangen. ",
         href: "https://www.standaard.be/cnt/dmf20211002_93599532"
     },
     {
         name: "klimaat",
-        date: "2021, 9, 24",
+        date: "24 10 2021",
         title: "Nog één week voor de klimaattop: hoe zit het nu eigenlijk met onze planeet?",
         intro: "Na de zomer van 2021 stellen we ons de vraag: valt het klimaat nog te redden, of komen alle beloftes van de wereldleiders rijkelijk te laat?",
         href: "https://www.standaard.be/cnt/dmf20211022_94506296"
     },
     {
         name: "zeespiegel",
-        date: "2021, 9, 15",
+        date: "15 10 2021",
         title: "Dreiging voor steden als zeespiegel jaren blijft stijgen",
         intro: "Als de opwarming van de aarde in het huidige tempo doorgaat, moeten zo’n vijftig steden ‘ongekende aanpassingsmaatregelen’ nemen om te voorkomen dat ze door stijgend waterpeil onder water komen te staan.",
         href: "https://www.standaard.be/cnt/dmf20211015_93918618"
@@ -1193,12 +1197,16 @@ class Song {
     }
     render = ()=>{
         this.#holder.insertAdjacentHTML("beforeend", `
-      <div class="song">
+      <div class="card song">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
         <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">
         <audio class="song__path" controls src="${this.#path}"></audio>
-        <div class="like"></div>
+        <div class="like">
+        <svg class="icon icon-star-empty">
+          <use href="#icon-star-full"></use>
+        </svg>
+      </div>
       </div>
       `);
     };
