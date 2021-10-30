@@ -13,12 +13,17 @@ html {
   max-width: 1300px;
   min-height: 100vh;
   display: flex;
+
   > main {
     outline: 1px solid black;
     width: calc(1300px - 200px);
-    section {
+    #news,
+    #photos {
       outline: 1px solid black;
-      min-height: 33.33vh;
+      min-height: 40vh;
+    }
+    #music {
+      min-height: 20vh;
     }
   }
   > aside {
@@ -29,5 +34,6 @@ html {
 
 #news {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: #edfbf8;
 }
