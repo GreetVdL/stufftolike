@@ -32,7 +32,7 @@ const likesReducer = (state = initState, { type, payload }) => {
     case ADD:
       return [...state, payload];
     case REMOVE:
-      return state.filter((obj) => obj !== payload);
+      return [...state].filter((obj) => obj !== payload);
     default:
       return state;
   }

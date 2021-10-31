@@ -11,7 +11,7 @@ import { likesStore } from "./data";
 import { togglePhoto } from "./data/photos";
 import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
-import { add } from "./data/likes";
+import { add, remove } from "./data/likes";
 
 // Click event listener for cards
 
@@ -32,6 +32,7 @@ document.querySelectorAll(".like").forEach((card) => {
         likesStore.dispatch(add(targetObject));
       } else {
         event.target.style.color = "white";
+        likesStore.dispatch(remove(targetObject));
       }
     }
     // If the card is a newsitem, toggle newsitem
@@ -46,8 +47,10 @@ document.querySelectorAll(".like").forEach((card) => {
       // console.log(store.getState());
       if (targetObject.liked) {
         event.target.style.color = "yellow";
+        likesStore.dispatch(add(targetObject));
       } else {
         event.target.style.color = "white";
+        likesStore.dispatch(remove(targetObject));
       }
     }
     // If the card is a song, toggle song
@@ -62,15 +65,16 @@ document.querySelectorAll(".like").forEach((card) => {
       // console.log(store.getState());
       if (targetObject.liked) {
         event.target.style.color = "yellow";
+        likesStore.dispatch(add(targetObject));
       } else {
         event.target.style.color = "white";
+        likesStore.dispatch(remove(targetObject));
       }
     }
   });
 });
 
-console.log(likesStore.getState());
-
+// Render liked cards on the right side
 renderLikes = () => {
   // console.log(likesStore.getState());
   document.querySelector(".likes__main").innerHTML = "";

@@ -486,7 +486,10 @@ document.querySelectorAll(".like").forEach((card)=>{
             if (targetObject.liked) {
                 event.target.style.color = "yellow";
                 _data.likesStore.dispatch(_likes.add(targetObject));
-            } else event.target.style.color = "white";
+            } else {
+                event.target.style.color = "white";
+                _data.likesStore.dispatch(_likes.remove(targetObject));
+            }
         }
         // If the card is a newsitem, toggle newsitem
         if (event.target.parentElement.classList.contains("post")) {
@@ -495,8 +498,13 @@ document.querySelectorAll(".like").forEach((card)=>{
             // targetObject.render(targetObject.likesHolder);
             _dataDefault.default.dispatch(_news.toggleNews(targetObject));
             // console.log(store.getState());
-            if (targetObject.liked) event.target.style.color = "yellow";
-            else event.target.style.color = "white";
+            if (targetObject.liked) {
+                event.target.style.color = "yellow";
+                _data.likesStore.dispatch(_likes.add(targetObject));
+            } else {
+                event.target.style.color = "white";
+                _data.likesStore.dispatch(_likes.remove(targetObject));
+            }
         }
         // If the card is a song, toggle song
         if (event.target.parentElement.classList.contains("song")) {
@@ -505,12 +513,17 @@ document.querySelectorAll(".like").forEach((card)=>{
             // targetObject.render(targetObject.likesHolder);
             _dataDefault.default.dispatch(_music.toggleSong(targetObject));
             // console.log(store.getState());
-            if (targetObject.liked) event.target.style.color = "yellow";
-            else event.target.style.color = "white";
+            if (targetObject.liked) {
+                event.target.style.color = "yellow";
+                _data.likesStore.dispatch(_likes.add(targetObject));
+            } else {
+                event.target.style.color = "white";
+                _data.likesStore.dispatch(_likes.remove(targetObject));
+            }
         }
     });
 });
-console.log(_data.likesStore.getState());
+// Render liked cards on the right side
 renderLikes = ()=>{
     // console.log(likesStore.getState());
     document.querySelector(".likes__main").innerHTML = "";
@@ -1593,7 +1606,9 @@ const remove = (obj)=>({
                 payload
             ];
         case REMOVE:
-            return state.filter((obj)=>obj !== payload
+            return [
+                ...state
+            ].filter((obj)=>obj !== payload
             );
         default:
             return state;
