@@ -462,6 +462,7 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _redux = require("redux");
 var _styleScss = require("../css/style.scss");
+var _nanoid = require("nanoid");
 var _newsitem = require("./components/newsitem");
 var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 var _song = require("./components/song");
@@ -533,8 +534,22 @@ renderLikes = ()=>{
     });
 };
 _data.likesStore.subscribe(renderLikes);
+const test = _nanoid.nanoid();
+console.log(typeof test);
+// Click event listener for liked cards
+document.querySelector(".likes__main").addEventListener("click", (event)=>{
+    // If the card is a photo, remove photo
+    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("photo")) {
+        const targetObject = _dataDefault.default.getState().photosReducer.filter((item)=>item.id === event.target.parentElement.id
+        )[0];
+        // targetObject.render(targetObject.likesHolder);
+        _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
+        _data.likesStore.dispatch(_likes.remove(targetObject));
+        targetObject.star.style.color = "white";
+    }
+});
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt","nanoid":"4OOvb"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1309,6 +1324,7 @@ class Photo {
         this.id = _nanoid.nanoid();
         this.liked = false;
         this.render(this.#holder);
+        this.star = document.querySelector(`#${this.id} .like`);
     }
     render = (holder)=>{
         holder.insertAdjacentHTML("beforeend", `

@@ -2,6 +2,8 @@ import * as redux from "redux";
 
 import "../css/style.scss";
 
+import { nanoid } from "nanoid";
+
 import Newsitem from "./components/newsitem";
 import Song from "./components/song";
 import Photo from "./components/photo";
@@ -86,3 +88,26 @@ renderLikes = () => {
 };
 
 likesStore.subscribe(renderLikes);
+
+const test = nanoid();
+console.log(typeof test);
+
+// Click event listener for liked cards
+
+document.querySelector(".likes__main").addEventListener("click", (event) => {
+  // If the card is a photo, remove photo
+  if (
+    event.target.classList.contains("like") &&
+    event.target.parentElement.classList.contains("photo")
+  ) {
+    const targetObject = store
+      .getState()
+      .photosReducer.filter(
+        (item) => item.id === event.target.parentElement.id
+      )[0];
+    // targetObject.render(targetObject.likesHolder);
+    store.dispatch(togglePhoto(targetObject));
+    likesStore.dispatch(remove(targetObject));
+    targetObject.star.style.color = "white";
+  }
+});

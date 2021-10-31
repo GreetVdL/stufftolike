@@ -22,6 +22,7 @@ class Photo {
     this.id = nanoid();
     this.liked = false;
     this.render(this.#holder);
+    this.star = document.querySelector(`#${this.id} .like`);
   }
 
   render = (holder) => {
