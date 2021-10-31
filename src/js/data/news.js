@@ -5,15 +5,21 @@ import Newsitem from "../components/newsitem";
  * ACTIONTYPES
  */
 
+const TOGGLE = "TOGGLE";
+
 /**
  * ACTION CREATORS
  */
+
+export const toggleLike = () => ({
+  type: TOGGLE,
+});
 
 /**
  * INITIAL DATA
  */
 
-export const initialState = [
+const initialState = [
   new Newsitem(
     "democracy",
     "16 09 2021",
@@ -54,9 +60,13 @@ export const initialState = [
 /**
  * REDUCER
  */
-export const newsReducer = (state = initialState, { type }) => state;
+const newsReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case TOGGLE:
+      return { ...state };
+    default:
+      return state;
+  }
+};
 
-/**
- * STORE
- */
-export const newsStore = redux.createStore(newsReducer);
+export default newsReducer;

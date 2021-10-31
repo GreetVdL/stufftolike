@@ -12,15 +12,21 @@ const beach = new URL("../../images/beach.jpg", import.meta.url);
  * ACTIONTYPES
  */
 
+const TOGGLE = "TOGGLE";
+
 /**
  * ACTION CREATORS
  */
+
+export const toggleLike = () => ({
+  type: TOGGLE,
+});
 
 /**
  * INITIAL DATA
  */
 
-export const initialState = [
+const initialState = [
   new Photo("lama", lama, "A fluffy lama"),
   new Photo("palmtree", palmtrees, "A bunch of palmtrees"),
   new Photo("santa", santa, "A Santa Cruz Beach playground"),
@@ -30,9 +36,6 @@ export const initialState = [
 /**
  * REDUCER
  */
-export const photosReducer = (state = initialState, { type }) => state;
+const photosReducer = (state = initialState, { type }) => state;
 
-/**
- * STORE
- */
-export const photosStore = redux.createStore(photosReducer);
+export default photosReducer;

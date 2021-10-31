@@ -1,4 +1,4 @@
-import * as redux from "redux";
+// import * as redux from "redux";
 // import { newsStore, newsReducer } from "../../data/news.js";
 import { nanoid } from "nanoid";
 class Newsitem {

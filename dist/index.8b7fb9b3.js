@@ -468,23 +468,25 @@ var _song = require("./components/song");
 var _songDefault = parcelHelpers.interopDefault(_song);
 var _photo = require("./components/photo");
 var _photoDefault = parcelHelpers.interopDefault(_photo);
-var _photos = require("./data/photos");
-var _music = require("./data/music");
-var _news = require("./data/news");
+// import { photosStore } from "./data/photos";
+// import { musicStore } from "./data/music";
+// import { newsStore } from "./data/news";
+var _data = require("./data");
+var _dataDefault = parcelHelpers.interopDefault(_data);
 // Click event listener for cards
 document.querySelectorAll(".card").forEach((card)=>{
     card.addEventListener("click", (event)=>{
         console.log(event.target.parentElement.id);
         event.target.style.color = "yellow";
         if (event.target.parentElement.classList.contains("photo")) {
-            const targetObject = _photos.photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
+            const targetObject = photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
             )[0];
             targetObject.render(targetObject.likesHolder);
         }
     });
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data/photos":"6iDTk","./data/music":"fs6CZ","./data/news":"fJgQd"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1074,7 +1076,7 @@ exports.default = _newsitemDefault.default;
 },{"./Newsitem.scss":"hE7xZ","./Newsitem":"ftMev","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hE7xZ":[function() {},{}],"ftMev":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
+// import * as redux from "redux";
 // import { newsStore, newsReducer } from "../../data/news.js";
 var _nanoid = require("nanoid");
 class Newsitem {
@@ -1116,7 +1118,7 @@ class Newsitem {
 }
 exports.default = Newsitem;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","redux":"ifMRI","nanoid":"4OOvb"}],"4OOvb":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"4OOvb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "nanoid", ()=>nanoid
@@ -1183,7 +1185,7 @@ exports.default = _songDefault.default;
 },{"./Song.scss":"639zH","./Song":"lQ6Z4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"639zH":[function() {},{}],"lQ6Z4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
+// import * as redux from "redux";
 // import { musicStore, musicReducer } from "../../data/music.js";
 var _nanoid = require("nanoid");
 class Song {
@@ -1226,7 +1228,7 @@ class Song {
 }
 exports.default = Song;
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"1Hh7W":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"1Hh7W":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _photoScss = require("./Photo.scss");
@@ -1237,7 +1239,7 @@ exports.default = _photoDefault.default;
 },{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
+// import * as redux from "redux";
 // import { photosStore, photosReducer } from "../../data/photos.js";
 var _nanoid = require("nanoid");
 class Photo {
@@ -1277,35 +1279,122 @@ class Photo {
 }
 exports.default = Photo;
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"6iDTk":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"M6jpw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initialState", ()=>initialState
-);
-parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
-);
-parcelHelpers.export(exports, "photosStore", ()=>photosStore
+var _redux = require("redux");
+// import { composeWithDevTools } from "redux-devtools-extension";
+// import logger from "redux-logger";
+var _news = require("./news");
+var _newsDefault = parcelHelpers.interopDefault(_news);
+var _music = require("./music");
+var _musicDefault = parcelHelpers.interopDefault(_music);
+var _photos = require("./photos");
+var _photosDefault = parcelHelpers.interopDefault(_photos);
+// const saveStoreToLocalStorage = (store) => (next) => (action) => {
+//   console.log(action.type);
+//   console.group("prevState");
+//   console.log(store.getState());
+//   console.groupEnd("prevState");
+//   next(action);
+//   console.group("nextState");
+//   console.log(store.getState());
+//   console.groupEnd("nextState");
+//   window.localStorage.setItem("store", JSON.stringify(store.getState()));
+// };
+const rootReducer = _redux.combineReducers({
+    newsReducer: _newsDefault.default,
+    musicReducer: _musicDefault.default,
+    photosReducer: _photosDefault.default
+});
+exports.default = _redux.createStore(rootReducer);
+
+},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fJgQd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
 );
 var _redux = require("redux");
-var _photo = require("../components/photo");
-var _photoDefault = parcelHelpers.interopDefault(_photo);
-// Photos
-const lama = new URL(require("676d6bcd1a6ee56d"));
-const palmtrees = new URL(require("2b52d4b06755bc02"));
-const santa = new URL(require("8cd1004c19adfabf"));
-const beach = new URL(require("ce7d915acbc4fc3"));
-const initialState = [
-    new _photoDefault.default("lama", lama, "A fluffy lama"),
-    new _photoDefault.default("palmtree", palmtrees, "A bunch of palmtrees"),
-    new _photoDefault.default("santa", santa, "A Santa Cruz Beach playground"),
-    new _photoDefault.default("beach", beach, "Lampuuk Beach in Aceh-Indonesia."), 
-];
-const photosReducer = (state = initialState, { type  })=>state
+var _newsitem = require("../components/newsitem");
+var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
+/**
+ * ACTIONTYPES
+ */ const TOGGLE = "TOGGLE";
+const toggleLike = ()=>({
+        type: TOGGLE
+    })
 ;
-const photosStore = _redux.createStore(photosReducer);
+/**
+ * INITIAL DATA
+ */ const initialState = [
+    new _newsitemDefault.default("democracy", "16 09 2021", "Poll Finds Most Americans Would Swap Democracy For $100 Best Buy Gift Card", "According to the results of a new poll released Thursday by the Pew Research Center, the majority of Americans would swap democracy for a $100 Best Buy gift card.", "https://www.theonion.com/poll-finds-most-americans-would-swap-democracy-for-100-1847682668"),
+    new _newsitemDefault.default("luchtbalonnen", "03 10 2021", "Honderden luchtballonnen stijgen op tijdens festival in VS", "Honderden ballonnen stegen zaterdag op in Albuquerque, in alle denkbare kleuren, vormen en maten. In de Amerikaanse stad is zaterdag het internationale luchtballonfestival van start gegaan.", "https://www.standaard.be/cnt/dmf20211003_93538427"),
+    new _newsitemDefault.default("alligator", "02 10 2021", "Man ziet alligator in tuin en grijpt op hoogst originele wijze in", "Een man in Florida heeft op spectaculaire wijze een alligator kunnen vangen. Het reptiel verschool zich in de tuin van de buren, maar Abdul Gene Malik vond een oplossing om het dier te vangen. ", "https://www.standaard.be/cnt/dmf20211002_93599532"),
+    new _newsitemDefault.default("klimaat", "24 10 2021", "Nog één week voor de klimaattop: hoe zit het nu eigenlijk met onze planeet?", "Na de zomer van 2021 stellen we ons de vraag: valt het klimaat nog te redden, of komen alle beloftes van de wereldleiders rijkelijk te laat?", "https://www.standaard.be/cnt/dmf20211022_94506296"),
+    new _newsitemDefault.default("zeespiegel", "15 10 2021", "Dreiging voor steden als zeespiegel jaren blijft stijgen", "Als de opwarming van de aarde in het huidige tempo doorgaat, moeten zo’n vijftig steden ‘ongekende aanpassingsmaatregelen’ nemen om te voorkomen dat ze door stijgend waterpeil onder water komen te staan.", "https://www.standaard.be/cnt/dmf20211015_93918618"), 
+];
+/**
+ * REDUCER
+ */ const newsReducer = (state = initialState, { type , payload  })=>{
+    switch(type){
+        case TOGGLE:
+            return {
+                ...state
+            };
+        default:
+            return state;
+    }
+};
+exports.default = newsReducer;
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","676d6bcd1a6ee56d":"2U0mM","../components/photo":"1Hh7W"}],"lnyNm":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
+},{"redux":"ifMRI","../components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
+);
+var _redux = require("redux");
+var _song = require("../components/song");
+var _songDefault = parcelHelpers.interopDefault(_song);
+// Songs and their images
+const changesSong = new URL(require("f05dabcd18bc6e23"));
+const changesImg = new URL(require("1ab89ed192bafe4b"));
+const mosquitoesSong = new URL(require("8ffa39f285ce86c6"));
+const mosquitoesImg = new URL(require("942d5e2dc826489"));
+const biscayaSong = new URL(require("e845d0cef57403cf"));
+const biscayaImg = new URL(require("ebcd0aa0863af56d"));
+const danceSong = new URL(require("a5ac90bdc993c624"));
+const danceImg = new URL(require("28dc058371e7c750"));
+/**
+ * ACTIONTYPES
+ */ const TOGGLE = "TOGGLE";
+const toggleLike = ()=>({
+        type: TOGGLE
+    })
+;
+/**
+ * INITIAL DATA
+ */ const initialState = [
+    new _songDefault.default(changesSong, "Changes", changesImg, "Black Sabbath"),
+    new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg, "Four Tet"),
+    new _songDefault.default(biscayaSong, "Biscaya", biscayaImg, "James Last"),
+    new _songDefault.default(danceSong, "I don't care to dance", danceImg, "J.E. Sunde"), 
+];
+/**
+ * REDUCER
+ */ const musicReducer = (state = initialState, { type , payload  })=>{
+    switch(type){
+        case TOGGLE:
+            return {
+                ...state
+            };
+        default:
+            return state;
+    }
+};
+exports.default = musicReducer;
+
+},{"redux":"ifMRI","../components/song":"dpBmu","f05dabcd18bc6e23":"8mUG8","1ab89ed192bafe4b":"aYSjE","8ffa39f285ce86c6":"46MSr","942d5e2dc826489":"c3BZv","e845d0cef57403cf":"6Lw9F","ebcd0aa0863af56d":"hlaSN","a5ac90bdc993c624":"hY6AB","28dc058371e7c750":"d3N4D","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
 "use strict";
@@ -1342,50 +1431,7 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"1Kayb":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "santacruz.1772fe76.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"lCtaX":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "beach.728d49bb.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"2U0mM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"fs6CZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initialState", ()=>initialState
-);
-parcelHelpers.export(exports, "musicReducer", ()=>musicReducer
-);
-parcelHelpers.export(exports, "musicStore", ()=>musicStore
-);
-var _redux = require("redux");
-var _song = require("../components/song");
-var _songDefault = parcelHelpers.interopDefault(_song);
-// Songs and their images
-const changesSong = new URL(require("f05dabcd18bc6e23"));
-const changesImg = new URL(require("1ab89ed192bafe4b"));
-const mosquitoesSong = new URL(require("8ffa39f285ce86c6"));
-const mosquitoesImg = new URL(require("942d5e2dc826489"));
-const biscayaSong = new URL(require("e845d0cef57403cf"));
-const biscayaImg = new URL(require("ebcd0aa0863af56d"));
-const danceSong = new URL(require("a5ac90bdc993c624"));
-const danceImg = new URL(require("28dc058371e7c750"));
-const initialState = [
-    new _songDefault.default(changesSong, "Changes", changesImg, "Black Sabbath"),
-    new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg, "Four Tet"),
-    new _songDefault.default(biscayaSong, "Biscaya", biscayaImg, "James Last"),
-    new _songDefault.default(danceSong, "I don't care to dance", danceImg, "J.E. Sunde"), 
-];
-const musicReducer = (state = initialState, { type  })=>state
-;
-const musicStore = _redux.createStore(musicReducer);
-
-},{"redux":"ifMRI","../components/song":"dpBmu","f05dabcd18bc6e23":"8mUG8","1ab89ed192bafe4b":"aYSjE","8ffa39f285ce86c6":"46MSr","942d5e2dc826489":"c3BZv","e845d0cef57403cf":"6Lw9F","ebcd0aa0863af56d":"hlaSN","a5ac90bdc993c624":"hY6AB","28dc058371e7c750":"d3N4D","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"aYSjE":[function(require,module,exports) {
+},{}],"aYSjE":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "blacksabbath.566860f8.jpeg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"46MSr":[function(require,module,exports) {
@@ -1406,29 +1452,52 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sun
 },{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}],"fJgQd":[function(require,module,exports) {
+},{"./helpers/bundle-url":"chiK4"}],"6iDTk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initialState", ()=>initialState
-);
-parcelHelpers.export(exports, "newsReducer", ()=>newsReducer
-);
-parcelHelpers.export(exports, "newsStore", ()=>newsStore
+parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
 );
 var _redux = require("redux");
-var _newsitem = require("../components/newsitem");
-var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
-const initialState = [
-    new _newsitemDefault.default("democracy", "16 09 2021", "Poll Finds Most Americans Would Swap Democracy For $100 Best Buy Gift Card", "According to the results of a new poll released Thursday by the Pew Research Center, the majority of Americans would swap democracy for a $100 Best Buy gift card.", "https://www.theonion.com/poll-finds-most-americans-would-swap-democracy-for-100-1847682668"),
-    new _newsitemDefault.default("luchtbalonnen", "03 10 2021", "Honderden luchtballonnen stijgen op tijdens festival in VS", "Honderden ballonnen stegen zaterdag op in Albuquerque, in alle denkbare kleuren, vormen en maten. In de Amerikaanse stad is zaterdag het internationale luchtballonfestival van start gegaan.", "https://www.standaard.be/cnt/dmf20211003_93538427"),
-    new _newsitemDefault.default("alligator", "02 10 2021", "Man ziet alligator in tuin en grijpt op hoogst originele wijze in", "Een man in Florida heeft op spectaculaire wijze een alligator kunnen vangen. Het reptiel verschool zich in de tuin van de buren, maar Abdul Gene Malik vond een oplossing om het dier te vangen. ", "https://www.standaard.be/cnt/dmf20211002_93599532"),
-    new _newsitemDefault.default("klimaat", "24 10 2021", "Nog één week voor de klimaattop: hoe zit het nu eigenlijk met onze planeet?", "Na de zomer van 2021 stellen we ons de vraag: valt het klimaat nog te redden, of komen alle beloftes van de wereldleiders rijkelijk te laat?", "https://www.standaard.be/cnt/dmf20211022_94506296"),
-    new _newsitemDefault.default("zeespiegel", "15 10 2021", "Dreiging voor steden als zeespiegel jaren blijft stijgen", "Als de opwarming van de aarde in het huidige tempo doorgaat, moeten zo’n vijftig steden ‘ongekende aanpassingsmaatregelen’ nemen om te voorkomen dat ze door stijgend waterpeil onder water komen te staan.", "https://www.standaard.be/cnt/dmf20211015_93918618"), 
-];
-const newsReducer = (state = initialState, { type  })=>state
+var _photo = require("../components/photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+// Photos
+const lama = new URL(require("676d6bcd1a6ee56d"));
+const palmtrees = new URL(require("2b52d4b06755bc02"));
+const santa = new URL(require("8cd1004c19adfabf"));
+const beach = new URL(require("ce7d915acbc4fc3"));
+/**
+ * ACTIONTYPES
+ */ const TOGGLE = "TOGGLE";
+const toggleLike = ()=>({
+        type: TOGGLE
+    })
 ;
-const newsStore = _redux.createStore(newsReducer);
+/**
+ * INITIAL DATA
+ */ const initialState = [
+    new _photoDefault.default("lama", lama, "A fluffy lama"),
+    new _photoDefault.default("palmtree", palmtrees, "A bunch of palmtrees"),
+    new _photoDefault.default("santa", santa, "A Santa Cruz Beach playground"),
+    new _photoDefault.default("beach", beach, "Lampuuk Beach in Aceh-Indonesia."), 
+];
+/**
+ * REDUCER
+ */ const photosReducer = (state = initialState, { type  })=>state
+;
+exports.default = photosReducer;
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../components/newsitem":"ie6yB"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{"redux":"ifMRI","../components/photo":"1Hh7W","676d6bcd1a6ee56d":"2U0mM","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2U0mM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"lnyNm":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"1Kayb":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "santacruz.1772fe76.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"lCtaX":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "beach.728d49bb.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map

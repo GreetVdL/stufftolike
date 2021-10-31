@@ -1,4 +1,4 @@
-import * as redux from "redux";
+// import * as redux from "redux";
 // import { photosStore, photosReducer } from "../../data/photos.js";
 import { nanoid } from "nanoid";
 

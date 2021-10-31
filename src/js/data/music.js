@@ -31,15 +31,21 @@ const danceImg = new URL("../../images/jesunde.jpg", import.meta.url);
  * ACTIONTYPES
  */
 
+const TOGGLE = "TOGGLE";
+
 /**
  * ACTION CREATORS
  */
+
+export const toggleLike = () => ({
+  type: TOGGLE,
+});
 
 /**
  * INITIAL DATA
  */
 
-export const initialState = [
+const initialState = [
   new Song(changesSong, "Changes", changesImg, "Black Sabbath"),
   new Song(mosquitoesSong, "No More Mosquitoes", mosquitoesImg, "Four Tet"),
   new Song(biscayaSong, "Biscaya", biscayaImg, "James Last"),
@@ -49,9 +55,13 @@ export const initialState = [
 /**
  * REDUCER
  */
-export const musicReducer = (state = initialState, { type }) => state;
+const musicReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case TOGGLE:
+      return { ...state };
+    default:
+      return state;
+  }
+};
 
-/**
- * STORE
- */
-export const musicStore = redux.createStore(musicReducer);
+export default musicReducer;

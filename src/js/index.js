@@ -5,9 +5,10 @@ import "../css/style.scss";
 import Newsitem from "./components/newsitem";
 import Song from "./components/song";
 import Photo from "./components/photo";
-import { photosStore } from "./data/photos";
-import { musicStore } from "./data/music";
-import { newsStore } from "./data/news";
+// import { photosStore } from "./data/photos";
+// import { musicStore } from "./data/music";
+// import { newsStore } from "./data/news";
+import store from "./data";
 
 // Click event listener for cards
 
