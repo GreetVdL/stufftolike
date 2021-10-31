@@ -12,14 +12,14 @@ const beach = new URL("../../images/beach.jpg", import.meta.url);
  * ACTIONTYPES
  */
 
-const TOGGLE = "TOGGLE";
+const TOGGLEPHOTO = "TOGGLEPHOTO";
 
 /**
  * ACTION CREATORS
  */
 
-export const toggleLike = () => ({
-  type: TOGGLE,
+export const togglePhoto = () => ({
+  type: TOGGLEPHOTO,
 });
 
 /**

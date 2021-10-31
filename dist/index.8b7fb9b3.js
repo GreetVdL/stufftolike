@@ -474,17 +474,16 @@ var _photoDefault = parcelHelpers.interopDefault(_photo);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 // Click event listener for cards
-document.querySelectorAll(".card").forEach((card)=>{
+document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
-        console.log(event.target.parentElement.id);
         event.target.style.color = "yellow";
         if (event.target.parentElement.classList.contains("photo")) {
-            const targetObject = photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
+            const targetObject = _dataDefault.default.getState().photosReducer.filter((item)=>item.id === event.target.parentElement.id
             )[0];
             targetObject.render(targetObject.likesHolder);
         }
     });
-});
+}); // console.log(store.getState());
 
 },{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1208,7 +1207,6 @@ class Song {
         this.id = _nanoid.nanoid();
         this.liked = false;
         this.render(this.#holder);
-        console.log("song constructor called");
     }
     render = (holder)=>{
         holder.insertAdjacentHTML("beforeend", `
@@ -1291,6 +1289,8 @@ var _music = require("./music");
 var _musicDefault = parcelHelpers.interopDefault(_music);
 var _photos = require("./photos");
 var _photosDefault = parcelHelpers.interopDefault(_photos);
+var _likes = require("./likes");
+var _likesDefault = parcelHelpers.interopDefault(_likes);
 // const saveStoreToLocalStorage = (store) => (next) => (action) => {
 //   console.log(action.type);
 //   console.group("prevState");
@@ -1309,19 +1309,19 @@ const rootReducer = _redux.combineReducers({
 });
 exports.default = _redux.createStore(rootReducer);
 
-},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fJgQd":[function(require,module,exports) {
+},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"fJgQd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
+parcelHelpers.export(exports, "toggleNews", ()=>toggleNews
 );
 var _redux = require("redux");
 var _newsitem = require("../components/newsitem");
 var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 /**
  * ACTIONTYPES
- */ const TOGGLE = "TOGGLE";
-const toggleLike = ()=>({
-        type: TOGGLE
+ */ const TOGGLENEWS = "TOGGLENEWS";
+const toggleNews = ()=>({
+        type: TOGGLENEWS
     })
 ;
 /**
@@ -1337,7 +1337,7 @@ const toggleLike = ()=>({
  * REDUCER
  */ const newsReducer = (state = initialState, { type , payload  })=>{
     switch(type){
-        case TOGGLE:
+        case TOGGLENEWS:
             return {
                 ...state
             };
@@ -1350,7 +1350,7 @@ exports.default = newsReducer;
 },{"redux":"ifMRI","../components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
+parcelHelpers.export(exports, "toggleSong", ()=>toggleSong
 );
 var _redux = require("redux");
 var _song = require("../components/song");
@@ -1366,9 +1366,9 @@ const danceSong = new URL(require("a5ac90bdc993c624"));
 const danceImg = new URL(require("28dc058371e7c750"));
 /**
  * ACTIONTYPES
- */ const TOGGLE = "TOGGLE";
-const toggleLike = ()=>({
-        type: TOGGLE
+ */ const TOGGLESONG = "TOGGLESONG";
+const toggleSong = ()=>({
+        type: TOGGLESONG
     })
 ;
 /**
@@ -1383,7 +1383,7 @@ const toggleLike = ()=>({
  * REDUCER
  */ const musicReducer = (state = initialState, { type , payload  })=>{
     switch(type){
-        case TOGGLE:
+        case TOGGLESONG:
             return {
                 ...state
             };
@@ -1455,7 +1455,7 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesund
 },{"./helpers/bundle-url":"chiK4"}],"6iDTk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "toggleLike", ()=>toggleLike
+parcelHelpers.export(exports, "togglePhoto", ()=>togglePhoto
 );
 var _redux = require("redux");
 var _photo = require("../components/photo");
@@ -1467,9 +1467,9 @@ const santa = new URL(require("8cd1004c19adfabf"));
 const beach = new URL(require("ce7d915acbc4fc3"));
 /**
  * ACTIONTYPES
- */ const TOGGLE = "TOGGLE";
-const toggleLike = ()=>({
-        type: TOGGLE
+ */ const TOGGLEPHOTO = "TOGGLEPHOTO";
+const togglePhoto = ()=>({
+        type: TOGGLEPHOTO
     })
 ;
 /**
@@ -1498,6 +1498,49 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "santac
 },{"./helpers/bundle-url":"chiK4"}],"lCtaX":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "beach.728d49bb.jpg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{"./helpers/bundle-url":"chiK4"}],"LSTUt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "add", ()=>add
+);
+parcelHelpers.export(exports, "remove", ()=>remove
+);
+// import { nanoid } from "nanoid";
+/**
+ * TYPES
+ */ const ADD = "ADD";
+const REMOVE = "REMOVE";
+const add = (obj)=>({
+        type: ADD,
+        payload: obj
+    })
+;
+const remove = (obj)=>({
+        type: REMOVE,
+        payload: obj
+    })
+;
+/**
+ * INITIALSTATE
+ */ const initState = [];
+/**
+ * REDUCER
+ */ const likesReducer = (state = initState, { type , payload  })=>{
+    switch(type){
+        case ADD:
+            return [
+                ...state,
+                payload
+            ];
+        case REMOVE:
+            return state.filter((obj)=>obj !== payload
+            );
+        default:
+            return state;
+    }
+};
+exports.default = likesReducer;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map

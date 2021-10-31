@@ -9,20 +9,13 @@ const REMOVE = "REMOVE";
 /**
  * ACTIONCREATORS
  */
-export const add = (name, age) => ({
+export const add = (obj) => ({
   type: ADD,
-  payload: {
-    name,
-    age,
-  },
+  payload: obj,
 });
-export const remove = (id) => ({
+export const remove = (obj) => ({
   type: REMOVE,
-  payload: id,
-});
-export const age = (id) => ({
-  type: AGE,
-  payload: id,
+  payload: obj,
 });
 
 /**
@@ -33,17 +26,15 @@ const initState = [];
 /**
  * REDUCER
  */
-export default (state = initState, { type, payload }) => {
+const likesReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case ADD:
-      return [...state, { name: payload.name, age: payload.age, id: nanoid() }];
-    case AGE:
-      return state.map((friend) =>
-        friend.id === payload ? { ...friend, age: friend.age + 1 } : friend
-      );
+      return [...state, payload];
     case REMOVE:
-      return state.filter((friend) => friend.id !== payload);
+      return state.filter((obj) => obj !== payload);
     default:
       return state;
   }
 };
+
+export default likesReducer;

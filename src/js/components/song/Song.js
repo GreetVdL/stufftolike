@@ -22,7 +22,6 @@ class Song {
     this.id = nanoid();
     this.liked = false;
     this.render(this.#holder);
-    console.log("song constructor called");
   }
 
   render = (holder) => {

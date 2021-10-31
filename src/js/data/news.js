@@ -5,14 +5,14 @@ import Newsitem from "../components/newsitem";
  * ACTIONTYPES
  */
 
-const TOGGLE = "TOGGLE";
+const TOGGLENEWS = "TOGGLENEWS";
 
 /**
  * ACTION CREATORS
  */
 
-export const toggleLike = () => ({
-  type: TOGGLE,
+export const toggleNews = () => ({
+  type: TOGGLENEWS,
 });
 
 /**
@@ -62,7 +62,7 @@ const initialState = [
  */
 const newsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case TOGGLE:
+    case TOGGLENEWS:
       return { ...state };
     default:
       return state;

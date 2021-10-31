@@ -12,15 +12,18 @@ import store from "./data";
 
 // Click event listener for cards
 
-document.querySelectorAll(".card").forEach((card) => {
+document.querySelectorAll(".like").forEach((card) => {
   card.addEventListener("click", (event) => {
-    console.log(event.target.parentElement.id);
     event.target.style.color = "yellow";
     if (event.target.parentElement.classList.contains("photo")) {
-      const targetObject = photosStore
+      const targetObject = store
         .getState()
-        .filter((item) => item.id === event.target.parentElement.id)[0];
+        .photosReducer.filter(
+          (item) => item.id === event.target.parentElement.id
+        )[0];
       targetObject.render(targetObject.likesHolder);
     }
   });
 });
+
+// console.log(store.getState());

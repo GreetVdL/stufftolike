@@ -31,14 +31,14 @@ const danceImg = new URL("../../images/jesunde.jpg", import.meta.url);
  * ACTIONTYPES
  */
 
-const TOGGLE = "TOGGLE";
+const TOGGLESONG = "TOGGLESONG";
 
 /**
  * ACTION CREATORS
  */
 
-export const toggleLike = () => ({
-  type: TOGGLE,
+export const toggleSong = () => ({
+  type: TOGGLESONG,
 });
 
 /**
@@ -57,7 +57,7 @@ const initialState = [
  */
 const musicReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case TOGGLE:
+    case TOGGLESONG:
       return { ...state };
     default:
       return state;

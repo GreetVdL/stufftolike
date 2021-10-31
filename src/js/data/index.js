@@ -4,6 +4,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import newsReducer from "./news";
 import musicReducer from "./music";
 import photosReducer from "./photos";
+import likesReducer from "./likes";
 
 // const saveStoreToLocalStorage = (store) => (next) => (action) => {
 //   console.log(action.type);
