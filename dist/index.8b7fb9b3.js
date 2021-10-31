@@ -462,19 +462,12 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _redux = require("redux");
 var _styleScss = require("../css/style.scss");
-var _newsitem = require("./components/newsitem");
-var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
-var _song = require("./components/song");
-var _songDefault = parcelHelpers.interopDefault(_song);
-var _photo = require("./components/photo");
-var _photoDefault = parcelHelpers.interopDefault(_photo);
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 var _photos = require("./data/photos");
 var _news = require("./data/news");
 var _music = require("./data/music");
 var _likes = require("./data/likes");
-const yellow = "#F2F467";
 // Click event listener for cards
 document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
@@ -536,7 +529,9 @@ renderLikes = ()=>{
     document.querySelector(".likes__main").innerHTML = "";
     _data.likesStore.getState().forEach((obj)=>{
         obj.render(obj.likesHolder);
-        document.querySelector(`.likes__main #${obj.id} .like`).style.color = yellow;
+        // document.querySelector(`.likes__main #${obj.id} .like`).style.color =
+        //   yellow;
+        document.querySelector(`.likes__main #${obj.id} .like`).classList.add("like--active");
     });
 };
 _data.likesStore.subscribe(renderLikes);
@@ -575,7 +570,7 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
     }
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1154,7 +1149,73 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"ie6yB":[function(require,module,exports) {
+},{}],"M6jpw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "likesStore", ()=>likesStore
+);
+var _redux = require("redux");
+// import { composeWithDevTools } from "redux-devtools-extension";
+// import logger from "redux-logger";
+var _news = require("./news");
+var _newsDefault = parcelHelpers.interopDefault(_news);
+var _music = require("./music");
+var _musicDefault = parcelHelpers.interopDefault(_music);
+var _photos = require("./photos");
+var _photosDefault = parcelHelpers.interopDefault(_photos);
+var _likes = require("./likes");
+var _likesDefault = parcelHelpers.interopDefault(_likes);
+const rootReducer = _redux.combineReducers({
+    newsReducer: _newsDefault.default,
+    musicReducer: _musicDefault.default,
+    photosReducer: _photosDefault.default
+});
+exports.default = _redux.createStore(rootReducer);
+const likesStore = _redux.createStore(_likesDefault.default);
+
+},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"fJgQd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "toggleNews", ()=>toggleNews
+);
+var _redux = require("redux");
+var _newsitem = require("../components/newsitem");
+var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
+/**
+ * ACTIONTYPES
+ */ const TOGGLENEWS = "TOGGLENEWS";
+const toggleNews = (obj)=>({
+        type: TOGGLENEWS,
+        payload: obj
+    })
+;
+/**
+ * INITIAL DATA
+ */ const initialState = [
+    new _newsitemDefault.default("democracy", "16 09 2021", "Poll Finds Most Americans Would Swap Democracy For $100 Best Buy Gift Card", "According to the results of a new poll released Thursday by the Pew Research Center, the majority of Americans would swap democracy for a $100 Best Buy gift card.", "https://www.theonion.com/poll-finds-most-americans-would-swap-democracy-for-100-1847682668"),
+    new _newsitemDefault.default("luchtbalonnen", "03 10 2021", "Honderden luchtballonnen stijgen op tijdens festival in VS", "Honderden ballonnen stegen zaterdag op in Albuquerque, in alle denkbare kleuren, vormen en maten. In de Amerikaanse stad is zaterdag het internationale luchtballonfestival van start gegaan.", "https://www.standaard.be/cnt/dmf20211003_93538427"),
+    new _newsitemDefault.default("alligator", "02 10 2021", "Man ziet alligator in tuin en grijpt op hoogst originele wijze in", "Een man in Florida heeft op spectaculaire wijze een alligator kunnen vangen. Het reptiel verschool zich in de tuin van de buren, maar Abdul Gene Malik vond een oplossing om het dier te vangen. ", "https://www.standaard.be/cnt/dmf20211002_93599532"),
+    new _newsitemDefault.default("klimaat", "24 10 2021", "Nog één week voor de klimaattop: hoe zit het nu eigenlijk met onze planeet?", "Na de zomer van 2021 stellen we ons de vraag: valt het klimaat nog te redden, of komen alle beloftes van de wereldleiders rijkelijk te laat?", "https://www.standaard.be/cnt/dmf20211022_94506296"),
+    new _newsitemDefault.default("zeespiegel", "15 10 2021", "Dreiging voor steden als zeespiegel jaren blijft stijgen", "Als de opwarming van de aarde in het huidige tempo doorgaat, moeten zo’n vijftig steden ‘ongekende aanpassingsmaatregelen’ nemen om te voorkomen dat ze door stijgend waterpeil onder water komen te staan.", "https://www.standaard.be/cnt/dmf20211015_93918618"), 
+];
+/**
+ * REDUCER
+ */ const newsReducer = (state = initialState, { type , payload  })=>{
+    switch(type){
+        case TOGGLENEWS:
+            return [
+                ...state
+            ].map((el)=>{
+                if (el === payload) el.liked = !el.liked;
+                return el;
+            });
+        default:
+            return state;
+    }
+};
+exports.default = newsReducer;
+
+},{"redux":"ifMRI","../components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ie6yB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _newsitemScss = require("./Newsitem.scss");
@@ -1165,38 +1226,28 @@ exports.default = _newsitemDefault.default;
 },{"./Newsitem.scss":"hE7xZ","./Newsitem":"ftMev","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"hE7xZ":[function() {},{}],"ftMev":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import * as redux from "redux";
-// import { newsStore, newsReducer } from "../../data/news.js";
 var _nanoid = require("nanoid");
 class Newsitem {
-    #name;
-    #holder;
-    // #post;
-    #title;
-    #date;
-    #intro;
-    #link;
     constructor(name, date, title, intro, href){
-        this.#name = name;
-        this.#holder = document.querySelector("#news");
+        this.name = name;
+        this.holder = document.querySelector("#news");
         this.likesHolder = document.querySelector(".likes__main");
-        // this.#post = newsStore.getState().filter((post) => post.name === name)[0];
-        this.#title = title;
-        this.#date = date;
-        this.#intro = intro;
-        this.#link = href;
+        this.title = title;
+        this.date = date;
+        this.intro = intro;
+        this.link = href;
         this.id = "a" + _nanoid.nanoid();
         this.liked = false;
-        this.render(this.#holder);
+        this.render(this.holder);
         this.star = document.querySelector(`#${this.id} .like`);
     }
     render = (holder)=>{
         holder.insertAdjacentHTML("beforeend", `
       <div class="card post" id="${this.id}">
-        <h2 class="post__title">${this.#title}</h2>
-        <p class="post__date">${this.#date}</p>
-        <p class="post__intro">${this.#intro}</p>
-        <a class="post__link" href="${this.#link}" target="blank">Read article</a>
+        <h2 class="post__title">${this.title}</h2>
+        <p class="post__date">${this.date}</p>
+        <p class="post__intro">${this.intro}</p>
+        <a class="post__link" href="${this.link}" target="blank">Read article</a>
         <div class="like">
           <svg class="icon icon-star-empty">
             <use href="#icon-star-full"></use>
@@ -1264,190 +1315,7 @@ parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet
 );
 let urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dpBmu":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _songScss = require("./Song.scss");
-var _song = require("./Song");
-var _songDefault = parcelHelpers.interopDefault(_song);
-exports.default = _songDefault.default;
-
-},{"./Song.scss":"639zH","./Song":"lQ6Z4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"639zH":[function() {},{}],"lQ6Z4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-// import * as redux from "redux";
-// import { musicStore, musicReducer } from "../../data/music.js";
-var _nanoid = require("nanoid");
-class Song {
-    #holder;
-    // #song;
-    #author;
-    #title;
-    #path;
-    #photo;
-    constructor(songURL, title, img, author){
-        this.#holder = document.querySelector("#music");
-        this.likesHolder = document.querySelector(".likes__main");
-        // this.#song = musicStore
-        //   .getState()
-        //   .filter((song) => song.title === title)[0];
-        this.#author = author;
-        this.#title = title;
-        this.#path = songURL;
-        this.#photo = img;
-        this.id = "a" + _nanoid.nanoid();
-        this.liked = false;
-        this.render(this.#holder);
-        this.star = document.querySelector(`#${this.id} .like`);
-    }
-    render = (holder)=>{
-        holder.insertAdjacentHTML("beforeend", `
-      <div class="card song" id="${this.id}">
-        <h2 class="song__author">${this.#author}</h2>
-        <h3 class="song__title">${this.#title}</h3>
-        <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">
-        <audio class="song__path" controls src="${this.#path}"></audio>
-        <div class="like">
-        <svg class="icon icon-star-empty">
-          <use href="#icon-star-full"></use>
-        </svg>
-      </div>
-      </div>
-      `);
-    };
-}
-exports.default = Song;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"1Hh7W":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _photoScss = require("./Photo.scss");
-var _photo = require("./Photo");
-var _photoDefault = parcelHelpers.interopDefault(_photo);
-exports.default = _photoDefault.default;
-
-},{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-// import * as redux from "redux";
-// import { photosStore, photosReducer } from "../../data/photos.js";
-var _nanoid = require("nanoid");
-class Photo {
-    #name;
-    #holder;
-    // #photoItem;
-    #description;
-    #photo;
-    // #id;
-    constructor(name, img, desc){
-        this.#name = name;
-        this.#holder = document.querySelector("#photos");
-        this.likesHolder = document.querySelector(".likes__main");
-        // this.#photoItem = photosStore
-        //   .getState()
-        //   .filter((photo) => photo.name === name)[0];
-        // console.log(this.#photoItem);
-        this.#description = desc;
-        this.#photo = img;
-        this.id = "a" + _nanoid.nanoid();
-        this.liked = false;
-        this.render(this.#holder);
-        this.star = document.querySelector(`#${this.id} .like`);
-    }
-    render = (holder)=>{
-        holder.insertAdjacentHTML("beforeend", `
-      <div class="card photo" id="${this.id}">
-        <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
-        <p class="photo__desc">${this.#description}</p>
-        <div class="like">
-          <svg class="icon icon-star-empty">
-            <use href="#icon-star-full"></use>
-          </svg>
-        </div>
-      </div>
-      `);
-    };
-}
-exports.default = Photo;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"M6jpw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "likesStore", ()=>likesStore
-);
-var _redux = require("redux");
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import logger from "redux-logger";
-var _news = require("./news");
-var _newsDefault = parcelHelpers.interopDefault(_news);
-var _music = require("./music");
-var _musicDefault = parcelHelpers.interopDefault(_music);
-var _photos = require("./photos");
-var _photosDefault = parcelHelpers.interopDefault(_photos);
-var _likes = require("./likes");
-var _likesDefault = parcelHelpers.interopDefault(_likes);
-// const saveStoreToLocalStorage = (store) => (next) => (action) => {
-//   console.log(action.type);
-//   console.group("prevState");
-//   console.log(store.getState());
-//   console.groupEnd("prevState");
-//   next(action);
-//   console.group("nextState");
-//   console.log(store.getState());
-//   console.groupEnd("nextState");
-//   window.localStorage.setItem("store", JSON.stringify(store.getState()));
-// };
-const rootReducer = _redux.combineReducers({
-    newsReducer: _newsDefault.default,
-    musicReducer: _musicDefault.default,
-    photosReducer: _photosDefault.default
-});
-exports.default = _redux.createStore(rootReducer);
-const likesStore = _redux.createStore(_likesDefault.default);
-
-},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"fJgQd":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "toggleNews", ()=>toggleNews
-);
-var _redux = require("redux");
-var _newsitem = require("../components/newsitem");
-var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
-/**
- * ACTIONTYPES
- */ const TOGGLENEWS = "TOGGLENEWS";
-const toggleNews = (obj)=>({
-        type: TOGGLENEWS,
-        payload: obj
-    })
-;
-/**
- * INITIAL DATA
- */ const initialState = [
-    new _newsitemDefault.default("democracy", "16 09 2021", "Poll Finds Most Americans Would Swap Democracy For $100 Best Buy Gift Card", "According to the results of a new poll released Thursday by the Pew Research Center, the majority of Americans would swap democracy for a $100 Best Buy gift card.", "https://www.theonion.com/poll-finds-most-americans-would-swap-democracy-for-100-1847682668"),
-    new _newsitemDefault.default("luchtbalonnen", "03 10 2021", "Honderden luchtballonnen stijgen op tijdens festival in VS", "Honderden ballonnen stegen zaterdag op in Albuquerque, in alle denkbare kleuren, vormen en maten. In de Amerikaanse stad is zaterdag het internationale luchtballonfestival van start gegaan.", "https://www.standaard.be/cnt/dmf20211003_93538427"),
-    new _newsitemDefault.default("alligator", "02 10 2021", "Man ziet alligator in tuin en grijpt op hoogst originele wijze in", "Een man in Florida heeft op spectaculaire wijze een alligator kunnen vangen. Het reptiel verschool zich in de tuin van de buren, maar Abdul Gene Malik vond een oplossing om het dier te vangen. ", "https://www.standaard.be/cnt/dmf20211002_93599532"),
-    new _newsitemDefault.default("klimaat", "24 10 2021", "Nog één week voor de klimaattop: hoe zit het nu eigenlijk met onze planeet?", "Na de zomer van 2021 stellen we ons de vraag: valt het klimaat nog te redden, of komen alle beloftes van de wereldleiders rijkelijk te laat?", "https://www.standaard.be/cnt/dmf20211022_94506296"),
-    new _newsitemDefault.default("zeespiegel", "15 10 2021", "Dreiging voor steden als zeespiegel jaren blijft stijgen", "Als de opwarming van de aarde in het huidige tempo doorgaat, moeten zo’n vijftig steden ‘ongekende aanpassingsmaatregelen’ nemen om te voorkomen dat ze door stijgend waterpeil onder water komen te staan.", "https://www.standaard.be/cnt/dmf20211015_93918618"), 
-];
-/**
- * REDUCER
- */ const newsReducer = (state = initialState, { type , payload  })=>{
-    switch(type){
-        case TOGGLENEWS:
-            return [
-                ...state
-            ].map((el)=>{
-                if (el === payload) el.liked = !el.liked;
-                return el;
-            });
-        default:
-            return state;
-    }
-};
-exports.default = newsReducer;
-
-},{"redux":"ifMRI","../components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "toggleSong", ()=>toggleSong
@@ -1497,7 +1365,50 @@ const toggleSong = (obj)=>({
 };
 exports.default = musicReducer;
 
-},{"redux":"ifMRI","../components/song":"dpBmu","f05dabcd18bc6e23":"8mUG8","1ab89ed192bafe4b":"aYSjE","8ffa39f285ce86c6":"46MSr","942d5e2dc826489":"c3BZv","e845d0cef57403cf":"6Lw9F","ebcd0aa0863af56d":"hlaSN","a5ac90bdc993c624":"hY6AB","28dc058371e7c750":"d3N4D","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
+},{"redux":"ifMRI","../components/song":"dpBmu","f05dabcd18bc6e23":"8mUG8","1ab89ed192bafe4b":"aYSjE","8ffa39f285ce86c6":"46MSr","942d5e2dc826489":"c3BZv","e845d0cef57403cf":"6Lw9F","ebcd0aa0863af56d":"hlaSN","a5ac90bdc993c624":"hY6AB","28dc058371e7c750":"d3N4D","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"dpBmu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _songScss = require("./Song.scss");
+var _song = require("./Song");
+var _songDefault = parcelHelpers.interopDefault(_song);
+exports.default = _songDefault.default;
+
+},{"./Song.scss":"639zH","./Song":"lQ6Z4","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"639zH":[function() {},{}],"lQ6Z4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _nanoid = require("nanoid");
+class Song {
+    constructor(songURL, title, img, author){
+        this.holder = document.querySelector("#music");
+        this.likesHolder = document.querySelector(".likes__main");
+        this.author = author;
+        this.title = title;
+        this.path = songURL;
+        this.photo = img;
+        this.id = "a" + _nanoid.nanoid();
+        this.liked = false;
+        this.render(this.holder);
+        this.star = document.querySelector(`#${this.id} .like`);
+    }
+    render = (holder)=>{
+        holder.insertAdjacentHTML("beforeend", `
+      <div class="card song" id="${this.id}">
+        <h2 class="song__author">${this.author}</h2>
+        <h3 class="song__title">${this.title}</h3>
+        <img class="song__photo" src="${this.photo}" alt= "{this.#title}">
+        <audio class="song__path" controls src="${this.path}"></audio>
+        <div class="like">
+        <svg class="icon icon-star-empty">
+          <use href="#icon-star-full"></use>
+        </svg>
+      </div>
+      </div>
+      `);
+    };
+}
+exports.default = Song;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"8mUG8":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
@@ -1602,7 +1513,47 @@ const togglePhoto = (obj)=>({
 };
 exports.default = photosReducer;
 
-},{"redux":"ifMRI","../components/photo":"1Hh7W","676d6bcd1a6ee56d":"2U0mM","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2U0mM":[function(require,module,exports) {
+},{"redux":"ifMRI","../components/photo":"1Hh7W","676d6bcd1a6ee56d":"2U0mM","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Hh7W":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _photoScss = require("./Photo.scss");
+var _photo = require("./Photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+exports.default = _photoDefault.default;
+
+},{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _nanoid = require("nanoid");
+class Photo {
+    constructor(name, img, desc){
+        this.name = name;
+        this.holder = document.querySelector("#photos");
+        this.likesHolder = document.querySelector(".likes__main");
+        this.description = desc;
+        this.photo = img;
+        this.id = "a" + _nanoid.nanoid();
+        this.liked = false;
+        this.render(this.holder);
+        this.star = document.querySelector(`#${this.id} .like`);
+    }
+    render = (holder)=>{
+        holder.insertAdjacentHTML("beforeend", `
+      <div class="card photo" id="${this.id}">
+        <img class="photo__img" src="${this.photo}" alt="${this.description}">
+        <p class="photo__desc">${this.description}</p>
+        <div class="like">
+          <svg class="icon icon-star-empty">
+            <use href="#icon-star-full"></use>
+          </svg>
+        </div>
+      </div>
+      `);
+    };
+}
+exports.default = Photo;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"2U0mM":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"lnyNm":[function(require,module,exports) {
@@ -1622,7 +1573,6 @@ parcelHelpers.export(exports, "add", ()=>add
 parcelHelpers.export(exports, "remove", ()=>remove
 );
 var _redux = require("redux");
-// import { nanoid } from "nanoid";
 /**
  * TYPES
  */ const ADD = "ADD";

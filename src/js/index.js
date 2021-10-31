@@ -2,18 +2,12 @@ import * as redux from "redux";
 
 import "../css/style.scss";
 
-import Newsitem from "./components/newsitem";
-import Song from "./components/song";
-import Photo from "./components/photo";
-
 import store from "./data";
 import { likesStore } from "./data";
 import { togglePhoto } from "./data/photos";
 import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
 import { add, remove } from "./data/likes";
-
-const yellow = "#F2F467";
 
 // Click event listener for cards
 
@@ -88,8 +82,11 @@ renderLikes = () => {
   document.querySelector(".likes__main").innerHTML = "";
   likesStore.getState().forEach((obj) => {
     obj.render(obj.likesHolder);
-    document.querySelector(`.likes__main #${obj.id} .like`).style.color =
-      yellow;
+    // document.querySelector(`.likes__main #${obj.id} .like`).style.color =
+    //   yellow;
+    document
+      .querySelector(`.likes__main #${obj.id} .like`)
+      .classList.add("like--active");
   });
 };
 

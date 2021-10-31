@@ -56,6 +56,7 @@ const initialState = [
 /**
  * REDUCER
  */
+
 const musicReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case TOGGLESONG:

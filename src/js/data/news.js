@@ -61,6 +61,7 @@ const initialState = [
 /**
  * REDUCER
  */
+
 const newsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case TOGGLENEWS:

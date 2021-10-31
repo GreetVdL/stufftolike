@@ -37,6 +37,7 @@ const initialState = [
 /**
  * REDUCER
  */
+
 const photosReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case TOGGLEPHOTO:

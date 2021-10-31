@@ -1,15 +1,16 @@
 import * as redux from "redux";
-// import { nanoid } from "nanoid";
 
 /**
  * TYPES
  */
+
 const ADD = "ADD";
 const REMOVE = "REMOVE";
 
 /**
  * ACTIONCREATORS
  */
+
 export const add = (obj) => ({
   type: ADD,
   payload: obj,
@@ -22,11 +23,13 @@ export const remove = (obj) => ({
 /**
  * INITIALSTATE
  */
+
 const initState = [];
 
 /**
  * REDUCER
  */
+
 const likesReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case ADD:

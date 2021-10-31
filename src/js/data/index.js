@@ -7,20 +7,6 @@ import musicReducer from "./music";
 import photosReducer from "./photos";
 import likesReducer from "./likes";
 
-// const saveStoreToLocalStorage = (store) => (next) => (action) => {
-//   console.log(action.type);
-
-//   console.group("prevState");
-//   console.log(store.getState());
-//   console.groupEnd("prevState");
-//   next(action);
-//   console.group("nextState");
-//   console.log(store.getState());
-//   console.groupEnd("nextState");
-
-//   window.localStorage.setItem("store", JSON.stringify(store.getState()));
-// };
-
 const rootReducer = combineReducers({
   newsReducer,
   musicReducer,
