@@ -12,6 +12,7 @@ class Photo {
   constructor(name, img, desc) {
     this.#name = name;
     this.#holder = document.querySelector("#photos");
+    this.likesHolder = document.querySelector(".likes__main");
     // this.#photoItem = photosStore
     //   .getState()
     //   .filter((photo) => photo.name === name)[0];
@@ -19,11 +20,11 @@ class Photo {
     this.#description = desc;
     this.#photo = img;
     this.id = nanoid();
-    this.render();
+    this.render(this.#holder);
   }
 
-  render = () => {
-    this.#holder.insertAdjacentHTML(
+  render = (holder) => {
+    holder.insertAdjacentHTML(
       "beforeend",
       `
       <div class="card photo" id="${this.id}">

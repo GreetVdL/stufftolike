@@ -1,27 +1,31 @@
 import * as redux from "redux";
-import { musicStore, musicReducer } from "../../data/music.js";
+// import { musicStore, musicReducer } from "../../data/music.js";
+import { nanoid } from "nanoid";
 
 class Song {
   #holder;
-  #song;
+  // #song;
   #author;
   #title;
   #path;
   #photo;
-  constructor(songURL, title, img) {
+  constructor(songURL, title, img, author) {
     this.#holder = document.querySelector("#music");
-    this.#song = musicStore
-      .getState()
-      .filter((song) => song.title === title)[0];
-    this.#author = this.#song.author;
-    this.#title = this.#song.title;
+    this.likesHolder = document.querySelector(".likes__main");
+    // this.#song = musicStore
+    //   .getState()
+    //   .filter((song) => song.title === title)[0];
+    this.#author = author;
+    this.#title = title;
     this.#path = songURL;
     this.#photo = img;
-    this.render();
+    this.id = nanoid();
+    this.render(this.#holder);
+    console.log("song constructor called");
   }
 
-  render = () => {
-    this.#holder.insertAdjacentHTML(
+  render = (holder) => {
+    holder.insertAdjacentHTML(
       "beforeend",
       `
       <div class="card song">

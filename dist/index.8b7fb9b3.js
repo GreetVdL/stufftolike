@@ -469,31 +469,13 @@ var _songDefault = parcelHelpers.interopDefault(_song);
 var _photo = require("./components/photo");
 var _photoDefault = parcelHelpers.interopDefault(_photo);
 var _photos = require("./data/photos");
-// Songs and their images
-const changesSong = new URL(require("39ac25c4a912839"));
-const changesImg = new URL(require("d586dae687154f35"));
-const mosquitoesSong = new URL(require("6a64d3f174c7ff8b"));
-const mosquitoesImg = new URL(require("e760053865ba16a0"));
-const biscayaSong = new URL(require("a3423d5f8cb8b7c5"));
-const biscayaImg = new URL(require("e3cecc60168d7412"));
-const danceSong = new URL(require("8f0d1004bd4e1246"));
-const danceImg = new URL(require("70ca18bc38faa88e"));
+var _music = require("./data/music");
 // Create the newsitems
 new _newsitemDefault.default("democracy");
 new _newsitemDefault.default("luchtbalonnen");
 new _newsitemDefault.default("alligator");
 new _newsitemDefault.default("klimaat");
 new _newsitemDefault.default("zeespiegel");
-// Create the songs
-new _songDefault.default(changesSong, "Changes", changesImg);
-new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
-new _songDefault.default(biscayaSong, "Biscaya", biscayaImg);
-new _songDefault.default(danceSong, "I don't care to dance", danceImg);
-// Create the photos
-// new Photo("lama", lama);
-// new Photo("palmtree", palmtrees);
-// new Photo("santa", santa);
-// new Photo("beach", beach);
 // Click event listener for cards
 document.querySelectorAll(".card").forEach((card)=>{
     card.addEventListener("click", (event)=>{
@@ -502,12 +484,12 @@ document.querySelectorAll(".card").forEach((card)=>{
         if (event.target.parentElement.classList.contains("photo")) {
             const targetObject = _photos.photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
             )[0];
-            targetObject.print();
+            targetObject.render(targetObject.likesHolder);
         }
     });
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","./components/photo":"1Hh7W","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data/photos":"6iDTk","./data/music":"fs6CZ"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1199,26 +1181,31 @@ exports.default = _songDefault.default;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
-var _musicJs = require("../../data/music.js");
+// import { musicStore, musicReducer } from "../../data/music.js";
+var _nanoid = require("nanoid");
 class Song {
     #holder;
-    #song;
+    // #song;
     #author;
     #title;
     #path;
     #photo;
-    constructor(songURL, title, img){
+    constructor(songURL, title, img, author){
         this.#holder = document.querySelector("#music");
-        this.#song = _musicJs.musicStore.getState().filter((song)=>song.title === title
-        )[0];
-        this.#author = this.#song.author;
-        this.#title = this.#song.title;
+        this.likesHolder = document.querySelector(".likes__main");
+        // this.#song = musicStore
+        //   .getState()
+        //   .filter((song) => song.title === title)[0];
+        this.#author = author;
+        this.#title = title;
         this.#path = songURL;
         this.#photo = img;
-        this.render();
+        this.id = _nanoid.nanoid();
+        this.render(this.#holder);
+        console.log("song constructor called");
     }
-    render = ()=>{
-        this.#holder.insertAdjacentHTML("beforeend", `
+    render = (holder)=>{
+        holder.insertAdjacentHTML("beforeend", `
       <div class="card song">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
@@ -1234,149 +1221,6 @@ class Song {
     };
 }
 exports.default = Song;
-
-},{"redux":"ifMRI","../../data/music.js":"fs6CZ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fs6CZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initialState", ()=>initialState
-);
-parcelHelpers.export(exports, "musicReducer", ()=>musicReducer
-);
-parcelHelpers.export(exports, "musicStore", ()=>musicStore
-);
-var _redux = require("redux");
-const initialState = [
-    {
-        author: "Black Sabbath",
-        title: "Changes"
-    },
-    {
-        author: "Four Tet",
-        title: "No More Mosquitoes"
-    },
-    {
-        author: "James Last",
-        title: "Biscaya"
-    },
-    {
-        author: "J.E. Sunde",
-        title: "I don't care to dance"
-    }, 
-];
-const musicReducer = (state = initialState, { type  })=>state
-;
-const musicStore = _redux.createStore(musicReducer);
-
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
-"use strict";
-var bundleURL = {
-};
-function getBundleURLCached(id) {
-    var value = bundleURL[id];
-    if (!value) {
-        value = getBundleURL();
-        bundleURL[id] = value;
-    }
-    return value;
-}
-function getBundleURL() {
-    try {
-        throw new Error();
-    } catch (err) {
-        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-        if (matches) // The first two stack frames will be this function and getBundleURLCached.
-        // Use the 3rd one, which will be a runtime in the original bundle.
-        return getBaseURL(matches[2]);
-    }
-    return '/';
-}
-function getBaseURL(url) {
-    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
-function getOrigin(url) {
-    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
-    if (!matches) throw new Error('Origin not found');
-    return matches[0];
-}
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-exports.getOrigin = getOrigin;
-
-},{}],"aYSjE":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "blacksabbath.566860f8.jpeg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"46MSr":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Four Tet-No More Mosquitoes.66f6576f.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"c3BZv":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "fourtet.28de3197.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"6Lw9F":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "James Last-Biscaya.79e28431.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"hlaSN":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jameslast.e6d5fd08.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"hY6AB":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sunde-I Don't Care To Dance.8799bf65.mp3" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"chiK4"}],"1Hh7W":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _photoScss = require("./Photo.scss");
-var _photo = require("./Photo");
-var _photoDefault = parcelHelpers.interopDefault(_photo);
-exports.default = _photoDefault.default;
-
-},{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
-// import { photosStore, photosReducer } from "../../data/photos.js";
-var _nanoid = require("nanoid");
-class Photo {
-    #name;
-    #holder;
-    // #photoItem;
-    #description;
-    #photo;
-    // #id;
-    constructor(name, img, desc){
-        this.#name = name;
-        this.#holder = document.querySelector("#photos");
-        // this.#photoItem = photosStore
-        //   .getState()
-        //   .filter((photo) => photo.name === name)[0];
-        // console.log(this.#photoItem);
-        this.#description = desc;
-        this.#photo = img;
-        this.id = _nanoid.nanoid();
-        this.render();
-    }
-    render = ()=>{
-        this.#holder.insertAdjacentHTML("beforeend", `
-      <div class="card photo" id="${this.id}">
-        <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
-        <p class="photo__desc">${this.#description}</p>
-        <div class="like">
-          <svg class="icon icon-star-empty">
-            <use href="#icon-star-full"></use>
-          </svg>
-        </div>
-      </div>
-      `);
-    };
-    print = ()=>{
-        console.log(this.#name);
-    };
-}
-exports.default = Photo;
 
 },{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"4OOvb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1434,7 +1278,60 @@ parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet
 );
 let urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6iDTk":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"1Hh7W":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _photoScss = require("./Photo.scss");
+var _photo = require("./Photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+exports.default = _photoDefault.default;
+
+},{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _redux = require("redux");
+// import { photosStore, photosReducer } from "../../data/photos.js";
+var _nanoid = require("nanoid");
+class Photo {
+    #name;
+    #holder;
+    // #photoItem;
+    #description;
+    #photo;
+    // #id;
+    constructor(name, img, desc){
+        this.#name = name;
+        this.#holder = document.querySelector("#photos");
+        this.likesHolder = document.querySelector(".likes__main");
+        // this.#photoItem = photosStore
+        //   .getState()
+        //   .filter((photo) => photo.name === name)[0];
+        // console.log(this.#photoItem);
+        this.#description = desc;
+        this.#photo = img;
+        this.id = _nanoid.nanoid();
+        this.render(this.#holder);
+    }
+    render = (holder)=>{
+        holder.insertAdjacentHTML("beforeend", `
+      <div class="card photo" id="${this.id}">
+        <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
+        <p class="photo__desc">${this.#description}</p>
+        <div class="like">
+          <svg class="icon icon-star-empty">
+            <use href="#icon-star-full"></use>
+          </svg>
+        </div>
+      </div>
+      `);
+    };
+    print = ()=>{
+        console.log(this.#name);
+    };
+}
+exports.default = Photo;
+
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"6iDTk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initialState", ()=>initialState
@@ -1465,7 +1362,42 @@ const photosStore = _redux.createStore(photosReducer);
 },{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","676d6bcd1a6ee56d":"2U0mM","../components/photo":"1Hh7W"}],"lnyNm":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}],"1Kayb":[function(require,module,exports) {
+},{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
+"use strict";
+var bundleURL = {
+};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"1Kayb":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "santacruz.1772fe76.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"lCtaX":[function(require,module,exports) {
@@ -1473,6 +1405,61 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "beach.
 
 },{"./helpers/bundle-url":"chiK4"}],"2U0mM":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"fs6CZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initialState", ()=>initialState
+);
+parcelHelpers.export(exports, "musicReducer", ()=>musicReducer
+);
+parcelHelpers.export(exports, "musicStore", ()=>musicStore
+);
+var _redux = require("redux");
+var _song = require("../components/song");
+var _songDefault = parcelHelpers.interopDefault(_song);
+// Songs and their images
+const changesSong = new URL(require("f05dabcd18bc6e23"));
+const changesImg = new URL(require("1ab89ed192bafe4b"));
+const mosquitoesSong = new URL(require("8ffa39f285ce86c6"));
+const mosquitoesImg = new URL(require("942d5e2dc826489"));
+const biscayaSong = new URL(require("e845d0cef57403cf"));
+const biscayaImg = new URL(require("ebcd0aa0863af56d"));
+const danceSong = new URL(require("a5ac90bdc993c624"));
+const danceImg = new URL(require("28dc058371e7c750"));
+const initialState = [
+    new _songDefault.default(changesSong, "Changes", changesImg, "Black Sabbath"),
+    new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg, "Four Tet"),
+    new _songDefault.default(biscayaSong, "Biscaya", biscayaImg, "James Last"),
+    new _songDefault.default(danceSong, "I don't care to dance", danceImg, "J.E. Sunde"), 
+];
+const musicReducer = (state = initialState, { type  })=>state
+;
+const musicStore = _redux.createStore(musicReducer);
+
+},{"redux":"ifMRI","../components/song":"dpBmu","f05dabcd18bc6e23":"8mUG8","1ab89ed192bafe4b":"aYSjE","8ffa39f285ce86c6":"46MSr","942d5e2dc826489":"c3BZv","e845d0cef57403cf":"6Lw9F","ebcd0aa0863af56d":"hlaSN","a5ac90bdc993c624":"hY6AB","28dc058371e7c750":"d3N4D","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"8mUG8":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Black Sabbath-Changes.e44e0f1e.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"aYSjE":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "blacksabbath.566860f8.jpeg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"46MSr":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "Four Tet-No More Mosquitoes.66f6576f.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"c3BZv":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "fourtet.28de3197.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"6Lw9F":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "James Last-Biscaya.79e28431.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"hlaSN":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jameslast.e6d5fd08.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"hY6AB":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sunde-I Don't Care To Dance.8799bf65.mp3" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
