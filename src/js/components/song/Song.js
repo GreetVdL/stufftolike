@@ -19,9 +19,10 @@ class Song {
     this.#title = title;
     this.#path = songURL;
     this.#photo = img;
-    this.id = nanoid();
+    this.id = "a" + nanoid();
     this.liked = false;
     this.render(this.#holder);
+    this.star = document.querySelector(`#${this.id} .like`);
   }
 
   render = (holder) => {

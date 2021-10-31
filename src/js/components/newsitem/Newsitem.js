@@ -18,9 +18,10 @@ class Newsitem {
     this.#date = date;
     this.#intro = intro;
     this.#link = href;
-    this.id = nanoid();
+    this.id = "a" + nanoid();
     this.liked = false;
     this.render(this.#holder);
+    this.star = document.querySelector(`#${this.id} .like`);
   }
 
   render = (holder) => {

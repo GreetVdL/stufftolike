@@ -462,7 +462,6 @@ function hmrAcceptRun(bundle, id) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _redux = require("redux");
 var _styleScss = require("../css/style.scss");
-var _nanoid = require("nanoid");
 var _newsitem = require("./components/newsitem");
 var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 var _song = require("./components/song");
@@ -534,8 +533,6 @@ renderLikes = ()=>{
     });
 };
 _data.likesStore.subscribe(renderLikes);
-const test = _nanoid.nanoid();
-console.log(typeof test);
 // Click event listener for liked cards
 document.querySelector(".likes__main").addEventListener("click", (event)=>{
     // If the card is a photo, remove photo
@@ -547,9 +544,28 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
         _data.likesStore.dispatch(_likes.remove(targetObject));
         targetObject.star.style.color = "white";
     }
+    // If the card is a newsitem, remove newsitem
+    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("post")) {
+        const targetObject = _dataDefault.default.getState().newsReducer.filter((item)=>item.id === event.target.parentElement.id
+        )[0];
+        // targetObject.render(targetObject.likesHolder);
+        _dataDefault.default.dispatch(_news.toggleNews(targetObject));
+        _data.likesStore.dispatch(_likes.remove(targetObject));
+        targetObject.star.style.color = "white";
+    }
+    // If the card is a song, remove song
+    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("song")) {
+        const targetObject = _dataDefault.default.getState().musicReducer.filter((item)=>item.id === event.target.parentElement.id
+        )[0];
+        // targetObject.render(targetObject.likesHolder);
+        _dataDefault.default.dispatch(_music.toggleSong(targetObject));
+        // console.log(store.getState());
+        _data.likesStore.dispatch(_likes.remove(targetObject));
+        targetObject.star.style.color = "white";
+    }
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt","nanoid":"4OOvb"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1159,9 +1175,10 @@ class Newsitem {
         this.#date = date;
         this.#intro = intro;
         this.#link = href;
-        this.id = _nanoid.nanoid();
+        this.id = "a" + _nanoid.nanoid();
         this.liked = false;
         this.render(this.#holder);
+        this.star = document.querySelector(`#${this.id} .like`);
     }
     render = (holder)=>{
         holder.insertAdjacentHTML("beforeend", `
@@ -1268,9 +1285,10 @@ class Song {
         this.#title = title;
         this.#path = songURL;
         this.#photo = img;
-        this.id = _nanoid.nanoid();
+        this.id = "a" + _nanoid.nanoid();
         this.liked = false;
         this.render(this.#holder);
+        this.star = document.querySelector(`#${this.id} .like`);
     }
     render = (holder)=>{
         holder.insertAdjacentHTML("beforeend", `
@@ -1321,7 +1339,7 @@ class Photo {
         // console.log(this.#photoItem);
         this.#description = desc;
         this.#photo = img;
-        this.id = _nanoid.nanoid();
+        this.id = "a" + _nanoid.nanoid();
         this.liked = false;
         this.render(this.#holder);
         this.star = document.querySelector(`#${this.id} .like`);

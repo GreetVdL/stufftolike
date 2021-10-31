@@ -2,8 +2,6 @@ import * as redux from "redux";
 
 import "../css/style.scss";
 
-import { nanoid } from "nanoid";
-
 import Newsitem from "./components/newsitem";
 import Song from "./components/song";
 import Photo from "./components/photo";
@@ -89,9 +87,6 @@ renderLikes = () => {
 
 likesStore.subscribe(renderLikes);
 
-const test = nanoid();
-console.log(typeof test);
-
 // Click event listener for liked cards
 
 document.querySelector(".likes__main").addEventListener("click", (event) => {
@@ -107,6 +102,38 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
       )[0];
     // targetObject.render(targetObject.likesHolder);
     store.dispatch(togglePhoto(targetObject));
+    likesStore.dispatch(remove(targetObject));
+    targetObject.star.style.color = "white";
+  }
+  // If the card is a newsitem, remove newsitem
+  if (
+    event.target.classList.contains("like") &&
+    event.target.parentElement.classList.contains("post")
+  ) {
+    const targetObject = store
+      .getState()
+      .newsReducer.filter(
+        (item) => item.id === event.target.parentElement.id
+      )[0];
+    // targetObject.render(targetObject.likesHolder);
+    store.dispatch(toggleNews(targetObject));
+    likesStore.dispatch(remove(targetObject));
+    targetObject.star.style.color = "white";
+  }
+  // If the card is a song, remove song
+  if (
+    event.target.classList.contains("like") &&
+    event.target.parentElement.classList.contains("song")
+  ) {
+    const targetObject = store
+      .getState()
+      .musicReducer.filter(
+        (item) => item.id === event.target.parentElement.id
+      )[0];
+    // targetObject.render(targetObject.likesHolder);
+    store.dispatch(toggleSong(targetObject));
+    // console.log(store.getState());
+
     likesStore.dispatch(remove(targetObject));
     targetObject.star.style.color = "white";
   }

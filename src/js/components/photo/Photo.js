@@ -19,7 +19,7 @@ class Photo {
     // console.log(this.#photoItem);
     this.#description = desc;
     this.#photo = img;
-    this.id = nanoid();
+    this.id = "a" + nanoid();
     this.liked = false;
     this.render(this.#holder);
     this.star = document.querySelector(`#${this.id} .like`);
