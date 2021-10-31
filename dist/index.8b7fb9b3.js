@@ -473,6 +473,7 @@ var _dataDefault = parcelHelpers.interopDefault(_data);
 var _photos = require("./data/photos");
 var _news = require("./data/news");
 var _music = require("./data/music");
+var _likes = require("./data/likes");
 // Click event listener for cards
 document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
@@ -482,8 +483,10 @@ document.querySelectorAll(".like").forEach((card)=>{
             )[0];
             // targetObject.render(targetObject.likesHolder);
             _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
-            if (targetObject.liked) event.target.style.color = "yellow";
-            else event.target.style.color = "white";
+            if (targetObject.liked) {
+                event.target.style.color = "yellow";
+                _data.likesStore.dispatch(_likes.add(targetObject));
+            } else event.target.style.color = "white";
         }
         // If the card is a newsitem, toggle newsitem
         if (event.target.parentElement.classList.contains("post")) {
@@ -507,8 +510,18 @@ document.querySelectorAll(".like").forEach((card)=>{
         }
     });
 });
+console.log(_data.likesStore.getState());
+renderLikes = ()=>{
+    // console.log(likesStore.getState());
+    document.querySelector(".likes__main").innerHTML = "";
+    _data.likesStore.getState().forEach((obj)=>{
+        obj.render(obj.likesHolder);
+        document.querySelector(`.likes__main #${obj.id} .like`).style.color = "yellow";
+    });
+};
+_data.likesStore.subscribe(renderLikes);
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1303,6 +1316,8 @@ exports.default = Photo;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"M6jpw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "likesStore", ()=>likesStore
+);
 var _redux = require("redux");
 // import { composeWithDevTools } from "redux-devtools-extension";
 // import logger from "redux-logger";
@@ -1331,6 +1346,7 @@ const rootReducer = _redux.combineReducers({
     photosReducer: _photosDefault.default
 });
 exports.default = _redux.createStore(rootReducer);
+const likesStore = _redux.createStore(_likesDefault.default);
 
 },{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"fJgQd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1548,6 +1564,7 @@ parcelHelpers.export(exports, "add", ()=>add
 );
 parcelHelpers.export(exports, "remove", ()=>remove
 );
+var _redux = require("redux");
 // import { nanoid } from "nanoid";
 /**
  * TYPES
@@ -1584,6 +1601,6 @@ const remove = (obj)=>({
 };
 exports.default = likesReducer;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","redux":"ifMRI"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map
