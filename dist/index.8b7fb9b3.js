@@ -1341,7 +1341,6 @@ parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
 parcelHelpers.export(exports, "photosStore", ()=>photosStore
 );
 var _redux = require("redux");
-var _nanoid = require("nanoid");
 var _photo = require("../components/photo");
 var _photoDefault = parcelHelpers.interopDefault(_photo);
 // Photos
@@ -1359,7 +1358,7 @@ const photosReducer = (state = initialState, { type  })=>state
 ;
 const photosStore = _redux.createStore(photosReducer);
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","676d6bcd1a6ee56d":"2U0mM","../components/photo":"1Hh7W"}],"lnyNm":[function(require,module,exports) {
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","676d6bcd1a6ee56d":"2U0mM","../components/photo":"1Hh7W"}],"lnyNm":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
