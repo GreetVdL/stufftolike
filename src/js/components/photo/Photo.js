@@ -20,6 +20,7 @@ class Photo {
     this.#description = desc;
     this.#photo = img;
     this.id = nanoid();
+    this.liked = false;
     this.render(this.#holder);
   }
 

@@ -19,6 +19,7 @@ class Newsitem {
     this.#intro = intro;
     this.#link = href;
     this.id = nanoid();
+    this.liked = false;
     this.render(this.#holder);
   }
 

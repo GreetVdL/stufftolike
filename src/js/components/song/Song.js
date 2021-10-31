@@ -20,6 +20,7 @@ class Song {
     this.#path = songURL;
     this.#photo = img;
     this.id = nanoid();
+    this.liked = false;
     this.render(this.#holder);
     console.log("song constructor called");
   }

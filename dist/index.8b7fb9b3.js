@@ -1095,6 +1095,7 @@ class Newsitem {
         this.#intro = intro;
         this.#link = href;
         this.id = _nanoid.nanoid();
+        this.liked = false;
         this.render(this.#holder);
     }
     render = (holder)=>{
@@ -1203,6 +1204,7 @@ class Song {
         this.#path = songURL;
         this.#photo = img;
         this.id = _nanoid.nanoid();
+        this.liked = false;
         this.render(this.#holder);
         console.log("song constructor called");
     }
@@ -1256,6 +1258,7 @@ class Photo {
         this.#description = desc;
         this.#photo = img;
         this.id = _nanoid.nanoid();
+        this.liked = false;
         this.render(this.#holder);
     }
     render = (holder)=>{
