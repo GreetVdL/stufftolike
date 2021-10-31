@@ -10,9 +10,11 @@ class Song {
   #photo;
   constructor(songURL, title, img) {
     this.#holder = document.querySelector("#music");
-    this.#song = musicStore.getState().filter((song) => song.title === title);
-    this.#author = this.#song[0].author;
-    this.#title = this.#song[0].title;
+    this.#song = musicStore
+      .getState()
+      .filter((song) => song.title === title)[0];
+    this.#author = this.#song.author;
+    this.#title = this.#song.title;
     this.#path = songURL;
     this.#photo = img;
     this.render();

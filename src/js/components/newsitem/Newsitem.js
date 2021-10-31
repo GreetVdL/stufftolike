@@ -12,11 +12,11 @@ class Newsitem {
   constructor(name) {
     this.#name = name;
     this.#holder = document.querySelector("#news");
-    this.#post = newsStore.getState().filter((post) => post.name === name);
-    this.#title = this.#post[0].title;
-    this.#date = this.#post[0].date;
-    this.#intro = this.#post[0].intro;
-    this.#link = this.#post[0].href;
+    this.#post = newsStore.getState().filter((post) => post.name === name)[0];
+    this.#title = this.#post.title;
+    this.#date = this.#post.date;
+    this.#intro = this.#post.intro;
+    this.#link = this.#post.href;
     this.render();
   }
 

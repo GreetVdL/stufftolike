@@ -12,8 +12,9 @@ class Photo {
     this.#holder = document.querySelector("#photos");
     this.#photoItem = photosStore
       .getState()
-      .filter((photo) => photo.name === name);
-    this.#description = this.#photoItem[0].description;
+      .filter((photo) => photo.name === name)[0];
+    console.log(this.#photoItem);
+    this.#description = this.#photoItem.description;
     this.#photo = img;
     this.render();
   }

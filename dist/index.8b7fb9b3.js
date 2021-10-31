@@ -1103,11 +1103,11 @@ class Newsitem {
         this.#name = name;
         this.#holder = document.querySelector("#news");
         this.#post = _newsJs.newsStore.getState().filter((post)=>post.name === name
-        );
-        this.#title = this.#post[0].title;
-        this.#date = this.#post[0].date;
-        this.#intro = this.#post[0].intro;
-        this.#link = this.#post[0].href;
+        )[0];
+        this.#title = this.#post.title;
+        this.#date = this.#post.date;
+        this.#intro = this.#post.intro;
+        this.#link = this.#post.href;
         this.render();
     }
     render = ()=>{
@@ -1202,9 +1202,9 @@ class Song {
     constructor(songURL, title, img){
         this.#holder = document.querySelector("#music");
         this.#song = _musicJs.musicStore.getState().filter((song)=>song.title === title
-        );
-        this.#author = this.#song[0].author;
-        this.#title = this.#song[0].title;
+        )[0];
+        this.#author = this.#song.author;
+        this.#title = this.#song.title;
         this.#path = songURL;
         this.#photo = img;
         this.render();
@@ -1344,8 +1344,9 @@ class Photo {
         this.#name = name;
         this.#holder = document.querySelector("#photos");
         this.#photoItem = _photosJs.photosStore.getState().filter((photo)=>photo.name === name
-        );
-        this.#description = this.#photoItem[0].description;
+        )[0];
+        console.log(this.#photoItem);
+        this.#description = this.#photoItem.description;
         this.#photo = img;
         this.render();
     }
