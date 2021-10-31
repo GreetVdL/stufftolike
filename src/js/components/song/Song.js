@@ -28,7 +28,7 @@ class Song {
     holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card song">
+      <div class="card song" id="${this.id}">
         <h2 class="song__author">${this.#author}</h2>
         <h3 class="song__title">${this.#title}</h3>
         <img class="song__photo" src="${this.#photo}" alt= "{this.#title}">

@@ -40,10 +40,6 @@ class Photo {
     );
   };
 
-  print = () => {
-    console.log(this.#name);
-  };
-
   //   #generateHTML() {
   //     this.#holder.insertAdjacentHTML(
   //       "beforeend",

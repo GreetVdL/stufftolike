@@ -7,14 +7,7 @@ import Song from "./components/song";
 import Photo from "./components/photo";
 import { photosStore } from "./data/photos";
 import { musicStore } from "./data/music";
-
-// Create the newsitems
-
-new Newsitem("democracy");
-new Newsitem("luchtbalonnen");
-new Newsitem("alligator");
-new Newsitem("klimaat");
-new Newsitem("zeespiegel");
+import { newsStore } from "./data/news";
 
 // Click event listener for cards
 

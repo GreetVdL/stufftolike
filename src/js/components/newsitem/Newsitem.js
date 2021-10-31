@@ -1,30 +1,32 @@
 import * as redux from "redux";
-import { newsStore, newsReducer } from "../../data/news.js";
-
+// import { newsStore, newsReducer } from "../../data/news.js";
+import { nanoid } from "nanoid";
 class Newsitem {
   #name;
   #holder;
-  #post;
+  // #post;
   #title;
   #date;
   #intro;
   #link;
-  constructor(name) {
+  constructor(name, date, title, intro, href) {
     this.#name = name;
     this.#holder = document.querySelector("#news");
-    this.#post = newsStore.getState().filter((post) => post.name === name)[0];
-    this.#title = this.#post.title;
-    this.#date = this.#post.date;
-    this.#intro = this.#post.intro;
-    this.#link = this.#post.href;
-    this.render();
+    this.likesHolder = document.querySelector(".likes__main");
+    // this.#post = newsStore.getState().filter((post) => post.name === name)[0];
+    this.#title = title;
+    this.#date = date;
+    this.#intro = intro;
+    this.#link = href;
+    this.id = nanoid();
+    this.render(this.#holder);
   }
 
-  render = () => {
-    this.#holder.insertAdjacentHTML(
+  render = (holder) => {
+    holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card post">
+      <div class="card post" id="${this.id}">
         <h2 class="post__title">${this.#title}</h2>
         <p class="post__date">${this.#date}</p>
         <p class="post__intro">${this.#intro}</p>
