@@ -163,13 +163,26 @@ html {
 }
 #root > aside {
   width: 20%;
+  border: 2px solid #f9d2cb;
+  margin-top: 15px;
+  border-radius: 15px;
 }
 #root > aside .likes__header {
+  color: #38393f;
   font-size: 4rem;
   font-weight: 900;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 15px;
+  background-color: #f9d2cb;
+  padding: 15px 0 30px 0;
+  border-radius: 15px;
+}
+#root > aside .likes__main {
+  border-radius: 15px;
+  border: 2px solid white;
+  background-color: white;
+  min-height: 80vh;
+  margin-top: -15px;
 }
 #news {
   display: grid;
