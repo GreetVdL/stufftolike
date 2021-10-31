@@ -474,6 +474,7 @@ var _photos = require("./data/photos");
 var _news = require("./data/news");
 var _music = require("./data/music");
 var _likes = require("./data/likes");
+const yellow = "#F2F467";
 // Click event listener for cards
 document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
@@ -484,10 +485,12 @@ document.querySelectorAll(".like").forEach((card)=>{
             // targetObject.render(targetObject.likesHolder);
             _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
             if (targetObject.liked) {
-                event.target.style.color = "yellow";
+                // event.target.style.color = yellow;
+                event.target.classList.add("like--active");
                 _data.likesStore.dispatch(_likes.add(targetObject));
             } else {
-                event.target.style.color = "white";
+                // event.target.style.color = "white";
+                event.target.classList.remove("like--active");
                 _data.likesStore.dispatch(_likes.remove(targetObject));
             }
         }
@@ -499,10 +502,12 @@ document.querySelectorAll(".like").forEach((card)=>{
             _dataDefault.default.dispatch(_news.toggleNews(targetObject));
             // console.log(store.getState());
             if (targetObject.liked) {
-                event.target.style.color = "yellow";
+                // event.target.style.color = yellow;
+                event.target.classList.add("like--active");
                 _data.likesStore.dispatch(_likes.add(targetObject));
             } else {
-                event.target.style.color = "white";
+                // event.target.style.color = "white";
+                event.target.classList.remove("like--active");
                 _data.likesStore.dispatch(_likes.remove(targetObject));
             }
         }
@@ -514,10 +519,12 @@ document.querySelectorAll(".like").forEach((card)=>{
             _dataDefault.default.dispatch(_music.toggleSong(targetObject));
             // console.log(store.getState());
             if (targetObject.liked) {
-                event.target.style.color = "yellow";
+                // event.target.style.color = yellow;
+                event.target.classList.add("like--active");
                 _data.likesStore.dispatch(_likes.add(targetObject));
             } else {
-                event.target.style.color = "white";
+                // event.target.style.color = "white";
+                event.target.classList.remove("like--active");
                 _data.likesStore.dispatch(_likes.remove(targetObject));
             }
         }
@@ -529,7 +536,7 @@ renderLikes = ()=>{
     document.querySelector(".likes__main").innerHTML = "";
     _data.likesStore.getState().forEach((obj)=>{
         obj.render(obj.likesHolder);
-        document.querySelector(`.likes__main #${obj.id} .like`).style.color = "yellow";
+        document.querySelector(`.likes__main #${obj.id} .like`).style.color = yellow;
     });
 };
 _data.likesStore.subscribe(renderLikes);
@@ -542,7 +549,8 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
         // targetObject.render(targetObject.likesHolder);
         _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
         _data.likesStore.dispatch(_likes.remove(targetObject));
-        targetObject.star.style.color = "white";
+        // targetObject.star.style.color = "white";
+        targetObject.star.classList.remove("like--active");
     }
     // If the card is a newsitem, remove newsitem
     if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("post")) {
@@ -551,7 +559,8 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
         // targetObject.render(targetObject.likesHolder);
         _dataDefault.default.dispatch(_news.toggleNews(targetObject));
         _data.likesStore.dispatch(_likes.remove(targetObject));
-        targetObject.star.style.color = "white";
+        // targetObject.star.style.color = "white";
+        targetObject.star.classList.remove("like--active");
     }
     // If the card is a song, remove song
     if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("song")) {
@@ -561,7 +570,8 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
         _dataDefault.default.dispatch(_music.toggleSong(targetObject));
         // console.log(store.getState());
         _data.likesStore.dispatch(_likes.remove(targetObject));
-        targetObject.star.style.color = "white";
+        // targetObject.star.style.color = "white";
+        targetObject.star.classList.remove("like--active");
     }
 });
 

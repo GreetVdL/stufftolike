@@ -97,6 +97,9 @@ html {
       pointer-events: none;
     }
   }
+  &--active {
+    color: #f2f467;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

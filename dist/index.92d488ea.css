@@ -220,6 +220,9 @@ html {
 .like svg use {
   pointer-events: none;
 }
+.like--active {
+  color: #f2f467;
+}
 @media (hover: hover) and (pointer: fine) {
   .card {
     transition: 200ms;
