@@ -16,6 +16,7 @@
     "posthtml-include": "^1.7.2"
   },
   "dependencies": {
+    "nanoid": "^3.1.30",
     "redux": "^4.1.1"
   }
 }

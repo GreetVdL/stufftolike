@@ -1,4 +1,5 @@
 import * as redux from "redux";
+import { nanoid } from "nanoid";
 
 /**
  * ACTIONTYPES
@@ -14,18 +15,22 @@ import * as redux from "redux";
 
 export const initialState = [
   {
+    id: nanoid(),
     name: "lama",
     description: "A fluffy lama",
   },
   {
+    id: nanoid(),
     name: "palmtree",
     description: "A bunch of palmtrees",
   },
   {
+    id: nanoid(),
     name: "santa",
     description: "A Santa Cruz Beach playground",
   },
   {
+    id: nanoid(),
     name: "beach",
     description: "Lampuuk Beach in Aceh-Indonesia.",
   },

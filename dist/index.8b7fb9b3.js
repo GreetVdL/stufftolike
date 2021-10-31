@@ -468,6 +468,7 @@ var _song = require("./components/song");
 var _songDefault = parcelHelpers.interopDefault(_song);
 var _photo = require("./components/photo");
 var _photoDefault = parcelHelpers.interopDefault(_photo);
+var _photos = require("./data/photos");
 // Songs and their images
 const changesSong = new URL(require("39ac25c4a912839"));
 const changesImg = new URL(require("d586dae687154f35"));
@@ -498,8 +499,21 @@ new _photoDefault.default("lama", lama);
 new _photoDefault.default("palmtree", palmtrees);
 new _photoDefault.default("santa", santa);
 new _photoDefault.default("beach", beach);
+// Click event listener for cards
+document.querySelectorAll(".card").forEach((card)=>{
+    card.addEventListener("click", (event)=>{
+        console.log(event.target.parentElement.id);
+        event.target.style.color = "yellow";
+        if (event.target.parentElement.classList.contains("photo")) {
+            console.log("yes");
+            const targetObject = _photos.photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
+            )[0];
+            console.log(targetObject);
+        }
+    });
+});
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","a96fb38a51b6178f":"2U0mM","./components/photo":"1Hh7W","95f1f012075d8b58":"lnyNm","aff9cc28c3880d2d":"1Kayb","abd4b79c98474277":"lCtaX"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","a96fb38a51b6178f":"2U0mM","./components/photo":"1Hh7W","95f1f012075d8b58":"lnyNm","aff9cc28c3880d2d":"1Kayb","abd4b79c98474277":"lCtaX","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1340,6 +1354,7 @@ class Photo {
     #photoItem;
     #description;
     #photo;
+    #id;
     constructor(name, img){
         this.#name = name;
         this.#holder = document.querySelector("#photos");
@@ -1348,11 +1363,12 @@ class Photo {
         console.log(this.#photoItem);
         this.#description = this.#photoItem.description;
         this.#photo = img;
+        this.#id = this.#photoItem.id;
         this.render();
     }
     render = ()=>{
         this.#holder.insertAdjacentHTML("beforeend", `
-      <div class="card photo">
+      <div class="card photo" id="${this.#id}">
         <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
         <p class="photo__desc">${this.#description}</p>
         <div class="like">
@@ -1376,20 +1392,25 @@ parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
 parcelHelpers.export(exports, "photosStore", ()=>photosStore
 );
 var _redux = require("redux");
+var _nanoid = require("nanoid");
 const initialState = [
     {
+        id: _nanoid.nanoid(),
         name: "lama",
         description: "A fluffy lama"
     },
     {
+        id: _nanoid.nanoid(),
         name: "palmtree",
         description: "A bunch of palmtrees"
     },
     {
+        id: _nanoid.nanoid(),
         name: "santa",
         description: "A Santa Cruz Beach playground"
     },
     {
+        id: _nanoid.nanoid(),
         name: "beach",
         description: "Lampuuk Beach in Aceh-Indonesia."
     }, 
@@ -1398,7 +1419,63 @@ const photosReducer = (state = initialState, { type  })=>state
 ;
 const photosStore = _redux.createStore(photosReducer);
 
-},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lnyNm":[function(require,module,exports) {
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"4OOvb":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "nanoid", ()=>nanoid
+);
+parcelHelpers.export(exports, "customAlphabet", ()=>customAlphabet
+);
+parcelHelpers.export(exports, "customRandom", ()=>customRandom
+);
+parcelHelpers.export(exports, "urlAlphabet", ()=>_indexJs.urlAlphabet
+);
+parcelHelpers.export(exports, "random", ()=>random
+);
+var _indexJs = require("./url-alphabet/index.js");
+if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative' && typeof crypto === 'undefined') throw new Error("React Native does not have a built-in secure random generator. If you don’t need unpredictable IDs use `nanoid/non-secure`. For secure IDs, import `react-native-get-random-values` before Nano ID.");
+if (typeof msCrypto !== 'undefined' && typeof crypto === 'undefined') throw new Error("Import file with `if (!window.crypto) window.crypto = window.msCrypto` before importing Nano ID to fix IE 11 support");
+if (typeof crypto === 'undefined') throw new Error("Your browser does not have secure random generator. If you don’t need unpredictable IDs, you can use nanoid/non-secure.");
+let random = (bytes)=>crypto.getRandomValues(new Uint8Array(bytes))
+;
+let customRandom = (alphabet, size, getRandom)=>{
+    let mask = (2 << Math.log(alphabet.length - 1) / Math.LN2) - 1;
+    let step = -~(1.6 * mask * size / alphabet.length);
+    return ()=>{
+        let id = '';
+        while(true){
+            let bytes = getRandom(step);
+            let j = step;
+            while(j--){
+                id += alphabet[bytes[j] & mask] || '';
+                if (id.length === size) return id;
+            }
+        }
+    };
+};
+let customAlphabet = (alphabet, size)=>customRandom(alphabet, size, random)
+;
+let nanoid = (size = 21)=>{
+    let id = '';
+    let bytes = crypto.getRandomValues(new Uint8Array(size));
+    while(size--){
+        let byte = bytes[size] & 63;
+        if (byte < 36) id += byte.toString(36);
+        else if (byte < 62) id += (byte - 26).toString(36).toUpperCase();
+        else if (byte < 63) id += '_';
+        else id += '-';
+    }
+    return id;
+};
+
+},{"./url-alphabet/index.js":"iiQl7","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iiQl7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet
+);
+let urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lnyNm":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"1Kayb":[function(require,module,exports) {

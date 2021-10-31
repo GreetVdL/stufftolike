@@ -7,6 +7,7 @@ class Photo {
   #photoItem;
   #description;
   #photo;
+  #id;
   constructor(name, img) {
     this.#name = name;
     this.#holder = document.querySelector("#photos");
@@ -16,6 +17,7 @@ class Photo {
     console.log(this.#photoItem);
     this.#description = this.#photoItem.description;
     this.#photo = img;
+    this.#id = this.#photoItem.id;
     this.render();
   }
 
@@ -23,7 +25,7 @@ class Photo {
     this.#holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card photo">
+      <div class="card photo" id="${this.#id}">
         <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
         <p class="photo__desc">${this.#description}</p>
         <div class="like">
@@ -35,6 +37,7 @@ class Photo {
       `
     );
   };
+
   //   #generateHTML() {
   //     this.#holder.insertAdjacentHTML(
   //       "beforeend",

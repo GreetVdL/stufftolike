@@ -213,6 +213,12 @@ html {
   padding: 7px 0 0 7px;
   cursor: pointer;
 }
+.like svg {
+  pointer-events: none;
+}
+.like svg use {
+  pointer-events: none;
+}
 @media (hover: hover) and (pointer: fine) {
   .card {
     transition: 200ms;

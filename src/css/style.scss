@@ -90,6 +90,12 @@ html {
   // align-items: center;
   padding: 7px 0 0 7px;
   cursor: pointer;
+  svg {
+    pointer-events: none;
+    use {
+      pointer-events: none;
+    }
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

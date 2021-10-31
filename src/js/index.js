@@ -5,6 +5,7 @@ import "../css/style.scss";
 import Newsitem from "./components/newsitem";
 import Song from "./components/song";
 import Photo from "./components/photo";
+import { photosStore } from "./data/photos";
 
 // Songs and their images
 
@@ -57,3 +58,19 @@ new Photo("lama", lama);
 new Photo("palmtree", palmtrees);
 new Photo("santa", santa);
 new Photo("beach", beach);
+
+// Click event listener for cards
+
+document.querySelectorAll(".card").forEach((card) => {
+  card.addEventListener("click", (event) => {
+    console.log(event.target.parentElement.id);
+    event.target.style.color = "yellow";
+    if (event.target.parentElement.classList.contains("photo")) {
+      console.log("yes");
+      const targetObject = photosStore
+        .getState()
+        .filter((item) => item.id === event.target.parentElement.id)[0];
+      console.log(targetObject);
+    }
+  });
+});
