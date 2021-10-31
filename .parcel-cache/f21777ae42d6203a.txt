@@ -6313,7 +6313,7 @@
 126/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/postcss-modules-extract-imports/node_modules1635597555724202405 1
 117/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/caniuse-lite/data/features/asmjs.js1635597557556161818 0
 112/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/@parcel/watcher/src/Backend.hh1635597557484163413 0
-96/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist/index.92d488ea.css.map1635657748228977559 0
+96/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist/index.92d488ea.css.map1635658408725935794 0
 105/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/css-select/package.json1635597557452164123 0
 113/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/has-symbols/.github/FUNDING.yml1635597557432164566 0
 108/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/diffie-hellman/.travis.yml1635597557108171744 0
@@ -7835,7 +7835,7 @@
 116/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/highlight.js/styles/foundation.css1635597557544162084 0
 112/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/highlight.js/scss/rainbow.scss1635597557744157654 0
 117/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/es-abstract/2019/thisStringValue.js1635597557824155881 0
-73/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist1635657748228977559 1
+73/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist1635658408725935794 1
 111/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/es-abstract/2021/ToNumeric.js1635597557836155615 0
 99/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/lodash/fp/util.js1635597557836155615 0
 117/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/core-js/modules/es.symbol.search.js1635597557756157388 0
@@ -8706,7 +8706,7 @@
 118/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/postcss-merge-longhand/dist/lib/decl1635597557496163148 1
 119/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/postcss-minify-selectors/CHANGELOG.md1635597557288167756 0
 94/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/svgo/plugins1635597557612160578 1
-92/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist/index.92d488ea.css1635657748228977559 0
+92/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/dist/index.92d488ea.css1635658408725935794 0
 116/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/@swc/helpers/src/_object_spread.js1635597557620160400 0
 97/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/uri-js/dist/es51635597557584161198 1
 105/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/weak-lru-cache/index.js1635597557184170060 0
@@ -14257,7 +14257,7 @@
 124/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/uri-js/dist/esnext/schemes/urn-uuid.js.map1635597557568161553 0
 107/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/iconv-lite/lib/index.d.ts1635597557532162350 0
 94/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/fclone/bench1635625728422677953 1
-87/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/style.scss1635657748132979769 0
+87/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/src/css/style.scss1635658408625938056 0
 107/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/iconv-lite/lib/streams.js1635597557532162350 0
 135/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/postcss-selector-parser/dist/__tests__/sourceIndex.js1635597557584161198 0
 111/home/greet/webdev/Syntra/GitHub/JAAR2-opdrachten/redux-exercise/app/node_modules/iconv-lite/lib/extend-node.js1635597557528162439 0
