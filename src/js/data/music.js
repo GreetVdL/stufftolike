@@ -37,8 +37,9 @@ const TOGGLESONG = "TOGGLESONG";
  * ACTION CREATORS
  */
 
-export const toggleSong = () => ({
+export const toggleSong = (obj) => ({
   type: TOGGLESONG,
+  payload: obj,
 });
 
 /**
@@ -58,7 +59,12 @@ const initialState = [
 const musicReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case TOGGLESONG:
-      return { ...state };
+      return [...state].map((el) => {
+        if (el === payload) {
+          el.liked = !el.liked;
+        }
+        return el;
+      });
     default:
       return state;
   }

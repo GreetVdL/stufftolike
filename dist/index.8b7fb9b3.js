@@ -468,40 +468,47 @@ var _song = require("./components/song");
 var _songDefault = parcelHelpers.interopDefault(_song);
 var _photo = require("./components/photo");
 var _photoDefault = parcelHelpers.interopDefault(_photo);
-// import { photosStore } from "./data/photos";
-// import { musicStore } from "./data/music";
-// import { newsStore } from "./data/news";
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
 var _photos = require("./data/photos");
+var _news = require("./data/news");
+var _music = require("./data/music");
 // Click event listener for cards
 document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
-        // event.target.style.color = "yellow";
+        // If the card is a photo, toggle photo
         if (event.target.parentElement.classList.contains("photo")) {
             const targetObject = _dataDefault.default.getState().photosReducer.filter((item)=>item.id === event.target.parentElement.id
             )[0];
             // targetObject.render(targetObject.likesHolder);
             _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
-            console.log(_dataDefault.default.getState());
+            if (targetObject.liked) event.target.style.color = "yellow";
+            else event.target.style.color = "white";
+        }
+        // If the card is a newsitem, toggle newsitem
+        if (event.target.parentElement.classList.contains("post")) {
+            const targetObject = _dataDefault.default.getState().newsReducer.filter((item)=>item.id === event.target.parentElement.id
+            )[0];
+            // targetObject.render(targetObject.likesHolder);
+            _dataDefault.default.dispatch(_news.toggleNews(targetObject));
+            // console.log(store.getState());
+            if (targetObject.liked) event.target.style.color = "yellow";
+            else event.target.style.color = "white";
+        }
+        // If the card is a song, toggle song
+        if (event.target.parentElement.classList.contains("song")) {
+            const targetObject = _dataDefault.default.getState().musicReducer.filter((item)=>item.id === event.target.parentElement.id
+            )[0];
+            // targetObject.render(targetObject.likesHolder);
+            _dataDefault.default.dispatch(_music.toggleSong(targetObject));
+            // console.log(store.getState());
+            if (targetObject.liked) event.target.style.color = "yellow";
+            else event.target.style.color = "white";
         }
     });
-}); // document.querySelectorAll(".like").forEach((card) => {
- //   card.addEventListener("click", (event) => {
- //     event.target.style.color = "yellow";
- //     if (event.target.parentElement.classList.contains("photo")) {
- //       const targetObject = store
- //         .getState()
- //         .photosReducer.filter(
- //           (item) => item.id === event.target.parentElement.id
- //         )[0];
- //       targetObject.render(targetObject.likesHolder);
- //     }
- //   });
- // });
- // console.log(store.getState());
+});
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1336,8 +1343,9 @@ var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 /**
  * ACTIONTYPES
  */ const TOGGLENEWS = "TOGGLENEWS";
-const toggleNews = ()=>({
-        type: TOGGLENEWS
+const toggleNews = (obj)=>({
+        type: TOGGLENEWS,
+        payload: obj
     })
 ;
 /**
@@ -1354,9 +1362,12 @@ const toggleNews = ()=>({
  */ const newsReducer = (state = initialState, { type , payload  })=>{
     switch(type){
         case TOGGLENEWS:
-            return {
+            return [
                 ...state
-            };
+            ].map((el)=>{
+                if (el === payload) el.liked = !el.liked;
+                return el;
+            });
         default:
             return state;
     }
@@ -1383,8 +1394,9 @@ const danceImg = new URL(require("28dc058371e7c750"));
 /**
  * ACTIONTYPES
  */ const TOGGLESONG = "TOGGLESONG";
-const toggleSong = ()=>({
-        type: TOGGLESONG
+const toggleSong = (obj)=>({
+        type: TOGGLESONG,
+        payload: obj
     })
 ;
 /**
@@ -1400,9 +1412,12 @@ const toggleSong = ()=>({
  */ const musicReducer = (state = initialState, { type , payload  })=>{
     switch(type){
         case TOGGLESONG:
-            return {
+            return [
                 ...state
-            };
+            ].map((el)=>{
+                if (el === payload) el.liked = !el.liked;
+                return el;
+            });
         default:
             return state;
     }

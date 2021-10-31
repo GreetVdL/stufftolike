@@ -11,8 +11,9 @@ const TOGGLENEWS = "TOGGLENEWS";
  * ACTION CREATORS
  */
 
-export const toggleNews = () => ({
+export const toggleNews = (obj) => ({
   type: TOGGLENEWS,
+  payload: obj,
 });
 
 /**
@@ -63,7 +64,12 @@ const initialState = [
 const newsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case TOGGLENEWS:
-      return { ...state };
+      return [...state].map((el) => {
+        if (el === payload) {
+          el.liked = !el.liked;
+        }
+        return el;
+      });
     default:
       return state;
   }
