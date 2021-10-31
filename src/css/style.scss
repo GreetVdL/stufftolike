@@ -10,13 +10,16 @@ html {
 }
 
 #root {
-  margin: 10px auto;
+  margin: 0 auto;
+  padding: 10px 15px 0 0;
   max-width: 1400px;
   min-height: 100vh;
   display: flex;
-
+  background-color: #faf9f8;
   > main {
     width: 80%;
+    padding-right: 10px;
+    margin-bottom: 25px;
     #news,
     #photos {
       min-height: 40vh;
@@ -26,6 +29,7 @@ html {
     }
   }
   > aside {
+    margin-bottom: 25px;
     width: 20%;
     border: 4px solid #38393f;
     background-color: #38393f;
@@ -34,7 +38,7 @@ html {
     .likes__header {
       // font-family: "Barlow", sans-serif;
       // color: #38393f;
-      color: white;
+      color: #faf9f8;
       font-size: 4rem;
       font-weight: 900;
       text-transform: uppercase;
@@ -47,7 +51,7 @@ html {
     .likes__main {
       border-radius: 20px;
       border: 4px solid white;
-      background-color: white;
+      background-color: #faf9f8;
       min-height: calc(100% - 70px);
       margin-top: -15px;
     }

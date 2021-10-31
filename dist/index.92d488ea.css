@@ -146,13 +146,17 @@ html {
   font-family: "Source Sans Pro", sans-serif;
 }
 #root {
-  margin: 10px auto;
+  margin: 0 auto;
+  padding: 10px 15px 0 0;
   max-width: 1400px;
   min-height: 100vh;
   display: flex;
+  background-color: #faf9f8;
 }
 #root > main {
   width: 80%;
+  padding-right: 10px;
+  margin-bottom: 25px;
 }
 #root > main #news,
 #root > main #photos {
@@ -162,6 +166,7 @@ html {
   min-height: 20vh;
 }
 #root > aside {
+  margin-bottom: 25px;
   width: 20%;
   border: 4px solid #38393f;
   background-color: #38393f;
@@ -169,7 +174,7 @@ html {
   border-radius: 20px;
 }
 #root > aside .likes__header {
-  color: white;
+  color: #faf9f8;
   font-size: 4rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -181,7 +186,7 @@ html {
 #root > aside .likes__main {
   border-radius: 20px;
   border: 4px solid white;
-  background-color: white;
+  background-color: #faf9f8;
   min-height: calc(100% - 70px);
   margin-top: -15px;
 }
@@ -291,7 +296,7 @@ html {
   padding: 15px;
   margin: 15px 15px 0 15px;
   border-radius: 15px;
-  background-color: #fa9090;
+  background-color: #fdcdcd;
   color: #1d7e69;
   line-height: 2rem;
   color: #ad0808;

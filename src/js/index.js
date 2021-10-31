@@ -32,6 +32,9 @@ const danceImg = new URL("../images/jesunde.jpg", import.meta.url);
 // Photos
 
 const lama = new URL("../images/lama.jpg", import.meta.url);
+const palmtrees = new URL("../images/palmtrees.jpg", import.meta.url);
+const santa = new URL("../images/santacruz.jpg", import.meta.url);
+const beach = new URL("../images/beach.jpg", import.meta.url);
 
 // Create the newsitems
 
@@ -48,4 +51,9 @@ new Song(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
 new Song(biscayaSong, "Biscaya", biscayaImg);
 new Song(danceSong, "I don't care to dance", danceImg);
 
+// Create the photos
+
 new Photo("lama", lama);
+new Photo("palmtree", palmtrees);
+new Photo("santa", santa);
+new Photo("beach", beach);
