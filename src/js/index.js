@@ -30,13 +30,6 @@ const danceSong = new URL(
 );
 const danceImg = new URL("../images/jesunde.jpg", import.meta.url);
 
-// Photos
-
-const lama = new URL("../images/lama.jpg", import.meta.url);
-const palmtrees = new URL("../images/palmtrees.jpg", import.meta.url);
-const santa = new URL("../images/santacruz.jpg", import.meta.url);
-const beach = new URL("../images/beach.jpg", import.meta.url);
-
 // Create the newsitems
 
 new Newsitem("democracy");
@@ -54,10 +47,10 @@ new Song(danceSong, "I don't care to dance", danceImg);
 
 // Create the photos
 
-new Photo("lama", lama);
-new Photo("palmtree", palmtrees);
-new Photo("santa", santa);
-new Photo("beach", beach);
+// new Photo("lama", lama);
+// new Photo("palmtree", palmtrees);
+// new Photo("santa", santa);
+// new Photo("beach", beach);
 
 // Click event listener for cards
 
@@ -66,11 +59,10 @@ document.querySelectorAll(".card").forEach((card) => {
     console.log(event.target.parentElement.id);
     event.target.style.color = "yellow";
     if (event.target.parentElement.classList.contains("photo")) {
-      console.log("yes");
       const targetObject = photosStore
         .getState()
         .filter((item) => item.id === event.target.parentElement.id)[0];
-      console.log(targetObject);
+      targetObject.print();
     }
   });
 });

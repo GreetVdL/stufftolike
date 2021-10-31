@@ -478,11 +478,6 @@ const biscayaSong = new URL(require("a3423d5f8cb8b7c5"));
 const biscayaImg = new URL(require("e3cecc60168d7412"));
 const danceSong = new URL(require("8f0d1004bd4e1246"));
 const danceImg = new URL(require("70ca18bc38faa88e"));
-// Photos
-const lama = new URL(require("a96fb38a51b6178f"));
-const palmtrees = new URL(require("95f1f012075d8b58"));
-const santa = new URL(require("aff9cc28c3880d2d"));
-const beach = new URL(require("abd4b79c98474277"));
 // Create the newsitems
 new _newsitemDefault.default("democracy");
 new _newsitemDefault.default("luchtbalonnen");
@@ -495,25 +490,24 @@ new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
 new _songDefault.default(biscayaSong, "Biscaya", biscayaImg);
 new _songDefault.default(danceSong, "I don't care to dance", danceImg);
 // Create the photos
-new _photoDefault.default("lama", lama);
-new _photoDefault.default("palmtree", palmtrees);
-new _photoDefault.default("santa", santa);
-new _photoDefault.default("beach", beach);
+// new Photo("lama", lama);
+// new Photo("palmtree", palmtrees);
+// new Photo("santa", santa);
+// new Photo("beach", beach);
 // Click event listener for cards
 document.querySelectorAll(".card").forEach((card)=>{
     card.addEventListener("click", (event)=>{
         console.log(event.target.parentElement.id);
         event.target.style.color = "yellow";
         if (event.target.parentElement.classList.contains("photo")) {
-            console.log("yes");
             const targetObject = _photos.photosStore.getState().filter((item)=>item.id === event.target.parentElement.id
             )[0];
-            console.log(targetObject);
+            targetObject.print();
         }
     });
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","a96fb38a51b6178f":"2U0mM","./components/photo":"1Hh7W","95f1f012075d8b58":"lnyNm","aff9cc28c3880d2d":"1Kayb","abd4b79c98474277":"lCtaX","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","./components/photo":"1Hh7W","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1332,9 +1326,6 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sun
 },{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}],"2U0mM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
-
 },{"./helpers/bundle-url":"chiK4"}],"1Hh7W":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -1347,28 +1338,30 @@ exports.default = _photoDefault.default;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _redux = require("redux");
-var _photosJs = require("../../data/photos.js");
+// import { photosStore, photosReducer } from "../../data/photos.js";
+var _nanoid = require("nanoid");
 class Photo {
     #name;
     #holder;
-    #photoItem;
+    // #photoItem;
     #description;
     #photo;
-    #id;
-    constructor(name, img){
+    // #id;
+    constructor(name, img, desc){
         this.#name = name;
         this.#holder = document.querySelector("#photos");
-        this.#photoItem = _photosJs.photosStore.getState().filter((photo)=>photo.name === name
-        )[0];
-        console.log(this.#photoItem);
-        this.#description = this.#photoItem.description;
+        // this.#photoItem = photosStore
+        //   .getState()
+        //   .filter((photo) => photo.name === name)[0];
+        // console.log(this.#photoItem);
+        this.#description = desc;
         this.#photo = img;
-        this.#id = this.#photoItem.id;
+        this.id = _nanoid.nanoid();
         this.render();
     }
     render = ()=>{
         this.#holder.insertAdjacentHTML("beforeend", `
-      <div class="card photo" id="${this.#id}">
+      <div class="card photo" id="${this.id}">
         <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
         <p class="photo__desc">${this.#description}</p>
         <div class="like">
@@ -1379,45 +1372,11 @@ class Photo {
       </div>
       `);
     };
+    print = ()=>{
+        console.log(this.#name);
+    };
 }
 exports.default = Photo;
-
-},{"redux":"ifMRI","../../data/photos.js":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6iDTk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initialState", ()=>initialState
-);
-parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
-);
-parcelHelpers.export(exports, "photosStore", ()=>photosStore
-);
-var _redux = require("redux");
-var _nanoid = require("nanoid");
-const initialState = [
-    {
-        id: _nanoid.nanoid(),
-        name: "lama",
-        description: "A fluffy lama"
-    },
-    {
-        id: _nanoid.nanoid(),
-        name: "palmtree",
-        description: "A bunch of palmtrees"
-    },
-    {
-        id: _nanoid.nanoid(),
-        name: "santa",
-        description: "A Santa Cruz Beach playground"
-    },
-    {
-        id: _nanoid.nanoid(),
-        name: "beach",
-        description: "Lampuuk Beach in Aceh-Indonesia."
-    }, 
-];
-const photosReducer = (state = initialState, { type  })=>state
-;
-const photosStore = _redux.createStore(photosReducer);
 
 },{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb"}],"4OOvb":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1475,7 +1434,35 @@ parcelHelpers.export(exports, "urlAlphabet", ()=>urlAlphabet
 );
 let urlAlphabet = 'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lnyNm":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6iDTk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initialState", ()=>initialState
+);
+parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
+);
+parcelHelpers.export(exports, "photosStore", ()=>photosStore
+);
+var _redux = require("redux");
+var _nanoid = require("nanoid");
+var _photo = require("../components/photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+// Photos
+const lama = new URL(require("676d6bcd1a6ee56d"));
+const palmtrees = new URL(require("2b52d4b06755bc02"));
+const santa = new URL(require("8cd1004c19adfabf"));
+const beach = new URL(require("ce7d915acbc4fc3"));
+const initialState = [
+    new _photoDefault.default("lama", lama, "A fluffy lama"),
+    new _photoDefault.default("palmtree", palmtrees, "A bunch of palmtrees"),
+    new _photoDefault.default("santa", santa, "A Santa Cruz Beach playground"),
+    new _photoDefault.default("beach", beach, "Lampuuk Beach in Aceh-Indonesia."), 
+];
+const photosReducer = (state = initialState, { type  })=>state
+;
+const photosStore = _redux.createStore(photosReducer);
+
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","nanoid":"4OOvb","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","676d6bcd1a6ee56d":"2U0mM","../components/photo":"1Hh7W"}],"lnyNm":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "palmtrees.0568284f.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"1Kayb":[function(require,module,exports) {
@@ -1483,6 +1470,9 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "santac
 
 },{"./helpers/bundle-url":"chiK4"}],"lCtaX":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "beach.728d49bb.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"2U0mM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 

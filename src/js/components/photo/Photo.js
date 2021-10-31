@@ -1,23 +1,24 @@
 import * as redux from "redux";
-import { photosStore, photosReducer } from "../../data/photos.js";
+// import { photosStore, photosReducer } from "../../data/photos.js";
+import { nanoid } from "nanoid";
 
 class Photo {
   #name;
   #holder;
-  #photoItem;
+  // #photoItem;
   #description;
   #photo;
-  #id;
-  constructor(name, img) {
+  // #id;
+  constructor(name, img, desc) {
     this.#name = name;
     this.#holder = document.querySelector("#photos");
-    this.#photoItem = photosStore
-      .getState()
-      .filter((photo) => photo.name === name)[0];
-    console.log(this.#photoItem);
-    this.#description = this.#photoItem.description;
+    // this.#photoItem = photosStore
+    //   .getState()
+    //   .filter((photo) => photo.name === name)[0];
+    // console.log(this.#photoItem);
+    this.#description = desc;
     this.#photo = img;
-    this.#id = this.#photoItem.id;
+    this.id = nanoid();
     this.render();
   }
 
@@ -25,7 +26,7 @@ class Photo {
     this.#holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card photo" id="${this.#id}">
+      <div class="card photo" id="${this.id}">
         <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
         <p class="photo__desc">${this.#description}</p>
         <div class="like">
@@ -36,6 +37,10 @@ class Photo {
       </div>
       `
     );
+  };
+
+  print = () => {
+    console.log(this.#name);
   };
 
   //   #generateHTML() {
