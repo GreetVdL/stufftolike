@@ -9,21 +9,38 @@ import Photo from "./components/photo";
 // import { musicStore } from "./data/music";
 // import { newsStore } from "./data/news";
 import store from "./data";
+import { togglePhoto } from "./data/photos";
 
 // Click event listener for cards
 
 document.querySelectorAll(".like").forEach((card) => {
   card.addEventListener("click", (event) => {
-    event.target.style.color = "yellow";
+    // event.target.style.color = "yellow";
     if (event.target.parentElement.classList.contains("photo")) {
       const targetObject = store
         .getState()
         .photosReducer.filter(
           (item) => item.id === event.target.parentElement.id
         )[0];
-      targetObject.render(targetObject.likesHolder);
+      // targetObject.render(targetObject.likesHolder);
+      store.dispatch(togglePhoto(targetObject));
+      console.log(store.getState());
     }
   });
 });
+
+// document.querySelectorAll(".like").forEach((card) => {
+//   card.addEventListener("click", (event) => {
+//     event.target.style.color = "yellow";
+//     if (event.target.parentElement.classList.contains("photo")) {
+//       const targetObject = store
+//         .getState()
+//         .photosReducer.filter(
+//           (item) => item.id === event.target.parentElement.id
+//         )[0];
+//       targetObject.render(targetObject.likesHolder);
+//     }
+//   });
+// });
 
 // console.log(store.getState());

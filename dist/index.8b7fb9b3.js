@@ -473,19 +473,35 @@ var _photoDefault = parcelHelpers.interopDefault(_photo);
 // import { newsStore } from "./data/news";
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
+var _photos = require("./data/photos");
 // Click event listener for cards
 document.querySelectorAll(".like").forEach((card)=>{
     card.addEventListener("click", (event)=>{
-        event.target.style.color = "yellow";
+        // event.target.style.color = "yellow";
         if (event.target.parentElement.classList.contains("photo")) {
             const targetObject = _dataDefault.default.getState().photosReducer.filter((item)=>item.id === event.target.parentElement.id
             )[0];
-            targetObject.render(targetObject.likesHolder);
+            // targetObject.render(targetObject.likesHolder);
+            _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
+            console.log(_dataDefault.default.getState());
         }
     });
-}); // console.log(store.getState());
+}); // document.querySelectorAll(".like").forEach((card) => {
+ //   card.addEventListener("click", (event) => {
+ //     event.target.style.color = "yellow";
+ //     if (event.target.parentElement.classList.contains("photo")) {
+ //       const targetObject = store
+ //         .getState()
+ //         .photosReducer.filter(
+ //           (item) => item.id === event.target.parentElement.id
+ //         )[0];
+ //       targetObject.render(targetObject.likesHolder);
+ //     }
+ //   });
+ // });
+ // console.log(store.getState());
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","./components/photo":"1Hh7W","./data":"M6jpw","./data/photos":"6iDTk"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1468,8 +1484,9 @@ const beach = new URL(require("ce7d915acbc4fc3"));
 /**
  * ACTIONTYPES
  */ const TOGGLEPHOTO = "TOGGLEPHOTO";
-const togglePhoto = ()=>({
-        type: TOGGLEPHOTO
+const togglePhoto = (obj)=>({
+        type: TOGGLEPHOTO,
+        payload: obj
     })
 ;
 /**
@@ -1482,8 +1499,19 @@ const togglePhoto = ()=>({
 ];
 /**
  * REDUCER
- */ const photosReducer = (state = initialState, { type  })=>state
-;
+ */ const photosReducer = (state = initialState, { type , payload  })=>{
+    switch(type){
+        case TOGGLEPHOTO:
+            return [
+                ...state
+            ].map((el)=>{
+                if (el === payload) el.liked = !el.liked;
+                return el;
+            });
+        default:
+            return state;
+    }
+};
 exports.default = photosReducer;
 
 },{"redux":"ifMRI","../components/photo":"1Hh7W","676d6bcd1a6ee56d":"2U0mM","2b52d4b06755bc02":"lnyNm","8cd1004c19adfabf":"1Kayb","ce7d915acbc4fc3":"lCtaX","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"2U0mM":[function(require,module,exports) {

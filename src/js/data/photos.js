@@ -18,8 +18,9 @@ const TOGGLEPHOTO = "TOGGLEPHOTO";
  * ACTION CREATORS
  */
 
-export const togglePhoto = () => ({
+export const togglePhoto = (obj) => ({
   type: TOGGLEPHOTO,
+  payload: obj,
 });
 
 /**
@@ -36,6 +37,18 @@ const initialState = [
 /**
  * REDUCER
  */
-const photosReducer = (state = initialState, { type }) => state;
+const photosReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case TOGGLEPHOTO:
+      return [...state].map((el) => {
+        if (el === payload) {
+          el.liked = !el.liked;
+        }
+        return el;
+      });
+    default:
+      return state;
+  }
+};
 
 export default photosReducer;
