@@ -466,7 +466,9 @@ var _newsitem = require("./components/newsitem");
 var _newsitemDefault = parcelHelpers.interopDefault(_newsitem);
 var _song = require("./components/song");
 var _songDefault = parcelHelpers.interopDefault(_song);
-// Songs
+var _photo = require("./components/photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+// Songs and their images
 const changesSong = new URL(require("39ac25c4a912839"));
 const changesImg = new URL(require("d586dae687154f35"));
 const mosquitoesSong = new URL(require("6a64d3f174c7ff8b"));
@@ -475,17 +477,22 @@ const biscayaSong = new URL(require("a3423d5f8cb8b7c5"));
 const biscayaImg = new URL(require("e3cecc60168d7412"));
 const danceSong = new URL(require("8f0d1004bd4e1246"));
 const danceImg = new URL(require("70ca18bc38faa88e"));
+// Photos
+const lama = new URL(require("a96fb38a51b6178f"));
+// Create the newsitems
 new _newsitemDefault.default("democracy");
 new _newsitemDefault.default("luchtbalonnen");
 new _newsitemDefault.default("alligator");
 new _newsitemDefault.default("klimaat");
 new _newsitemDefault.default("zeespiegel");
+// Create the songs
 new _songDefault.default(changesSong, "Changes", changesImg);
 new _songDefault.default(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
 new _songDefault.default(biscayaSong, "Biscaya", biscayaImg);
 new _songDefault.default(danceSong, "I don't care to dance", danceImg);
+new _photoDefault.default("lama", lama);
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","redux":"ifMRI","./components/newsitem":"ie6yB","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./components/song":"dpBmu","39ac25c4a912839":"8mUG8","d586dae687154f35":"aYSjE","6a64d3f174c7ff8b":"46MSr","e760053865ba16a0":"c3BZv","a3423d5f8cb8b7c5":"6Lw9F","e3cecc60168d7412":"hlaSN","8f0d1004bd4e1246":"hY6AB","70ca18bc38faa88e":"d3N4D","a96fb38a51b6178f":"2U0mM","./components/photo":"1Hh7W"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1304,6 +1311,85 @@ module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "JE Sun
 },{"./helpers/bundle-url":"chiK4"}],"d3N4D":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "jesunde.982cafd6.jpg" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
+},{"./helpers/bundle-url":"chiK4"}],"2U0mM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('2QLmQ') + "lama.b2ddd191.jpg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"1Hh7W":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _photoScss = require("./Photo.scss");
+var _photo = require("./Photo");
+var _photoDefault = parcelHelpers.interopDefault(_photo);
+exports.default = _photoDefault.default;
+
+},{"./Photo.scss":"4yhL8","./Photo":"gf4nt","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"4yhL8":[function() {},{}],"gf4nt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _redux = require("redux");
+var _photosJs = require("../../data/photos.js");
+class Photo {
+    #name;
+    #holder;
+    #photoItem;
+    #description;
+    #photo;
+    constructor(name, img){
+        this.#name = name;
+        this.#holder = document.querySelector("#photos");
+        this.#photoItem = _photosJs.photosStore.getState().filter((photo)=>photo.name === name
+        );
+        this.#description = this.#photoItem[0].description;
+        this.#photo = img;
+        this.render();
+    }
+    render = ()=>{
+        this.#holder.insertAdjacentHTML("beforeend", `
+      <div class="card photo">
+        <img class="photo__img" src="${this.#photo}" alt="${this.#description}">
+        <p class="photo__desc">${this.#description}</p>
+        <div class="like">
+          <svg class="icon icon-star-empty">
+            <use href="#icon-star-full"></use>
+          </svg>
+        </div>
+      </div>
+      `);
+    };
+}
+exports.default = Photo;
+
+},{"redux":"ifMRI","../../data/photos.js":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"6iDTk":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "initialState", ()=>initialState
+);
+parcelHelpers.export(exports, "photosReducer", ()=>photosReducer
+);
+parcelHelpers.export(exports, "photosStore", ()=>photosStore
+);
+var _redux = require("redux");
+const initialState = [
+    {
+        name: "lama",
+        description: "A fluffy lama"
+    },
+    {
+        name: "palmtree",
+        description: "A bunch of palmtrees"
+    },
+    {
+        name: "santa",
+        description: "A Santa Cruz Beach playground"
+    },
+    {
+        name: "beach",
+        description: "Lampuuk Beach in Aceh-Indonesia."
+    }, 
+];
+const photosReducer = (state = initialState, { type  })=>state
+;
+const photosStore = _redux.createStore(photosReducer);
+
+},{"redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["cSv3F","3auaO"], "3auaO", "parcelRequirebe21")
 
 //# sourceMappingURL=index.8b7fb9b3.js.map

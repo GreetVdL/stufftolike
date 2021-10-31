@@ -1,0 +1,21 @@
+.photo {
+  position: relative;
+  padding: 15px;
+  margin: 15px 15px 0 15px;
+  border-radius: 15px;
+  background-color: #fa9090;
+  color: #1d7e69;
+  line-height: 2rem;
+  color: #ad0808;
+  > * {
+    margin-bottom: 8px;
+  }
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  &__desc {
+    font-size: 1.5rem;
+  }
+}

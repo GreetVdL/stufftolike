@@ -189,7 +189,8 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-#music {
+#music,
+#photos {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 10px;
@@ -284,5 +285,26 @@ html {
   width: 100%;
   height: auto;
   display: block;
+}
+.photo {
+  position: relative;
+  padding: 15px;
+  margin: 15px 15px 0 15px;
+  border-radius: 15px;
+  background-color: #fa9090;
+  color: #1d7e69;
+  line-height: 2rem;
+  color: #ad0808;
+}
+.photo > * {
+  margin-bottom: 8px;
+}
+.photo__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.photo__desc {
+  font-size: 1.5rem;
 }
 /*# sourceMappingURL=index.92d488ea.css.map */

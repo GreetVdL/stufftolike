@@ -4,8 +4,9 @@ import "../css/style.scss";
 
 import Newsitem from "./components/newsitem";
 import Song from "./components/song";
+import Photo from "./components/photo";
 
-// Songs
+// Songs and their images
 
 const changesSong = new URL(
   "../sound/Black Sabbath-Changes.mp3",
@@ -28,13 +29,23 @@ const danceSong = new URL(
 );
 const danceImg = new URL("../images/jesunde.jpg", import.meta.url);
 
+// Photos
+
+const lama = new URL("../images/lama.jpg", import.meta.url);
+
+// Create the newsitems
+
 new Newsitem("democracy");
 new Newsitem("luchtbalonnen");
 new Newsitem("alligator");
 new Newsitem("klimaat");
 new Newsitem("zeespiegel");
 
+// Create the songs
+
 new Song(changesSong, "Changes", changesImg);
 new Song(mosquitoesSong, "No More Mosquitoes", mosquitoesImg);
 new Song(biscayaSong, "Biscaya", biscayaImg);
 new Song(danceSong, "I don't care to dance", danceImg);
+
+new Photo("lama", lama);

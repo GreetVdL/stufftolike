@@ -60,7 +60,8 @@ html {
   // background-color: #edfbf8;
 }
 
-#music {
+#music,
+#photos {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 10px;
