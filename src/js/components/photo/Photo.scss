@@ -1,12 +1,13 @@
+@use "../../../css/base/variables" as *;
+
 .photo {
   position: relative;
   padding: 15px;
   margin: 15px 15px 0 15px;
   border-radius: 15px;
-  background-color: #fdcdcd;
-  color: #1d7e69;
+  background-color: $lred;
   line-height: 2rem;
-  color: #ad0808;
+  color: $dred;
   > * {
     margin-bottom: 8px;
   }

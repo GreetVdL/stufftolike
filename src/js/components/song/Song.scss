@@ -1,13 +1,13 @@
+@use "../../../css/base/variables" as *;
+
 .song {
   position: relative;
   padding: 15px;
   margin: 15px 15px 0 15px;
   border-radius: 15px;
-  background-color: #c2f1e7;
-  color: #1d7e69;
   line-height: 2rem;
-  background-color: #c5e4f0;
-  color: #20627d;
+  background-color: $lblue;
+  color: $dblue;
   > * {
     margin-bottom: 8px;
   }
