@@ -34,6 +34,7 @@ html {
   > aside {
     margin-bottom: 25px;
     width: 20%;
+    min-width: 230px;
     border: 4px solid $lblack;
     background-color: $lblack;
     margin-top: 15px;
@@ -105,5 +106,30 @@ html {
       box-shadow: 5px 10px 22px -3px rgba(0, 0, 0, 0.27);
       transform: scale(1.01);
     }
+  }
+}
+
+// responsive styles
+
+@media screen and (max-width: 1203px) {
+  #news {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1147px) {
+  #music,
+  #photos {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 957px) {
+  #news {
+    grid-template-columns: 1fr 1fr;
+  }
+  #music,
+  #photos {
+    grid-template-columns: 1fr 1fr;
   }
 }
