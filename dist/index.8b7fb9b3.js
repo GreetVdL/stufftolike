@@ -460,7 +460,6 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"3auaO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _redux = require("redux");
 var _styleScss = require("../css/style.scss");
 var _data = require("./data");
 var _dataDefault = parcelHelpers.interopDefault(_data);
@@ -477,11 +476,17 @@ const handleCardsClick = (event, className, reducer, action)=>{
         )[0];
         // toggle whether it was liked
         _dataDefault.default.dispatch(action(targetObject));
+        // if the card was liked
         if (targetObject.liked) {
+            // make the star yellow
             event.target.classList.add("like--active");
+            // add the card to the likesStore
             _data.likesStore.dispatch(_likes.add(targetObject));
+        // ik the card was unliked
         } else {
+            // make the star white again
             event.target.classList.remove("like--active");
+            // remove the card from the likesStore
             _data.likesStore.dispatch(_likes.remove(targetObject));
         }
     }
@@ -494,7 +499,7 @@ document.querySelectorAll(".like").forEach((card)=>{
         handleCardsClick(event, "song", "musicReducer", _music.toggleSong);
     });
 });
-// Render liked cards on the right side
+// Render liked cards in the "liked" zone
 renderLikes = ()=>{
     document.querySelector(".likes__main").innerHTML = "";
     _data.likesStore.getState().forEach((obj)=>{
@@ -503,42 +508,83 @@ renderLikes = ()=>{
     });
 };
 _data.likesStore.subscribe(renderLikes);
-// Click event listener for liked cards
+// Handle cards in the "liked zone" being clicked
+const handleLikedCardsclick = (event, className, reducer, action)=>{
+    // if the star is being clicked and the card is of a certain type (newsitem, song or photo)
+    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains(`${className}`)) {
+        // get the corresponding object from the store
+        const targetObject = _dataDefault.default.getState()[reducer].filter((item)=>item.id === event.target.parentElement.id
+        )[0];
+        // toggle whether it was liked
+        _dataDefault.default.dispatch(action(targetObject));
+        // remove the card from the likesStore
+        _data.likesStore.dispatch(_likes.remove(targetObject));
+        // make the star white again
+        targetObject.star.classList.remove("like--active");
+    }
+};
+// Click event listener for cards in the "liked" zone
 document.querySelector(".likes__main").addEventListener("click", (event)=>{
-    // If the card is a photo, remove photo
-    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("photo")) {
-        const targetObject = _dataDefault.default.getState().photosReducer.filter((item)=>item.id === event.target.parentElement.id
-        )[0];
-        // targetObject.render(targetObject.likesHolder);
-        _dataDefault.default.dispatch(_photos.togglePhoto(targetObject));
-        _data.likesStore.dispatch(_likes.remove(targetObject));
-        // targetObject.star.style.color = "white";
-        targetObject.star.classList.remove("like--active");
-    }
-    // If the card is a newsitem, remove newsitem
-    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("post")) {
-        const targetObject = _dataDefault.default.getState().newsReducer.filter((item)=>item.id === event.target.parentElement.id
-        )[0];
-        // targetObject.render(targetObject.likesHolder);
-        _dataDefault.default.dispatch(_news.toggleNews(targetObject));
-        _data.likesStore.dispatch(_likes.remove(targetObject));
-        // targetObject.star.style.color = "white";
-        targetObject.star.classList.remove("like--active");
-    }
-    // If the card is a song, remove song
-    if (event.target.classList.contains("like") && event.target.parentElement.classList.contains("song")) {
-        const targetObject = _dataDefault.default.getState().musicReducer.filter((item)=>item.id === event.target.parentElement.id
-        )[0];
-        // targetObject.render(targetObject.likesHolder);
-        _dataDefault.default.dispatch(_music.toggleSong(targetObject));
-        // console.log(store.getState());
-        _data.likesStore.dispatch(_likes.remove(targetObject));
-        // targetObject.star.style.color = "white";
-        targetObject.star.classList.remove("like--active");
-    }
+    handleLikedCardsClick(event, "photo", "photosReducer", _photos.togglePhoto);
+    handleLikedCardsClick(event, "post", "newsReducer", _news.toggleNews);
+    handleLikedCardsClick(event, "song", "musicReducer", _music.toggleSong);
 });
 
-},{"../css/style.scss":"efzMA","redux":"ifMRI","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ifMRI":[function(require,module,exports) {
+},{"../css/style.scss":"efzMA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"M6jpw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "likesStore", ()=>likesStore
+);
+var _redux = require("redux");
+// import { composeWithDevTools } from "redux-devtools-extension";
+// import logger from "redux-logger";
+var _news = require("./news");
+var _newsDefault = parcelHelpers.interopDefault(_news);
+var _music = require("./music");
+var _musicDefault = parcelHelpers.interopDefault(_music);
+var _photos = require("./photos");
+var _photosDefault = parcelHelpers.interopDefault(_photos);
+var _likes = require("./likes");
+var _likesDefault = parcelHelpers.interopDefault(_likes);
+const rootReducer = _redux.combineReducers({
+    newsReducer: _newsDefault.default,
+    musicReducer: _musicDefault.default,
+    photosReducer: _photosDefault.default
+});
+exports.default = _redux.createStore(rootReducer);
+const likesStore = _redux.createStore(_likesDefault.default);
+
+},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"ifMRI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes
@@ -1087,61 +1133,7 @@ function _defineProperty(obj, key, value) {
 }
 exports.default = _defineProperty;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"M6jpw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "likesStore", ()=>likesStore
-);
-var _redux = require("redux");
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import logger from "redux-logger";
-var _news = require("./news");
-var _newsDefault = parcelHelpers.interopDefault(_news);
-var _music = require("./music");
-var _musicDefault = parcelHelpers.interopDefault(_music);
-var _photos = require("./photos");
-var _photosDefault = parcelHelpers.interopDefault(_photos);
-var _likes = require("./likes");
-var _likesDefault = parcelHelpers.interopDefault(_likes);
-const rootReducer = _redux.combineReducers({
-    newsReducer: _newsDefault.default,
-    musicReducer: _musicDefault.default,
-    photosReducer: _photosDefault.default
-});
-exports.default = _redux.createStore(rootReducer);
-const likesStore = _redux.createStore(_likesDefault.default);
-
-},{"redux":"ifMRI","./news":"fJgQd","./music":"fs6CZ","./photos":"6iDTk","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./likes":"LSTUt"}],"fJgQd":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"fJgQd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "toggleNews", ()=>toggleNews
