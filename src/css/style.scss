@@ -112,9 +112,9 @@ html {
 
 // heart
 
-#heart {
+.heart {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 93vh;
   right: 18px;
   border-radius: 50%;
@@ -131,9 +131,9 @@ html {
       pointer-events: none;
     }
   }
-  // &--active {
-  //   color: $yellow;
-  // }
+  &--active {
+    color: $pink;
+  }
 }
 
 // responsive styles
@@ -172,7 +172,7 @@ html {
 }
 
 @media screen and (max-width: 524px) {
-  #heart {
+  .heart {
     display: block;
   }
   #root {

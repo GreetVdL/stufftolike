@@ -529,6 +529,17 @@ document.querySelector(".likes__main").addEventListener("click", (event)=>{
     handleLikedCardsClick(event, "post", "newsReducer", _news.toggleNews);
     handleLikedCardsClick(event, "song", "musicReducer", _music.toggleSong);
 });
+// Show and hide likes zone when heart icon gets clicked for small screens
+document.querySelector(".heart").addEventListener("click", (event)=>{
+    event.currentTarget.classList.toggle("heart--active");
+    if (event.currentTarget.classList.contains("heart--active")) {
+        document.querySelector(".likes").style.display = "block";
+        document.querySelector("#root > main").style.display = "none";
+    } else {
+        document.querySelector(".likes").style.display = "none";
+        document.querySelector("#root > main").style.display = "block";
+    }
+});
 
 },{"../css/style.scss":"efzMA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./data":"M6jpw","./data/photos":"6iDTk","./data/news":"fJgQd","./data/music":"fs6CZ","./data/likes":"LSTUt"}],"efzMA":[function() {},{}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {

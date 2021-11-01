@@ -234,9 +234,9 @@ html {
     transform: scale(1.01);
   }
 }
-#heart {
+.heart {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 93vh;
   right: 18px;
   border-radius: 50%;
@@ -248,11 +248,14 @@ html {
   padding: 8px 0 0 7px;
   cursor: pointer;
 }
-#heart svg {
+.heart svg {
   pointer-events: none;
 }
-#heart svg use {
+.heart svg use {
   pointer-events: none;
+}
+.heart--active {
+  color: #f8c9d5;
 }
 @media screen and (max-width: 1203px) {
   #news {
@@ -286,7 +289,7 @@ html {
   }
 }
 @media screen and (max-width: 524px) {
-  #heart {
+  .heart {
     display: block;
   }
 
