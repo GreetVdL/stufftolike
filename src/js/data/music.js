@@ -1,4 +1,3 @@
-import * as redux from "redux";
 import Song from "../components/song";
 
 // Songs and their images

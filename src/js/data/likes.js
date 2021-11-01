@@ -1,5 +1,3 @@
-import * as redux from "redux";
-
 /**
  * TYPES
  */

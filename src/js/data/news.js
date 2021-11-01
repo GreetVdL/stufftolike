@@ -1,4 +1,3 @@
-import * as redux from "redux";
 import Newsitem from "../components/newsitem";
 
 /**

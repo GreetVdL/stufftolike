@@ -61,7 +61,7 @@ likesStore.subscribe(renderLikes);
 
 // Handle cards in the "liked zone" being clicked
 
-const handleLikedCardsclick = (event, className, reducer, action) => {
+const handleLikedCardsClick = (event, className, reducer, action) => {
   // if the star is being clicked and the card is of a certain type (newsitem, song or photo)
   if (
     event.target.classList.contains("like") &&

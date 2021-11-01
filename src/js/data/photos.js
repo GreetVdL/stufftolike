@@ -1,4 +1,3 @@
-import * as redux from "redux";
 import Photo from "../components/photo";
 
 // Photos
