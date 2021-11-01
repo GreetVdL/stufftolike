@@ -237,15 +237,15 @@ html {
 .heart {
   display: none;
   position: fixed;
-  top: 93vh;
+  top: 85vh;
   right: 18px;
   border-radius: 50%;
-  height: 35px;
-  width: 35px;
+  height: 45px;
+  width: 45px;
   background-color: #e7406c;
   color: #ffffff;
-  font-size: 2rem;
-  padding: 8px 0 0 7px;
+  font-size: 2.9rem;
+  padding: 8px 5px 0 8px;
   cursor: pointer;
 }
 .heart svg {
