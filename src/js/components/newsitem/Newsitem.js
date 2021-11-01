@@ -20,9 +20,11 @@ class Newsitem {
       `
       <div class="card post" id="${this.id}">
         <h2 class="post__title">${this.title}</h2>
-        <p class="post__date">${this.date}</p>
+        <p class="post__date">${this.date.toDateString()}</p>
         <p class="post__intro">${this.intro}</p>
-        <a class="post__link" href="${this.link}" target="blank">Read article</a>
+        <a class="post__link" href="${
+          this.link
+        }" target="blank">Read article</a>
         <div class="like">
           <svg class="icon icon-star-empty">
             <use href="#icon-star-full"></use>

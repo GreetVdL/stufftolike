@@ -88,7 +88,7 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
   handleLikedCardsClick(event, "song", "musicReducer", toggleSong);
 });
 
-// Show and hide likes zone when heart icon gets clicked for small screens
+// Show and hide likes zone when heart icon gets clicked on small screens
 
 document.querySelector(".heart").addEventListener("click", (event) => {
   event.currentTarget.classList.toggle("heart--active");
