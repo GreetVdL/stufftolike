@@ -146,6 +146,7 @@ html {
   font-family: "Source Sans Pro", sans-serif;
 }
 #root {
+  position: relative;
   margin: 0 auto;
   padding: 10px 30px 0 15px;
   max-width: 1400px;
@@ -233,6 +234,26 @@ html {
     transform: scale(1.01);
   }
 }
+#heart {
+  display: none;
+  position: absolute;
+  top: 93vh;
+  right: 18px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  background-color: #e7406c;
+  color: #ffffff;
+  font-size: 2rem;
+  padding: 8px 0 0 7px;
+  cursor: pointer;
+}
+#heart svg {
+  pointer-events: none;
+}
+#heart svg use {
+  pointer-events: none;
+}
 @media screen and (max-width: 1203px) {
   #news {
     grid-template-columns: 1fr 1fr 1fr;
@@ -252,6 +273,32 @@ html {
   #music,
 #photos {
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 714px) {
+  #news {
+    grid-template-columns: 1fr;
+  }
+
+  #music,
+#photos {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 524px) {
+  #heart {
+    display: block;
+  }
+
+  #root {
+    padding: 10px 15px 0 15px;
+  }
+  #root > main {
+    width: 100%;
+  }
+  #root > aside {
+    display: none;
+    width: 100%;
   }
 }
 .post {

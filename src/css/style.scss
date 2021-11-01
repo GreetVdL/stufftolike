@@ -13,6 +13,7 @@ html {
 // Main page components
 
 #root {
+  position: relative;
   margin: 0 auto;
   padding: 10px 30px 0 15px;
   max-width: 1400px;
@@ -109,6 +110,32 @@ html {
   }
 }
 
+// heart
+
+#heart {
+  display: none;
+  position: absolute;
+  top: 93vh;
+  right: 18px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  background-color: $fuchsia;
+  color: $white;
+  font-size: 2rem;
+  padding: 8px 0 0 7px;
+  cursor: pointer;
+  svg {
+    pointer-events: none;
+    use {
+      pointer-events: none;
+    }
+  }
+  // &--active {
+  //   color: $yellow;
+  // }
+}
+
 // responsive styles
 
 @media screen and (max-width: 1203px) {
@@ -131,5 +158,31 @@ html {
   #music,
   #photos {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 714px) {
+  #news {
+    grid-template-columns: 1fr;
+  }
+  #music,
+  #photos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 524px) {
+  #heart {
+    display: block;
+  }
+  #root {
+    padding: 10px 15px 0 15px;
+    > main {
+      width: 100%;
+    }
+    > aside {
+      display: none;
+      width: 100%;
+    }
   }
 }
