@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 
 class Song {
-  constructor(songURL, title, img, author) {
+  constructor(songURL, title, img, author, name) {
     this.holder = document.querySelector("#music");
     this.likesHolder = document.querySelector(".likes__main");
     this.author = author;
@@ -12,6 +12,7 @@ class Song {
     this.liked = false;
     this.render(this.holder);
     this.star = document.querySelector(`#${this.id} .like`);
+    this.name = name;
   }
 
   render = (holder) => {

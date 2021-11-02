@@ -128,21 +128,21 @@ document.querySelector(".heart").addEventListener("click", (event) => {
   }
 });
 
-// Handle local storage for left cards
+// Sync application with local storage
 
 const lsStore = JSON.parse(window.localStorage.getItem("store"));
 
 const reduxStore = store.getState();
 
-const sync = () => {
-  lsStore.newsReducer.forEach((object) => {
+const sync = (reducer, action) => {
+  lsStore[reducer].forEach((object) => {
     if (object.liked) {
-      const targetObject = reduxStore.newsReducer.filter(
+      const targetObject = reduxStore[reducer].filter(
         (obj) => obj.name === object.name
       )[0];
       console.log(targetObject);
       // toggle whether it was liked
-      store.dispatch(toggleNews(targetObject));
+      store.dispatch(action(targetObject));
 
       // add the card to the likesStore
       likesStore.dispatch(add(targetObject));
@@ -153,4 +153,6 @@ const sync = () => {
   });
 };
 
-sync();
+sync("newsReducer", toggleNews);
+sync("musicReducer", toggleSong);
+sync("photosReducer", togglePhoto);

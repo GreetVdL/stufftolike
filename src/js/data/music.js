@@ -46,10 +46,16 @@ export const toggleSong = (obj) => ({
  */
 
 const initialState = [
-  new Song(changesSong, "Changes", changesImg, "Black Sabbath"),
-  new Song(mosquitoesSong, "No More Mosquitoes", mosquitoesImg, "Four Tet"),
-  new Song(biscayaSong, "Biscaya", biscayaImg, "James Last"),
-  new Song(danceSong, "I don't care to dance", danceImg, "J.E. Sunde"),
+  new Song(changesSong, "Changes", changesImg, "Black Sabbath", "changes"),
+  new Song(
+    mosquitoesSong,
+    "No More Mosquitoes",
+    mosquitoesImg,
+    "Four Tet",
+    "mosquitoes"
+  ),
+  new Song(biscayaSong, "Biscaya", biscayaImg, "James Last", "biscaya"),
+  new Song(danceSong, "I don't care to dance", danceImg, "J.E. Sunde", "dance"),
 ];
 
 /**
