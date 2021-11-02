@@ -166,9 +166,9 @@ const reduxLikesStore = likesStore.getState();
 const syncLikesStore = () => {
   // find the liked cards
   lsLikesStore.forEach((obj) => {
-    storeNews = store.getState().newsReducer;
-    storeSongs = store.getState().musicReducer;
-    storePhotos = store.getState().photosReducer;
+    const storeNews = store.getState().newsReducer;
+    const storeSongs = store.getState().musicReducer;
+    const storePhotos = store.getState().photosReducer;
     let targetObject;
     storeNews.forEach((object) => {
       if (obj.name === object.name) {
