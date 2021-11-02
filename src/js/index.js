@@ -73,7 +73,7 @@ document.querySelectorAll(".like").forEach((card) => {
 
 // Function to render liked cards in the "liked" zone
 
-renderLikes = () => {
+const renderLikes = () => {
   // first make the likes zone empty again
   document.querySelector(".likes__main").innerHTML = "";
   // then render each card from the likesStore
