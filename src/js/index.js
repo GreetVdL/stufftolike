@@ -160,10 +160,8 @@ syncStore("photosReducer", togglePhoto);
 // Sync likesStore
 
 const lsLikesStore = JSON.parse(window.localStorage.getItem("likesStore"));
-console.log(lsLikesStore);
 
 const reduxLikesStore = likesStore.getState();
-console.log(reduxLikesStore);
 
 const syncLikesStore = () => {
   // find the liked cards
