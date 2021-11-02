@@ -1,4 +1,5 @@
 import Photo from "../components/photo";
+import { preloadImages } from "../helpers";
 
 // Photos
 
@@ -6,6 +7,12 @@ const lama = new URL("../../images/lama.jpg", import.meta.url);
 const palmtrees = new URL("../../images/palmtrees.jpg", import.meta.url);
 const santa = new URL("../../images/santacruz.jpg", import.meta.url);
 const beach = new URL("../../images/beach.jpg", import.meta.url);
+
+// Preloading photos
+
+const photosArray = [lama, palmtrees, santa, beach];
+
+preloadImages(photosArray);
 
 /**
  * ACTIONTYPES

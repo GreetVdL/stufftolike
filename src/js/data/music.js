@@ -1,4 +1,5 @@
 import Song from "../components/song";
+import { preloadImages } from "../helpers";
 
 // Songs and their images
 
@@ -25,6 +26,12 @@ const danceSong = new URL(
   import.meta.url
 );
 const danceImg = new URL("../../images/jesunde.jpg", import.meta.url);
+
+// Preloading photos
+
+const photosArr = [changesImg, mosquitoesImg, biscayaImg, danceImg];
+
+preloadImages(photosArr);
 
 /**
  * ACTIONTYPES
