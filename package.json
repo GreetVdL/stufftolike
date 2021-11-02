@@ -5,10 +5,11 @@
   "scripts": {
     "start": "parcel ./src/index.html",
     "clean": "rm -rf .parcel-cache dist output",
-    "build": "parcel build ./src/index.html --dist-dir output"
+    "build": "parcel build src/index.html --dist-dir output",
+    "deploy": "surge ./output https://redux-likesapp-greet.surge.sh"
   },
   "keywords": [],
-  "author": "",
+  "author": "Greet",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0",
@@ -18,6 +19,7 @@
     "redux-logger": "^3.0.6"
   },
   "dependencies": {
+    "@swc/helpers": "^0.2.13",
     "nanoid": "^3.1.30",
     "redux": "^4.1.1"
   }
