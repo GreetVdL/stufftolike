@@ -13,7 +13,10 @@ const saveStore = () => {
   window.localStorage.setItem("store", JSON.stringify(store.getState()));
 };
 const saveLikesStore = () => {
-  window.localStorage.setItem("likesStore", JSON.stringify(store.getState()));
+  window.localStorage.setItem(
+    "likesStore",
+    JSON.stringify(likesStore.getState())
+  );
 };
 
 store.subscribe(saveStore);
@@ -130,11 +133,13 @@ document.querySelector(".heart").addEventListener("click", (event) => {
 
 // Sync application with local storage
 
+// Sync store
+
 const lsStore = JSON.parse(window.localStorage.getItem("store"));
 
 const reduxStore = store.getState();
 
-const sync = (reducer, action) => {
+const syncStore = (reducer, action) => {
   lsStore[reducer].forEach((object) => {
     if (object.liked) {
       const targetObject = reduxStore[reducer].filter(
@@ -145,7 +150,7 @@ const sync = (reducer, action) => {
       store.dispatch(action(targetObject));
 
       // add the card to the likesStore
-      likesStore.dispatch(add(targetObject));
+      // likesStore.dispatch(add(targetObject));
 
       //  handle what happens after like state being toggled
       likesChanged(targetObject);
@@ -153,6 +158,41 @@ const sync = (reducer, action) => {
   });
 };
 
-sync("newsReducer", toggleNews);
-sync("musicReducer", toggleSong);
-sync("photosReducer", togglePhoto);
+syncStore("newsReducer", toggleNews);
+syncStore("musicReducer", toggleSong);
+syncStore("photosReducer", togglePhoto);
+
+// Sync likesStore
+
+const lsLikesStore = JSON.parse(window.localStorage.getItem("likesStore"));
+console.log(lsLikesStore);
+
+const reduxLikesStore = likesStore.getState();
+console.log(reduxLikesStore);
+
+const syncLikesStore = () => {
+  lsLikesStore.forEach((obj) => {
+    storeNews = store.getState().newsReducer;
+    storeSongs = store.getState().musicReducer;
+    storePhotos = store.getState().photosReducer;
+    let targetObject;
+    storeNews.forEach((object) => {
+      if (obj.name === object.name) {
+        targetObject = object;
+      }
+    });
+    storeSongs.forEach((object) => {
+      if (obj.name === object.name) {
+        targetObject = object;
+      }
+    });
+    storePhotos.forEach((object) => {
+      if (obj.name === object.name) {
+        targetObject = object;
+      }
+    });
+    likesStore.dispatch(add(targetObject));
+  });
+};
+
+syncLikesStore();
