@@ -7,7 +7,7 @@ import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
 import { add, remove } from "./data/likes";
 
-// save to local storage
+// Save both stores to local storage
 
 const saveStore = () => {
   window.localStorage.setItem("store", JSON.stringify(store.getState()));
@@ -22,8 +22,7 @@ const saveLikesStore = () => {
 store.subscribe(saveStore);
 likesStore.subscribe(saveLikesStore);
 
-// update UI when data has changed
-//  handle what happens after like state being toggled
+//  Function to update stars' color
 
 const likesChanged = (obj) => {
   // if the card was liked
@@ -37,8 +36,7 @@ const likesChanged = (obj) => {
   }
 };
 
-// Change data when left card is clicked
-// Handle left side cards being clicked
+// Function to handle left side cards being clicked: change the data
 
 const handleCardsClick = (event, className, reducer, action) => {
   // if the card is of a certain type (newsitem, song or photo)
@@ -58,12 +56,12 @@ const handleCardsClick = (event, className, reducer, action) => {
       // remove the card from the likesStore
       likesStore.dispatch(remove(targetObject));
     }
-    //  handle what happens after like state being toggled
+    //  update the star's color
     likesChanged(targetObject);
   }
 };
 
-// Click event listener for cards on the left side
+// Click event listener for cards on the left side of the UI
 
 document.querySelectorAll(".like").forEach((card) => {
   card.addEventListener("click", (event) => {
@@ -73,14 +71,15 @@ document.querySelectorAll(".like").forEach((card) => {
   });
 });
 
-// Render liked cards in the "liked" zone
+// Function to render liked cards in the "liked" zone
 
 renderLikes = () => {
+  // first make the likes zone empty again
   document.querySelector(".likes__main").innerHTML = "";
+  // then render each card from the likesStore
   likesStore.getState().forEach((obj) => {
-    // console.log(obj);
     obj.render(obj.likesHolder);
-
+    // and color its star yellow
     document
       .querySelector(`.likes__main #${obj.id} .like`)
       .classList.add("like--active");
@@ -89,7 +88,7 @@ renderLikes = () => {
 
 likesStore.subscribe(renderLikes);
 
-// Handle cards in the "liked zone" being clicked
+// Function to handle cards in the "liked zone" being clicked
 
 const handleLikedCardsClick = (event, className, reducer, action) => {
   // if the star is being clicked and the card is of a certain type (newsitem, song or photo)
@@ -105,7 +104,7 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     store.dispatch(action(targetObject));
     // remove the card from the likesStore
     likesStore.dispatch(remove(targetObject));
-    //  handle what happens after like state being toggled
+    //  update the star's color
     likesChanged(targetObject);
   }
 };
@@ -140,19 +139,15 @@ const lsStore = JSON.parse(window.localStorage.getItem("store"));
 const reduxStore = store.getState();
 
 const syncStore = (reducer, action) => {
+  // get the matching liked card from the store
   lsStore[reducer].forEach((object) => {
     if (object.liked) {
       const targetObject = reduxStore[reducer].filter(
         (obj) => obj.name === object.name
       )[0];
-      console.log(targetObject);
       // toggle whether it was liked
       store.dispatch(action(targetObject));
-
-      // add the card to the likesStore
-      // likesStore.dispatch(add(targetObject));
-
-      //  handle what happens after like state being toggled
+      //  set its star's color
       likesChanged(targetObject);
     }
   });
@@ -171,6 +166,7 @@ const reduxLikesStore = likesStore.getState();
 console.log(reduxLikesStore);
 
 const syncLikesStore = () => {
+  // find the liked cards
   lsLikesStore.forEach((obj) => {
     storeNews = store.getState().newsReducer;
     storeSongs = store.getState().musicReducer;
@@ -191,6 +187,7 @@ const syncLikesStore = () => {
         targetObject = object;
       }
     });
+    // and add them to the likesStore
     likesStore.dispatch(add(targetObject));
   });
 };

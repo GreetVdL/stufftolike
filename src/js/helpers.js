@@ -1,3 +1,5 @@
+// Preloading images helpers
+
 const preloadImage = (url) =>
   new Promise((resolve, reject) => {
     const img = new Image();
