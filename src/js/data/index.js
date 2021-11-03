@@ -12,9 +12,6 @@ const rootReducer = combineReducers({
   photosReducer,
 });
 
-export default createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger))
-);
+export default createStore(rootReducer);
 
 export const likesStore = createStore(likesReducer);
