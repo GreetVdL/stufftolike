@@ -28,8 +28,8 @@
     display: inline-block;
     text-decoration: none;
     color: inherit;
-    background-color: $dgreen;
-    color: $lgreen;
+    background-color: $cultured;
+    color: $dgreen;
     border-radius: 7px;
     padding: 5px;
     font-weight: 700;
@@ -45,7 +45,11 @@
     &__link {
       transition: 200ms;
       &:hover {
-        background-color: $brown;
+        background-color: $dgreen;
+        color: $dgreen;
+        box-shadow: inset 21px 21px 42px $cultured,
+          inset -21px -21px 42px $cultured,
+          5px 10px 22px -3px rgba(0, 0, 0, 0.27);
       }
     }
   }
