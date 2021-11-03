@@ -101,8 +101,10 @@ html {
 
 @media (hover: hover) and (pointer: fine) {
   .like {
+    animation: none;
     &:hover {
       background-color: $llblack;
+      animation: rotate-center-once 0.5s ease-in-out both;
     }
   }
 }
@@ -228,5 +230,28 @@ html {
   100% {
     -webkit-transform: rotate(720deg);
     transform: rotate(720deg);
+  }
+}
+
+// animation star icon
+
+@-webkit-keyframes rotate-center-once {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
