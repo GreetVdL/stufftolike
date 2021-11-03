@@ -7,6 +7,8 @@ import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
 import { add, remove } from "./data/likes";
 
+import "animate.css";
+
 // Save both stores to local storage
 
 const saveStore = () => {
@@ -122,11 +124,18 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
 document.querySelector(".heart").addEventListener("click", (event) => {
   event.currentTarget.classList.toggle("heart--active");
   if (event.currentTarget.classList.contains("heart--active")) {
+    document
+      .querySelector(".likes")
+      .classList.add("animate__animated", "animate__backInRight");
     document.querySelector(".likes").style.display = "block";
+
     document.querySelector("#root > main").style.display = "none";
   } else {
     document.querySelector(".likes").style.display = "none";
     document.querySelector("#root > main").style.display = "block";
+    document
+      .querySelector("#root > main")
+      .classList.add("animate__animated", "animate__backInLeft");
   }
 });
 
