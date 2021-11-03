@@ -123,19 +123,17 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
 
 document.querySelector(".heart").addEventListener("click", (event) => {
   event.currentTarget.classList.toggle("heart--active");
-  if (event.currentTarget.classList.contains("heart--active")) {
-    document
-      .querySelector(".likes")
-      .classList.add("animate__animated", "animate__backInRight");
-    document.querySelector(".likes").style.display = "block";
+  const left = document.querySelector("#root > main");
+  const right = document.querySelector(".likes");
 
-    document.querySelector("#root > main").style.display = "none";
+  if (event.currentTarget.classList.contains("heart--active")) {
+    right.style.top = `${window.scrollY + 8}px`;
+    right.classList.remove("animate__backOutRight");
+    right.classList.add("animate__backInRight");
+    // window.scrollTo(0, 0);
   } else {
-    document
-      .querySelector("#root > main")
-      .classList.add("animate__animated", "animate__backInLeft");
-    document.querySelector("#root > main").style.display = "block";
-    document.querySelector(".likes").style.display = "none";
+    right.classList.remove("animate__backInRight");
+    right.classList.add("animate__backOutRight");
   }
 });
 
