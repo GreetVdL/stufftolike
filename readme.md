@@ -19,3 +19,4 @@ Make a zone with three different media type cards. If the cards are (dis)liked, 
 - Redux ducks pattern
 - local storage
 - responsiveness
+- Animate.css animation

@@ -123,17 +123,20 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
 
 document.querySelector(".heart").addEventListener("click", (event) => {
   event.currentTarget.classList.toggle("heart--active");
-  const left = document.querySelector("#root > main");
-  const right = document.querySelector(".likes");
-
+  // Get the likes zone
+  const rightEl = document.querySelector(".likes");
+  // if the heart icon is activated
   if (event.currentTarget.classList.contains("heart--active")) {
-    right.style.top = `${window.scrollY + 8}px`;
-    right.classList.remove("animate__backOutRight");
-    right.classList.add("animate__backInRight");
-    // window.scrollTo(0, 0);
+    // make sure the likes zone appears within the current screen view
+    rightEl.style.top = `${window.scrollY + 8}px`;
+    // animate the sliding of the likes zone
+    rightEl.classList.remove("animate__backOutRight");
+    rightEl.classList.add("animate__backInRight");
+    // if the heart icon is deactivated
   } else {
-    right.classList.remove("animate__backInRight");
-    right.classList.add("animate__backOutRight");
+    // reverse the animation
+    rightEl.classList.remove("animate__backInRight");
+    rightEl.classList.add("animate__backOutRight");
   }
 });
 
