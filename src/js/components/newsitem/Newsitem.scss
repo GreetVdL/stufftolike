@@ -39,3 +39,14 @@
     align-self: flex-start;
   }
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .post {
+    &__link {
+      transition: 200ms;
+      &:hover {
+        background-color: $ldgreen;
+      }
+    }
+  }
+}
