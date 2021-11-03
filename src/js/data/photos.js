@@ -18,14 +18,14 @@ preloadImages(photosArray);
  * ACTIONTYPES
  */
 
-const TOGGLEPHOTO = "TOGGLEPHOTO";
+const TOGGLE_PHOTO = "TOGGLE_PHOTO";
 
 /**
  * ACTION CREATORS
  */
 
 export const togglePhoto = (obj) => ({
-  type: TOGGLEPHOTO,
+  type: TOGGLE_PHOTO,
   payload: obj,
 });
 
@@ -46,7 +46,7 @@ const initialState = [
 
 const photosReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case TOGGLEPHOTO:
+    case TOGGLE_PHOTO:
       return [...state].map((el) => {
         if (el === payload) {
           el.liked = !el.liked;

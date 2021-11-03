@@ -37,14 +37,14 @@ preloadImages(photosArr);
  * ACTIONTYPES
  */
 
-const TOGGLESONG = "TOGGLESONG";
+const TOGGLE_SONG = "TOGGLE_SONG";
 
 /**
  * ACTION CREATORS
  */
 
 export const toggleSong = (obj) => ({
-  type: TOGGLESONG,
+  type: TOGGLE_SONG,
   payload: obj,
 });
 
@@ -71,7 +71,7 @@ const initialState = [
 
 const musicReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case TOGGLESONG:
+    case TOGGLE_SONG:
       return [...state].map((el) => {
         if (el === payload) {
           el.liked = !el.liked;
