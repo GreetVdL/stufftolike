@@ -131,11 +131,11 @@ document.querySelector(".heart").addEventListener("click", (event) => {
 
     document.querySelector("#root > main").style.display = "none";
   } else {
-    document.querySelector(".likes").style.display = "none";
-    document.querySelector("#root > main").style.display = "block";
     document
       .querySelector("#root > main")
       .classList.add("animate__animated", "animate__backInLeft");
+    document.querySelector("#root > main").style.display = "block";
+    document.querySelector(".likes").style.display = "none";
   }
 });
 
