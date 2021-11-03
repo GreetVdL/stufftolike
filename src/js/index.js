@@ -122,8 +122,15 @@ document.querySelector(".likes__main").addEventListener("click", (event) => {
 // Show and hide likes zone when heart icon gets clicked on small screens
 
 document.querySelector(".heart").addEventListener("click", (event) => {
-  event.currentTarget.classList.toggle("heart--active");
-  // Get the likes zone
+  const heart = event.currentTarget;
+  // toggle active class on heart icon
+  heart.classList.toggle("heart--active");
+  // rotate the heart on click
+  heart.style.animation = "rotate-center 0.3s ease-in-out both";
+  setTimeout(() => {
+    heart.style.animation = "none";
+  }, 300);
+  // capture the likes zone
   const rightEl = document.querySelector(".likes");
   // if the heart icon is activated
   if (event.currentTarget.classList.contains("heart--active")) {
