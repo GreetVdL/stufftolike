@@ -158,10 +158,9 @@ syncStore("musicReducer", toggleSong);
 syncStore("photosReducer", togglePhoto);
 
 // Sync likesStore
+// the likesStore needs to be synced separately so that the liked cards get rendered in the right order
 
 const lsLikesStore = JSON.parse(window.localStorage.getItem("likesStore"));
-
-const reduxLikesStore = likesStore.getState();
 
 const syncLikesStore = () => {
   // find the liked cards
