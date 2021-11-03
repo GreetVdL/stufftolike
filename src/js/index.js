@@ -127,6 +127,8 @@ document.querySelector(".heart").addEventListener("click", (event) => {
   const rightEl = document.querySelector(".likes");
   // if the heart icon is activated
   if (event.currentTarget.classList.contains("heart--active")) {
+    // reset this property that was set to 200% so that the likes zone wouldn't be visible on page load
+    rightEl.style.left = "15px";
     // make sure the likes zone appears within the current screen view
     rightEl.style.top = `${window.scrollY + 8}px`;
     // animate the sliding of the likes zone
