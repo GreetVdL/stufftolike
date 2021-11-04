@@ -103,11 +103,10 @@ const renderAllLikes = () => {
 const removeDislike = (tar) => {
   const el = document.querySelector(`.likes #${tar.id}`);
   const elStar = document.querySelector(`.likes #${tar.id} .like`);
-  console.log(elStar);
   elStar.style.animation = "rotate-center-once 0.5s ease-in-out both";
-  elStar.classList.remove("like--active");
-  elStar.addEventListener("animationend", (event) => {
+  elStar.addEventListener("animationend", () => {
     elStar.style.animation = "none";
+    elStar.classList.remove("like--active");
     el.remove();
   });
 };
@@ -131,7 +130,6 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     // and remove it from the likes zone
     removeDislike(targetObject);
     //  update the star's color
-    likesChanged(targetObject);
   }
 };
 
