@@ -25,6 +25,15 @@ html {
     width: 80%;
     padding-right: 10px;
     margin-bottom: 25px;
+    h1 {
+      text-align: center;
+      font-size: 4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: 15px 0;
+      color: $lblack;
+      display: none;
+    }
     #news,
     #photos {
       min-height: 40vh;
@@ -191,6 +200,9 @@ html {
     overflow: hidden;
     > main {
       width: 100%;
+      h1 {
+        display: block;
+      }
     }
     > aside {
       position: absolute;
