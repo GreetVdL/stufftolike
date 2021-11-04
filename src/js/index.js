@@ -58,16 +58,18 @@ const handleCardsClick = (event, className, reducer, action) => {
       // add the card to the likesStore
       likesStore.dispatch(add(targetObject));
       // and render it in the likes zone
-      targetObject.render(targetObject.likesHolder);
+      setTimeout(() => {
+        targetObject.render(targetObject.likesHolder);
+        likesChanged(targetObject);
+      }, 500);
       // ik the card was unliked
     } else {
       // remove the card from the likesStore
       likesStore.dispatch(remove(targetObject));
       // and remove it from the likes zone
       removeDislike(targetObject);
+      likesChanged(targetObject);
     }
-    //  update the star's color
-    likesChanged(targetObject);
   }
 };
 
