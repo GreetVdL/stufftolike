@@ -126,10 +126,10 @@ document.querySelector(".heart").addEventListener("click", (event) => {
   // toggle active class on heart icon
   heart.classList.toggle("heart--active");
   // rotate the heart on click
-  heart.style.animation = "rotate-center 0.3s ease-in-out both";
+  heart.style.animation = "heartbeat 1.5s ease-in-out infinite both";
   setTimeout(() => {
     heart.style.animation = "none";
-  }, 300);
+  }, 1500);
   // capture the likes zone
   const rightEl = document.querySelector(".likes");
   // if the heart icon is activated
