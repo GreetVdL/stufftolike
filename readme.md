@@ -6,7 +6,7 @@
 
 **Deployment:**
 
-Visit the app at [https://redux-likesapp-greet.surge.sh](https://redux-likesapp-greet.surge.sh).
+Visit the app at [https://stufftolike.surge.sh](https://stufftolike.surge.sh).
 
 **Assignment:**
 
