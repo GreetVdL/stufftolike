@@ -149,6 +149,18 @@ document.querySelector(".heart").addEventListener("click", (event) => {
   }
 });
 
+// Rotating animation for star icons
+
+document.querySelectorAll(".like").forEach((star) => {
+  star.addEventListener("click", (event) => {
+    event.currentTarget.style.animation =
+      "rotate-center-once 0.5s ease-in-out both";
+  });
+  star.addEventListener("animationend", (event) => {
+    event.currentTarget.style.animation = "none";
+  });
+});
+
 // Sync application with local storage
 
 // Sync store
