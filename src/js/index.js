@@ -30,11 +30,15 @@ const likesChanged = (obj) => {
   // if the card was liked
   if (obj.liked) {
     // make the star yellow
-    document.querySelector(`#${obj.id} .like`).classList.add("like--active");
+    document.querySelectorAll(`#${obj.id} .like`).forEach((el) => {
+      el.classList.add("like--active");
+    });
     // ik the card was unliked
   } else {
     // make the star white again
-    document.querySelector(`#${obj.id} .like`).classList.remove("like--active");
+    document.querySelectorAll(`#${obj.id} .like`).forEach((el) => {
+      el.classList.remove("like--active");
+    });
   }
 };
 
@@ -53,10 +57,14 @@ const handleCardsClick = (event, className, reducer, action) => {
     if (targetObject.liked) {
       // add the card to the likesStore
       likesStore.dispatch(add(targetObject));
+      // and render it in the likes zone
+      targetObject.render(targetObject.likesHolder);
       // ik the card was unliked
     } else {
       // remove the card from the likesStore
       likesStore.dispatch(remove(targetObject));
+      // and remove it from the likes zone
+      removeDislike(targetObject);
     }
     //  update the star's color
     likesChanged(targetObject);
@@ -73,9 +81,9 @@ document.querySelectorAll(".like").forEach((card) => {
   });
 });
 
-// Function to render liked cards in the "liked" zone
+// Function to render all liked cards in the "liked" zone
 
-const renderLikes = () => {
+const renderAllLikes = () => {
   // first make the likes zone empty again
   document.querySelector(".likes__main").innerHTML = "";
   // then render each card from the likesStore
@@ -88,7 +96,19 @@ const renderLikes = () => {
   });
 };
 
-likesStore.subscribe(renderLikes);
+// Function to remove a disliked card in the "liked" zone
+
+const removeDislike = (tar) => {
+  const el = document.querySelector(`.likes #${tar.id}`);
+  const elStar = document.querySelector(`.likes #${tar.id} .like`);
+  console.log(elStar);
+  elStar.style.animation = "rotate-center-once 0.5s ease-in-out both";
+  elStar.classList.remove("like--active");
+  elStar.addEventListener("animationend", (event) => {
+    elStar.style.animation = "none";
+    el.remove();
+  });
+};
 
 // Function to handle cards in the "liked zone" being clicked
 
@@ -106,6 +126,8 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     store.dispatch(action(targetObject));
     // remove the card from the likesStore
     likesStore.dispatch(remove(targetObject));
+    // and remove it from the likes zone
+    removeDislike(targetObject);
     //  update the star's color
     likesChanged(targetObject);
   }
@@ -218,6 +240,7 @@ const syncLikesStore = () => {
     // and add them to the likesStore
     likesStore.dispatch(add(targetObject));
   });
+  renderAllLikes();
 };
 
 syncLikesStore();
