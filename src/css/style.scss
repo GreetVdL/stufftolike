@@ -67,6 +67,9 @@ html {
       min-height: calc(100% - 70px);
       margin-top: -15px;
       padding-bottom: 15px;
+      .card {
+        margin-bottom: 30px;
+      }
     }
   }
 }
