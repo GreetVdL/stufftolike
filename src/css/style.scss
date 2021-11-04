@@ -16,7 +16,7 @@ html {
 #root {
   position: relative;
   margin: 0 auto;
-  padding: 10px 30px 0 15px;
+  padding: 10px 30px 30px 15px;
   max-width: 1400px;
   min-height: 100vh;
   display: flex;
@@ -30,9 +30,9 @@ html {
       font-size: 4rem;
       font-weight: 900;
       text-transform: uppercase;
-      padding: 15px 0;
+      padding: 34px 0 20px 0;
       color: $lblack;
-      display: none;
+      // display: none;
     }
     #news,
     #photos {
@@ -200,9 +200,6 @@ html {
     overflow: hidden;
     > main {
       width: 100%;
-      h1 {
-        display: block;
-      }
     }
     > aside {
       position: absolute;
