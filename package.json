@@ -6,7 +6,7 @@
     "start": "parcel ./src/index.html",
     "clean": "rm -rf .parcel-cache dist output",
     "build": "parcel build src/index.html --dist-dir output",
-    "deploy": "surge ./output https://redux-likesapp-greet.surge.sh"
+    "deploy": "surge ./output https://stufftolike.surge.sh"
   },
   "keywords": [],
   "author": "Greet",
