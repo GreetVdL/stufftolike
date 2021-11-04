@@ -57,9 +57,10 @@ const handleCardsClick = (event, className, reducer, action) => {
     if (targetObject.liked) {
       // add the card to the likesStore
       likesStore.dispatch(add(targetObject));
-      // and render it in the likes zone
+      // and render it in the likes zone after the star stops rotating
       setTimeout(() => {
         targetObject.render(targetObject.likesHolder);
+        // with the right color: yellow
         likesChanged(targetObject);
       }, 500);
       // ik the card was unliked
@@ -68,6 +69,7 @@ const handleCardsClick = (event, className, reducer, action) => {
       likesStore.dispatch(remove(targetObject));
       // and remove it from the likes zone
       removeDislike(targetObject);
+      // and handle the star's color
       likesChanged(targetObject);
     }
   }
@@ -86,7 +88,7 @@ document.querySelectorAll(".like").forEach((card) => {
 // Function to render all liked cards in the "liked" zone
 
 const renderAllLikes = () => {
-  // first make the likes zone empty again
+  // first make the likes zone empty
   document.querySelector(".likes__main").innerHTML = "";
   // then render each card from the likesStore
   likesStore.getState().forEach((obj) => {
@@ -128,7 +130,7 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     likesStore.dispatch(remove(targetObject));
     // and remove it from the likes zone
     removeDislike(targetObject);
-    //  update the star's color
+    //  update the star's color when the star stops rotating
     setTimeout(() => {
       likesChanged(targetObject);
     }, 500);
@@ -242,6 +244,7 @@ const syncLikesStore = () => {
     // and add them to the likesStore
     likesStore.dispatch(add(targetObject));
   });
+  // and render them all
   renderAllLikes();
 };
 
