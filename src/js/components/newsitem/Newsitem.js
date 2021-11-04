@@ -1,4 +1,6 @@
 import { nanoid } from "nanoid";
+import moment from "moment";
+import "moment/locale/nl";
 class Newsitem {
   constructor(name, date, title, intro, href) {
     this.name = name;
@@ -6,6 +8,7 @@ class Newsitem {
     this.likesHolder = document.querySelector(".likes__main");
     this.title = title;
     this.date = date;
+    this.moment = moment(this.date).locale("nl-be").format("dddd D MMM YYYY");
     this.intro = intro;
     this.link = href;
     this.id = "a" + nanoid();
@@ -19,11 +22,9 @@ class Newsitem {
       `
       <div class="card post" id="${this.id}">
         <h2 class="post__title">${this.title}</h2>
-        <p class="post__date">${this.date.toDateString()}</p>
+        <p class="post__date">${this.moment}</p>
         <p class="post__intro">${this.intro}</p>
-        <a class="post__link" href="${
-          this.link
-        }" target="blank">Read article</a>
+        <a class="post__link" href="${this.link}" target="blank">Read article</a>
         <div class="like">
           <svg class="icon icon-star-empty">
             <use href="#icon-star-full"></use>
