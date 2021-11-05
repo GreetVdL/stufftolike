@@ -128,12 +128,10 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     store.dispatch(action(targetObject));
     // remove the card from the likesStore
     likesStore.dispatch(remove(targetObject));
+    //  update the star's color
+    likesChanged(targetObject);
     // and remove it from the likes zone
     removeDislike(targetObject);
-    //  update the star's color when the star stops rotating
-    setTimeout(() => {
-      likesChanged(targetObject);
-    }, 500);
   }
 };
 
