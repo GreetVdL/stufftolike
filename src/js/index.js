@@ -30,9 +30,13 @@ const saveDarkmodeStore = () => {
   );
 };
 
+// when the stores' state changes
+
 store.subscribe(saveStore);
 likesStore.subscribe(saveLikesStore);
 darkmodeStore.subscribe(saveDarkmodeStore);
+
+// and save stores for initial browser session
 
 if (!window.localStorage.getItem("store")) {
   saveStore();
