@@ -15,6 +15,13 @@ class Song {
   }
 
   render = (holder) => {
+    let extra = "";
+    if (
+      holder === this.likesHolder &&
+      document.querySelector("span").classList.contains("darkmode")
+    ) {
+      extra = "darkmode";
+    }
     holder.insertAdjacentHTML(
       "beforeend",
       `
@@ -23,7 +30,7 @@ class Song {
         <h3 class="song__title">${this.title}</h3>
         <img class="song__photo" src="${this.photo}" alt= "{this.#title}">
         <audio class="song__path" controls src="${this.path}"></audio>
-        <div class="like">
+        <div class="like ${extra}">
         <svg class="icon icon-star-empty">
           <use href="#icon-star-full"></use>
         </svg>

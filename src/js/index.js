@@ -247,3 +247,38 @@ const syncLikesStore = () => {
 };
 
 syncLikesStore();
+
+// Dark mode
+
+const sunglasses = document.querySelector("main h1 span");
+
+sunglasses.addEventListener("click", (event) => {
+  event.target.classList.toggle("darkmode");
+  const root = document.querySelector("#root");
+  const title = document.querySelector("main h1");
+  const aside = document.querySelector("aside");
+  const likesHeader = document.querySelector(".likes__header");
+  const likesMain = document.querySelector(".likes__main");
+  const stars = document.querySelectorAll(".like");
+  if (event.target.classList.contains("darkmode")) {
+    document.body.classList.add("darkmode");
+    root.classList.add("darkmode");
+    title.classList.add("darkmode");
+    aside.classList.add("darkmode");
+    likesHeader.classList.add("darkmode");
+    likesMain.classList.add("darkmode");
+    stars.forEach((star) => {
+      star.classList.add("darkmode");
+    });
+  } else {
+    document.body.classList.remove("darkmode");
+    root.classList.remove("darkmode");
+    title.classList.remove("darkmode");
+    aside.classList.remove("darkmode");
+    likesHeader.classList.remove("darkmode");
+    likesMain.classList.remove("darkmode");
+    stars.forEach((star) => {
+      star.classList.remove("darkmode");
+    });
+  }
+});

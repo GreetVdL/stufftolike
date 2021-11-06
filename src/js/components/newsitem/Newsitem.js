@@ -17,6 +17,13 @@ class Newsitem {
   }
 
   render = (holder) => {
+    let extra = "";
+    if (
+      holder === this.likesHolder &&
+      document.querySelector("span").classList.contains("darkmode")
+    ) {
+      extra = "darkmode";
+    }
     holder.insertAdjacentHTML(
       "beforeend",
       `
@@ -25,7 +32,7 @@ class Newsitem {
         <p class="post__date">${this.moment}</p>
         <p class="post__intro">${this.intro}</p>
         <a class="post__link" href="${this.link}" target="blank">Read article</a>
-        <div class="like">
+        <div class="like ${extra}">
           <svg class="icon icon-star-empty">
             <use href="#icon-star-full"></use>
           </svg>

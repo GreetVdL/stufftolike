@@ -13,13 +13,20 @@ class Photo {
   }
 
   render = (holder) => {
+    let extra = "";
+    if (
+      holder === this.likesHolder &&
+      document.querySelector("span").classList.contains("darkmode")
+    ) {
+      extra = "darkmode";
+    }
     holder.insertAdjacentHTML(
       "beforeend",
       `
       <div class="card photo" id="${this.id}">
         <img class="photo__img" src="${this.photo}" alt="${this.description}">
         <p class="photo__desc">${this.description}</p>
-        <div class="like">
+        <div class="like ${extra}">
           <svg class="icon icon-star-empty">
             <use href="#icon-star-full"></use>
           </svg>
