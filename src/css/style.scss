@@ -99,6 +99,14 @@ html {
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  #root > main h1 span {
+    &:hover {
+      color: $fuchsia;
+    }
+  }
+}
+
 #news {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
