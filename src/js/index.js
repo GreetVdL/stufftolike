@@ -2,14 +2,16 @@ import "../css/style.scss";
 
 import store from "./data";
 import { likesStore } from "./data";
+import { darkmodeStore } from "./data";
 import { togglePhoto } from "./data/photos";
 import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
 import { add, remove } from "./data/likes";
+import { toggleDarkmode } from "./data/darkmode";
 
 import "animate.css";
 
-// Save both stores to local storage
+// Save all stores to local storage
 
 const saveStore = () => {
   window.localStorage.setItem("store", JSON.stringify(store.getState()));
@@ -21,8 +23,26 @@ const saveLikesStore = () => {
   );
 };
 
+const saveDarkmodeStore = () => {
+  window.localStorage.setItem(
+    "darkmode",
+    JSON.stringify(darkmodeStore.getState())
+  );
+};
+
 store.subscribe(saveStore);
 likesStore.subscribe(saveLikesStore);
+darkmodeStore.subscribe(saveDarkmodeStore);
+
+if (!window.localStorage.getItem("store")) {
+  saveStore();
+}
+if (!window.localStorage.getItem("likesStore")) {
+  saveLikesStore();
+}
+if (!window.localStorage.getItem("darkmode")) {
+  saveDarkmodeStore();
+}
 
 //  Function to update stars' color
 
@@ -248,18 +268,40 @@ const syncLikesStore = () => {
 
 syncLikesStore();
 
-// Dark mode
+// Darkmode
+
+// Sync darkmodeStore
 
 const sunglasses = document.querySelector("main h1 span");
 
+const root = document.querySelector("#root");
+const title = document.querySelector("main h1");
+const aside = document.querySelector("aside");
+const likesHeader = document.querySelector(".likes__header");
+const likesMain = document.querySelector(".likes__main");
+let stars = document.querySelectorAll(".like");
+
+const lsDarkmode = JSON.parse(window.localStorage.getItem("darkmode"));
+if (lsDarkmode.darkmode) {
+  darkmodeStore.dispatch(toggleDarkmode());
+  sunglasses.classList.add("darkmode");
+  document.body.classList.add("darkmode");
+  root.classList.add("darkmode");
+  title.classList.add("darkmode");
+  aside.classList.add("darkmode");
+  likesHeader.classList.add("darkmode");
+  likesMain.classList.add("darkmode");
+  stars.forEach((star) => {
+    star.classList.add("darkmode");
+  });
+}
+
+// Click event listener on sunglasses
+
 sunglasses.addEventListener("click", (event) => {
+  darkmodeStore.dispatch(toggleDarkmode());
   event.target.classList.toggle("darkmode");
-  const root = document.querySelector("#root");
-  const title = document.querySelector("main h1");
-  const aside = document.querySelector("aside");
-  const likesHeader = document.querySelector(".likes__header");
-  const likesMain = document.querySelector(".likes__main");
-  const stars = document.querySelectorAll(".like");
+  stars = document.querySelectorAll(".like");
   if (event.target.classList.contains("darkmode")) {
     document.body.classList.add("darkmode");
     root.classList.add("darkmode");
