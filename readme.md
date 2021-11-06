@@ -20,3 +20,4 @@ Make a zone with three different media type cards. If the cards are (dis)liked, 
 - local storage
 - responsiveness
 - Animate.css animation
+- a darkmode switch
