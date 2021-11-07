@@ -118,8 +118,6 @@ document.querySelectorAll(".like").forEach((card) => {
 // Function to render all liked cards in the "liked" zone
 
 const renderAllLikes = () => {
-  // first make the likes zone empty
-  document.querySelector(".likes__main").innerHTML = "";
   // then render each card from the likesStore
   likesStore.getState().forEach((obj) => {
     obj.render(obj.likesHolder);
@@ -219,6 +217,53 @@ document.querySelectorAll(".like").forEach((star) => {
   });
 });
 
+// Emoji render function
+
+const renderEmoji = () => {
+  const amountLikes = likesStore.getState().length;
+
+  const emojis = [
+    { amount: 0, emoji: "👀" },
+    { amount: 1, emoji: "🙂" },
+    { amount: 2, emoji: "😃" },
+    { amount: 3, emoji: "☺️" },
+    { amount: 4, emoji: "😍" },
+    { amount: 5, emoji: "🥳" },
+    { amount: 6, emoji: "🤪" },
+  ];
+
+  let emojiToRender = "";
+
+  switch (amountLikes) {
+    case 0:
+      emojiToRender = emojis[0].emoji;
+      break;
+    case 1:
+      emojiToRender = emojis[1].emoji;
+      break;
+    case 2:
+      emojiToRender = emojis[2].emoji;
+      break;
+    case 3:
+      emojiToRender = emojis[3].emoji;
+      break;
+    case 4:
+      emojiToRender = emojis[4].emoji;
+      break;
+    case 5:
+      emojiToRender = emojis[5].emoji;
+      break;
+    case 6:
+    default:
+      emojiToRender = emojis[6].emoji;
+      break;
+  }
+
+  document.querySelector("#emoji").textContent = emojiToRender;
+};
+
+likesStore.subscribe(renderEmoji);
+
 // Sync application with local storage
 
 // Sync store
@@ -278,6 +323,10 @@ const syncLikesStore = () => {
   });
   // and render them all
   renderAllLikes();
+  // and render initial emoji if nothing has changed in the likesStore
+  if (!lsLikesStore.length) {
+    renderEmoji();
+  }
 };
 
 syncLikesStore();
