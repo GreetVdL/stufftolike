@@ -23,7 +23,7 @@ class Photo {
     holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card photo" id="${this.id}">
+      <div class="card photo" data-id="${this.id}">
         <img class="photo__img" src="${this.photo}" alt="${this.description}">
         <p class="photo__desc">${this.description}</p>
         <div class="like ${extra}">

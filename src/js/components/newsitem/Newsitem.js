@@ -27,7 +27,7 @@ class Newsitem {
     holder.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="card post" id="${this.id}">
+      <div class="card post" data-id="${this.id}">
         <h2 class="post__title">${this.title}</h2>
         <p class="post__date">${this.moment}</p>
         <p class="post__intro">${this.intro}</p>

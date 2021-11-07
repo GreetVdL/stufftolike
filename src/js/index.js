@@ -54,15 +54,19 @@ const likesChanged = (obj) => {
   // if the card was liked
   if (obj.liked) {
     // make the star yellow
-    document.querySelectorAll(`#${obj.id} .like`).forEach((el) => {
-      el.classList.add("like--active");
-    });
+    document
+      .querySelectorAll(`div[data-id="${obj.id}"] .like`)
+      .forEach((el) => {
+        el.classList.add("like--active");
+      });
     // ik the card was unliked
   } else {
     // make the star white again
-    document.querySelectorAll(`#${obj.id} .like`).forEach((el) => {
-      el.classList.remove("like--active");
-    });
+    document
+      .querySelectorAll(`div[data-id="${obj.id}"] .like`)
+      .forEach((el) => {
+        el.classList.remove("like--active");
+      });
   }
 };
 
@@ -74,7 +78,9 @@ const handleCardsClick = (event, className, reducer, action) => {
     // get the corresponding object from the store
     const targetObject = store
       .getState()
-      [reducer].filter((item) => item.id === event.target.parentElement.id)[0];
+      [reducer].filter(
+        (item) => item.id === event.target.parentElement.dataset.id
+      )[0];
     // toggle whether it was liked
     store.dispatch(action(targetObject));
     // if the card was liked
@@ -119,7 +125,7 @@ const renderAllLikes = () => {
     obj.render(obj.likesHolder);
     // and color its star yellow
     document
-      .querySelector(`.likes__main #${obj.id} .like`)
+      .querySelector(`.likes__main div[data-id="${obj.id}"] .like`)
       .classList.add("like--active");
   });
 };
@@ -127,8 +133,10 @@ const renderAllLikes = () => {
 // Function to remove a disliked card in the "liked" zone
 
 const removeDislike = (tar) => {
-  const el = document.querySelector(`.likes #${tar.id}`);
-  const elStar = document.querySelector(`.likes #${tar.id} .like`);
+  const el = document.querySelector(`.likes div[data-id="${tar.id}"]`);
+  const elStar = document.querySelector(
+    `.likes div[data-id="${tar.id}"] .like`
+  );
   elStar.style.animation = "rotate-center-once 0.5s ease-in-out both";
   elStar.addEventListener("animationend", () => {
     elStar.style.animation = "none";
@@ -147,7 +155,9 @@ const handleLikedCardsClick = (event, className, reducer, action) => {
     // get the corresponding object from the store
     const targetObject = store
       .getState()
-      [reducer].filter((item) => item.id === event.target.parentElement.id)[0];
+      [reducer].filter(
+        (item) => item.id === event.target.parentElement.dataset.id
+      )[0];
     // toggle whether it was liked
     store.dispatch(action(targetObject));
     // remove the card from the likesStore
