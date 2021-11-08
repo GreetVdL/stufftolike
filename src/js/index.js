@@ -271,10 +271,9 @@ const renderEmoji = () => {
     case 5:
       emojiToRender = emojis[5].emoji;
       break;
-    case 6:
+    case 6: /* intended fallthrough */
     default:
       emojiToRender = emojis[6].emoji;
-      break;
   }
 
   document.querySelector("#emoji").textContent = emojiToRender;
