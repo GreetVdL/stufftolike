@@ -153,6 +153,17 @@ const removeDislike = (tar) => {
   const elStar = document.querySelector(
     `.likes div[data-id="${tar.id}"] .like`
   );
+  // If the hide filter is on, remove the element immediately
+  if (el.classList.contains("post") && filterStore.getState().newsHide) {
+    el.remove();
+  }
+  if (el.classList.contains("song") && filterStore.getState().musicHide) {
+    el.remove();
+  }
+  if (el.classList.contains("photo") && filterStore.getState().photosHide) {
+    el.remove();
+  }
+  // else, remove it after the star animation has finished
   elStar.style.animation = "rotate-center-once 0.5s ease-in-out both";
   elStar.addEventListener("animationend", () => {
     elStar.style.animation = "none";
