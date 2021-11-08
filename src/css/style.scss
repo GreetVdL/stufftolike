@@ -213,6 +213,23 @@ html {
       color: $fuchsia;
     }
   }
+  #root aside .likes__main {
+    .filter__news {
+      &:hover {
+        animation: rotate-center-once 0.5s ease-in-out both;
+      }
+    }
+    .filter__music {
+      &:hover {
+        animation: rotate-center-once 0.5s ease-in-out both;
+      }
+    }
+    .filter__photos {
+      &:hover {
+        animation: rotate-center-once 0.5s ease-in-out both;
+      }
+    }
+  }
 }
 
 #news {
