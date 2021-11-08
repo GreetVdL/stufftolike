@@ -6,6 +6,7 @@ import musicReducer from "./music";
 import photosReducer from "./photos";
 import likesReducer from "./likes";
 import darkmodeReducer from "./darkmode";
+import filterReducer from "./filter";
 
 const rootReducer = combineReducers({
   newsReducer,
@@ -18,3 +19,5 @@ export default createStore(rootReducer);
 export const likesStore = createStore(likesReducer);
 
 export const darkmodeStore = createStore(darkmodeReducer);
+
+export const filterStore = createStore(filterReducer);

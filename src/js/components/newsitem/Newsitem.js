@@ -4,6 +4,7 @@ import "moment/locale/nl";
 class Newsitem {
   constructor(name, date, title, intro, href) {
     this.name = name;
+    this.category = "news";
     this.holder = document.querySelector("#news");
     this.likesHolder = document.querySelector(".likes__main");
     this.title = title;

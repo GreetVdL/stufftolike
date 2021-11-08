@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 class Song {
   constructor(songURL, title, img, author, name) {
     this.name = name;
+    this.category = "music";
     this.holder = document.querySelector("#music");
     this.likesHolder = document.querySelector(".likes__main");
     this.author = author;

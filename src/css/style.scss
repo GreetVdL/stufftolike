@@ -91,9 +91,114 @@ html {
       min-height: calc(100% - 70px);
       margin-top: -15px;
       padding-bottom: 15px;
+      .filter {
+        height: 55px;
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 15px;
+        padding-bottom: 5px;
+        &__news {
+          position: relative;
+          cursor: pointer;
+          background-color: $lgreen;
+          color: $dgreen;
+          width: 35px;
+          border-radius: 15px;
+          text-align: center;
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 35px;
+          &--hide {
+            background-color: $llblack;
+            color: $cultured;
+            &::after {
+              display: block;
+              content: "";
+              position: absolute;
+              top: calc(50% - 2px);
+              width: 38px;
+              height: 4px;
+              background-color: $cultured;
+              transform: rotate(-45deg);
+            }
+          }
+        }
+        &__music {
+          position: relative;
+          cursor: pointer;
+          background-color: $lblue;
+          color: $dblue;
+          width: 35px;
+          border-radius: 15px;
+          text-align: center;
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 35px;
+          &--hide {
+            background-color: $llblack;
+            color: $cultured;
+            &::after {
+              display: block;
+              content: "";
+              position: absolute;
+              top: calc(50% - 2px);
+              width: 38px;
+              height: 4px;
+              background-color: $cultured;
+              transform: rotate(-45deg);
+            }
+          }
+        }
+        &__photos {
+          position: relative;
+          cursor: pointer;
+          background-color: $lred;
+          color: $dred;
+          width: 35px;
+          border-radius: 15px;
+          text-align: center;
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 35px;
+          &--hide {
+            background-color: $llblack;
+            color: $cultured;
+            &::after {
+              display: block;
+              content: "";
+              position: absolute;
+              top: calc(50% - 2px);
+              width: 38px;
+              height: 4px;
+              background-color: $cultured;
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
       &.darkmode {
         background-color: $lblack;
         border: 4px solid $lblack;
+        .filter {
+          &__news,
+          &__music,
+          &__photos {
+            &--hide {
+              background-color: $cultured;
+              color: $lllblack;
+              &::after {
+                display: block;
+                content: "";
+                position: absolute;
+                top: calc(50% - 2px);
+                width: 38px;
+                height: 4px;
+                background-color: $lllblack;
+                transform: rotate(-45deg);
+              }
+            }
+          }
+        }
       }
       .card {
         margin-bottom: 30px;

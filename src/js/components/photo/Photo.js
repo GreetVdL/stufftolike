@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 class Photo {
   constructor(name, img, desc) {
     this.name = name;
+    this.category = "photos";
     this.holder = document.querySelector("#photos");
     this.likesHolder = document.querySelector(".likes__main");
     this.description = desc;

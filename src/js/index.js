@@ -3,11 +3,17 @@ import "../css/style.scss";
 import store from "./data";
 import { likesStore } from "./data";
 import { darkmodeStore } from "./data";
+import { filterStore } from "./data";
 import { togglePhoto } from "./data/photos";
 import { toggleNews } from "./data/news";
 import { toggleSong } from "./data/music";
 import { add, remove } from "./data/likes";
 import { toggleDarkmode } from "./data/darkmode";
+import {
+  toggleNewsHide,
+  toggleMusicHide,
+  togglePhotosHide,
+} from "./data/filter";
 
 import "animate.css";
 
@@ -92,6 +98,8 @@ const handleCardsClick = (event, className, reducer, action) => {
         targetObject.render(targetObject.likesHolder);
         // with the right color: yellow
         likesChanged(targetObject);
+        // and filter
+        filterLikeZone();
       }, 500);
       // ik the card was unliked
     } else {
@@ -126,6 +134,8 @@ const renderAllLikes = () => {
       .querySelector(`.likes__main div[data-id="${obj.id}"] .like`)
       .classList.add("like--active");
   });
+  // and filter
+  filterLikeZone();
 };
 
 // Function to remove a disliked card in the "liked" zone
@@ -264,6 +274,76 @@ const renderEmoji = () => {
 
 likesStore.subscribe(renderEmoji);
 
+// Counter and filter functionality
+
+const newsButton = document.querySelector(".filter__news");
+const musicButton = document.querySelector(".filter__music");
+const photosButton = document.querySelector(".filter__photos");
+
+const renderCounter = () => {
+  newsButton.textContent = likesStore
+    .getState()
+    .filter((obj) => obj.category === "news").length;
+  musicButton.textContent = likesStore
+    .getState()
+    .filter((obj) => obj.category === "music").length;
+  photosButton.textContent = likesStore
+    .getState()
+    .filter((obj) => obj.category === "photos").length;
+};
+
+likesStore.subscribe(renderCounter);
+
+const filterLikeZone = () => {
+  const filterState = filterStore.getState();
+  const posts = document.querySelectorAll("aside main .post");
+  const songs = document.querySelectorAll("aside main .song");
+  const photos = document.querySelectorAll("aside main .photo");
+  if (filterState.newsHide) {
+    posts.forEach((post) => {
+      post.style.display = "none";
+    });
+  } else {
+    posts.forEach((post) => {
+      post.style.display = "block";
+    });
+  }
+  if (filterState.musicHide) {
+    songs.forEach((song) => {
+      song.style.display = "none";
+    });
+  } else {
+    songs.forEach((song) => {
+      song.style.display = "block";
+    });
+  }
+  if (filterState.photosHide) {
+    photos.forEach((photo) => {
+      photo.style.display = "none";
+    });
+  } else {
+    photos.forEach((photo) => {
+      photo.style.display = "block";
+    });
+  }
+};
+
+newsButton.onclick = (event) => {
+  event.target.classList.toggle("filter__news--hide");
+  filterStore.dispatch(toggleNewsHide());
+  filterLikeZone();
+};
+musicButton.onclick = (event) => {
+  event.target.classList.toggle("filter__music--hide");
+  filterStore.dispatch(toggleMusicHide());
+  filterLikeZone();
+};
+photosButton.onclick = (event) => {
+  event.target.classList.toggle("filter__photos--hide");
+  filterStore.dispatch(togglePhotosHide());
+  filterLikeZone();
+};
+
 // Sync application with local storage
 
 // Sync store
@@ -326,6 +406,10 @@ const syncLikesStore = () => {
   // and render initial emoji if nothing has changed in the likesStore
   if (!lsLikesStore.length) {
     renderEmoji();
+  }
+  // and render initial counter if nothing has changed in the likesStore
+  if (!lsLikesStore.length) {
+    renderCounter();
   }
 };
 
