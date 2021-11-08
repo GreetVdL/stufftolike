@@ -103,9 +103,9 @@ html {
           background-color: $lgreen;
           color: $dgreen;
           width: 35px;
-          border-radius: 15px;
+          border-radius: 50%;
           text-align: center;
-          font-size: 2rem;
+          font-size: 2.3rem;
           font-weight: 600;
           line-height: 35px;
           &--hide {
@@ -129,9 +129,9 @@ html {
           background-color: $lblue;
           color: $dblue;
           width: 35px;
-          border-radius: 15px;
+          border-radius: 50%;
           text-align: center;
-          font-size: 2rem;
+          font-size: 2.3rem;
           font-weight: 600;
           line-height: 35px;
           &--hide {
@@ -155,9 +155,9 @@ html {
           background-color: $lred;
           color: $dred;
           width: 35px;
-          border-radius: 15px;
+          border-radius: 50%;
           text-align: center;
-          font-size: 2rem;
+          font-size: 2.3rem;
           font-weight: 600;
           line-height: 35px;
           &--hide {
@@ -193,7 +193,7 @@ html {
                 top: calc(50% - 2px);
                 width: 38px;
                 height: 4px;
-                background-color: $lllblack;
+                background-color: $lblack;
                 transform: rotate(-45deg);
               }
             }

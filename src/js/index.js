@@ -36,11 +36,16 @@ const saveDarkmodeStore = () => {
   );
 };
 
+const saveFilterStore = () => {
+  window.localStorage.setItem("filter", JSON.stringify(filterStore.getState()));
+};
+
 // when the stores' state changes
 
 store.subscribe(saveStore);
 likesStore.subscribe(saveLikesStore);
 darkmodeStore.subscribe(saveDarkmodeStore);
+filterStore.subscribe(saveFilterStore);
 
 // and save stores for initial browser session
 
@@ -52,6 +57,9 @@ if (!window.localStorage.getItem("likesStore")) {
 }
 if (!window.localStorage.getItem("darkmode")) {
   saveDarkmodeStore();
+}
+if (!window.localStorage.getItem("filter")) {
+  saveFilterStore();
 }
 
 //  Function to update stars' color
@@ -98,7 +106,7 @@ const handleCardsClick = (event, className, reducer, action) => {
         targetObject.render(targetObject.likesHolder);
         // with the right color: yellow
         likesChanged(targetObject);
-        // and filter
+        //  and filter
         filterLikeZone();
       }, 500);
       // ik the card was unliked
@@ -370,6 +378,23 @@ const syncStore = (reducer, action) => {
 syncStore("newsReducer", toggleNews);
 syncStore("musicReducer", toggleSong);
 syncStore("photosReducer", togglePhoto);
+
+// Sync filterStore
+
+const lsFilterStore = JSON.parse(window.localStorage.getItem("filter"));
+
+if (lsFilterStore.newsHide) {
+  filterStore.dispatch(toggleNewsHide());
+  newsButton.classList.add("filter__news--hide");
+}
+if (lsFilterStore.musicHide) {
+  filterStore.dispatch(toggleMusicHide());
+  musicButton.classList.add("filter__music--hide");
+}
+if (lsFilterStore.photosHide) {
+  filterStore.dispatch(togglePhotosHide());
+  photosButton.classList.add("filter__photos--hide");
+}
 
 // Sync likesStore
 // the likesStore needs to be synced separately so that the liked cards get rendered in the right order
