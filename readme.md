@@ -8,7 +8,7 @@
 
 **Deployment:**
 
-Visit the app at --> --) [https://stufftolike.surge.sh](https://stufftolike.surge.sh)
+Visit the app at --> [https://stufftolike.surge.sh](https://stufftolike.surge.sh)
 
 Je kan de likes ook filteren door op de counters te drukken.
 
