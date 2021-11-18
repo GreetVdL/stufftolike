@@ -30,7 +30,7 @@ class Song {
         <h2 class="song__author">${this.author}</h2>
         <h3 class="song__title">${this.title}</h3>
         <img class="song__photo" src="${this.photo}" alt= "{this.#title}">
-        <audio class="song__path" controls src="${this.path}"></audio>
+        <audio controls class="song__path" src="${this.path}" type="audio/mpeg"></audio>
         <div class="like ${extra}">
         <svg class="icon icon-star-empty">
           <use href="#icon-star-full"></use>
