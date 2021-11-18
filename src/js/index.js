@@ -255,10 +255,9 @@ const renderEmoji = () => {
     { amount: 0, emoji: "👀" },
     { amount: 1, emoji: "🙂" },
     { amount: 2, emoji: "😃" },
-    { amount: 3, emoji: "☺️" },
-    { amount: 4, emoji: "😍" },
-    { amount: 5, emoji: "🥳" },
-    { amount: 6, emoji: "🤪" },
+    { amount: 3, emoji: "😍" },
+    { amount: 4, emoji: "🥳" },
+    { amount: 5, emoji: "🤪" },
   ];
 
   let emojiToRender = "";
@@ -279,12 +278,9 @@ const renderEmoji = () => {
     case 4:
       emojiToRender = emojis[4].emoji;
       break;
-    case 5:
-      emojiToRender = emojis[5].emoji;
-      break;
-    case 6: /* intended fallthrough */
+    case 5: /* intended fallthrough */
     default:
-      emojiToRender = emojis[6].emoji;
+      emojiToRender = emojis[5].emoji;
   }
 
   document.querySelector("#emoji").textContent = emojiToRender;
